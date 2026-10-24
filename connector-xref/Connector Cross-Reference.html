@@ -1,0 +1,1241 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Connector Cross-Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: engineering datasheet. Dark masthead with the lookup, then stacked result panels with ruled headers. */
+:root{
+ --bg:#f3f5f7;--panel:#ffffff;--ink:#16202b;--mute:#5a6876;--line:#d8dee5;--line2:#eaeef2;
+ --acc:#1d4f86;--acc2:#e7eef7;--warn:#8a5300;--warnbg:#fdf5e6;--warnline:#ecd3a5;
+ --mast:#14263b;--mastink:#eef3f8;--mastmute:#9fb1c4;--mastline:#2a3f57;
+ --f-head:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+ --f-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+ --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+ --bg:#0f151c;--panel:#161e27;--ink:#e3e9ef;--mute:#93a2b1;--line:#2a3542;--line2:#1f2833;
+ --acc:#7fb2ea;--acc2:#1a2b3e;--warn:#f0c278;--warnbg:#2a2214;--warnline:#4a3a1e;
+ --mast:#0a1018;--mastink:#e3e9ef;--mastmute:#8394a6;--mastline:#223041;color-scheme:dark}}
+:root[data-theme="dark"]{
+ --bg:#0f151c;--panel:#161e27;--ink:#e3e9ef;--mute:#93a2b1;--line:#2a3542;--line2:#1f2833;
+ --acc:#7fb2ea;--acc2:#1a2b3e;--warn:#f0c278;--warnbg:#2a2214;--warnline:#4a3a1e;
+ --mast:#0a1018;--mastink:#e3e9ef;--mastmute:#8394a6;--mastline:#223041;color-scheme:dark}
+*,*:before,*:after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--f-body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding-inline:16px}
+
+/* masthead */
+.mast{background:var(--mast);color:var(--mastink);border-bottom:3px solid var(--acc)}
+.mast .wrap{padding-block:28px 26px;display:grid;gap:18px}
+.eyebrow{font:500 12px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mastmute);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.eyebrow b{color:var(--mastink);font-weight:600}
+h1{font:600 clamp(26px,4.2vw,36px)/1.1 var(--f-head);margin:0;letter-spacing:-.005em;text-wrap:balance}
+.lede{margin:6px 0 0;color:var(--mastmute);max-width:68ch;font-size:14.5px}
+.specs{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.specs li{font:500 12px/1 var(--f-mono);padding:6px 8px;border:1px solid var(--mastline);border-radius:3px;color:var(--mastink)}
+.box{display:flex;gap:8px;flex-wrap:wrap}
+#q{flex:1 1 280px;min-width:0;font:500 18px var(--f-mono);letter-spacing:.02em;padding:13px 14px;border:1px solid var(--mastline);border-radius:4px;background:var(--panel);color:var(--ink);text-transform:uppercase}
+#q::placeholder{text-transform:none;color:var(--mute);font-size:14px;letter-spacing:0}
+#go{font:600 15px var(--f-body);padding:0 22px;min-height:48px;border:0;border-radius:4px;background:var(--acc);color:var(--panel);cursor:pointer}
+#go:hover{filter:brightness(1.08)}
+input:focus-visible,button:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.mast input:focus-visible,.mast button:focus-visible{outline-color:var(--mastink)}
+.ex{display:flex;gap:6px 10px;align-items:baseline;flex-wrap:wrap;margin:0;font-size:12px;color:var(--mastmute)}
+.ex .lbl{font:500 11px var(--f-mono);letter-spacing:.1em;text-transform:uppercase}
+#exs{display:flex;flex-wrap:wrap;gap:5px;flex:1;min-width:0}
+#exs button{background:transparent;color:var(--mastink);border:1px solid var(--mastline);border-radius:3px;padding:4px 7px;font:400 12px var(--f-mono);cursor:pointer}
+button.try{font:500 12.5px var(--f-mono);padding:4px 8px;margin:2px 0;border:1px solid var(--acc);border-radius:3px;background:var(--acc2);color:var(--acc);cursor:pointer}button.try:hover{background:var(--acc);color:var(--panel)}
+#exs button:hover{border-color:var(--mastmute);background:var(--mastline)}
+
+/* results */
+main.wrap{padding-block:24px 40px}
+#out{display:grid;gap:16px}
+section{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:0 18px 18px;min-width:0}
+section>h2:first-child{margin:0 -18px 14px;padding:12px 18px;border-bottom:1px solid var(--line);background:var(--line2);border-radius:4px 4px 0 0}
+h2{font:600 15px/1.3 var(--f-head);letter-spacing:.06em;text-transform:uppercase;margin:0 0 10px;color:var(--ink)}
+section h2:not(:first-child){font-size:13px;color:var(--acc);margin-top:20px}
+section>p:first-child,section>p.err:only-child{margin:16px 0 0}
+.sub{color:var(--mute);margin:0 0 12px}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line2);border-radius:3px}
+table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line2);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{background:var(--bg);color:var(--mute);font:600 11px/1.3 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+tbody tr:hover td,tr:hover td{background:color-mix(in srgb,var(--acc2) 45%,transparent)}
+.pn{font:500 13.5px/1.45 var(--f-mono);white-space:nowrap}
+.seg{background:var(--acc2);color:var(--acc);padding:2px 7px;border-radius:3px}
+.note{position:relative;background:var(--warnbg);color:var(--ink);border:1px solid var(--warnline);padding:9px 12px 9px 64px;border-radius:3px;margin:10px 0 0;font-size:13px;line-height:1.5}
+.note:before{content:"NOTE";position:absolute;left:12px;top:10px;font:600 10px/1.4 var(--f-mono);letter-spacing:.12em;color:var(--warn)}
+.err{color:var(--warn);font-weight:500}
+.big{font:600 clamp(19px,3vw,24px)/1.25 var(--f-mono);letter-spacing:.02em;word-break:break-all;margin:0 0 12px;color:var(--ink)}
+.big small{font-size:.75em}
+small{color:var(--mute)}
+svg text{font-family:var(--f-mono)}
+.ill{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:18px;align-items:start}.ill figure{margin:0;min-width:0}.ill figcaption{font-size:12.5px;color:var(--mute);margin-top:6px}.ill-side{border:0}.ill-side svg{min-width:360px}@media(max-width:760px){.ill{grid-template-columns:minmax(0,1fr)}}
+.kpk{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start}.kpk-fig{color:var(--ink)}.kpk-fig svg{max-width:100%;height:auto}.kpk-tbl{flex:1;min-width:260px}
+.kcap{margin:4px 0 0;font-size:12.5px;color:var(--mute)}.kcap b{color:var(--ink);font-family:var(--f-mono)}
+tr.kpr{cursor:pointer}tr.kpr:focus-visible{outline:2px solid var(--acc);outline-offset:-2px}
+tr.kpr.sel td{background:var(--acc2)}tr.kpr.sel td:first-child{box-shadow:inset 3px 0 0 var(--acc)}
+tr.kpr.mine td:first-child .pn{font-weight:600;color:var(--acc)}
+.mine-tag{display:inline-block;font:600 10px/1.5 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:0 5px;border-radius:3px;background:var(--warnbg);color:var(--warn);border:1px solid var(--warnline);vertical-align:1px;white-space:nowrap}
+.empty{text-align:center;color:var(--mute);padding:32px 16px;border:1px dashed var(--line);border-radius:4px}
+
+footer.wrap{padding-block:0 40px}
+.sources{border-top:1px solid var(--line);padding-top:16px;font-size:12.5px;color:var(--mute);max-width:90ch;margin:0}
+.sources b{display:block;font:600 11px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:6px}
+@media(max-width:560px){#go{flex:1 1 100%}.mast .wrap{padding-block:22px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+/* lookup helpers */
+.hint{font:500 12px/1.4 var(--f-mono);color:var(--mastmute);min-height:17px;margin:-10px 0 0;letter-spacing:.02em}
+.hint b{color:var(--mastink);font-weight:600}
+details.exd{display:block}
+details.exd>summary{list-style:none;cursor:pointer;display:inline-flex;gap:8px;align-items:center;color:var(--mastmute);font-size:12px}
+details.exd>summary::-webkit-details-marker{display:none}
+details.exd>summary:before{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(-45deg);transition:transform .15s}
+details.exd[open]>summary:before{transform:rotate(45deg)}
+details.exd>summary:hover{color:var(--mastink)}
+#exs{display:grid;gap:7px;margin-top:10px}
+.exg{display:flex;flex-wrap:wrap;gap:5px;align-items:baseline}
+.exg>b{font:500 10.5px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mastmute);flex:0 0 150px}
+.exg button{background:transparent;color:var(--mastink);border:1px solid var(--mastline);border-radius:3px;padding:4px 7px;font:400 12px var(--f-mono);cursor:pointer}
+.exg button:hover{border-color:var(--mastmute);background:var(--mastline)}
+#recent button{background:var(--mastline);color:var(--mastink);border:1px solid var(--mastline);border-radius:3px;padding:4px 7px;font:400 12px var(--f-mono);cursor:pointer}
+#recent button.clr{background:transparent;color:var(--mastmute);border-style:dashed}
+@media(max-width:560px){.exg>b{flex-basis:100%}}
+/* section navigation */
+#jump{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:6px;padding:10px 0;margin:-10px 0 6px;background:color-mix(in srgb,var(--bg) 92%,transparent);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);max-width:100%}
+#jump a,#jump button{flex:none;max-width:100%;overflow:hidden;text-overflow:ellipsis;font:500 12px/1 var(--f-mono);padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--ink);text-decoration:none;cursor:pointer;white-space:nowrap}
+#jump a:hover,#jump button:hover{border-color:var(--acc);color:var(--acc)}
+#jump button{color:var(--mute);border-style:dashed}
+#jump .jact{display:flex;flex-wrap:wrap;gap:6px;margin-left:auto;justify-content:flex-end}
+section{scroll-margin-top:calc(var(--jumpH,50px) + 10px)}
+@media(max-width:560px){#jump{position:static;margin-bottom:10px}#jump a,#jump button{font-size:11.5px;padding:6px 9px}section{scroll-margin-top:10px}}
+section>h2:first-child{cursor:pointer;position:relative;padding-right:44px;user-select:none}
+section>h2:first-child:after{content:"";position:absolute;right:20px;top:50%;width:7px;height:7px;border-right:2px solid var(--mute);border-bottom:2px solid var(--mute);transform:translateY(-70%) rotate(45deg);transition:transform .15s}
+section.shut>h2:first-child:after{transform:translateY(-35%) rotate(-45deg)}
+section.shut>*:not(h2:first-child){display:none!important}
+section.shut{padding-bottom:0}
+section.shut>h2:first-child{margin-bottom:0;border-bottom:0;border-radius:4px}
+section.dym{border-color:var(--acc)}
+/* copy */
+#out .pn,#out .big{cursor:copy}
+#out button .pn,#out button.try{cursor:pointer}
+#toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,16px);opacity:0;background:var(--ink);color:var(--panel);font:500 13px var(--f-body);padding:8px 14px;border-radius:4px;transition:opacity .18s,transform .18s;pointer-events:none;z-index:20;max-width:calc(100% - 32px)}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+@media print{
+ body{background:#fff;color:#000}
+ .mast{background:none;color:#000;border-bottom:2px solid #000}.mast .lede,.mast .eyebrow,.specs,.box,.hint,.ex,details.exd,#jump,footer{display:none!important}
+ .mast h1{color:#000}
+ section{break-inside:avoid-page;border-color:#999}
+ section.shut>*:not(h2:first-child){display:revert!important}
+ section>h2:first-child:after{display:none}
+ .note{border-color:#999;background:#f6f6f6}
+}
+section>h2:first-child{padding-right:128px}
+.prt{position:absolute;right:46px;top:50%;transform:translateY(-50%);display:inline-flex;align-items:center;gap:5px;font:500 11px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:5px 8px;border:1px solid var(--line);border-radius:3px;background:var(--panel);color:var(--mute);cursor:pointer}
+.prt:hover{border-color:var(--acc);color:var(--acc)}
+.prt svg{width:13px;height:13px;flex:none}
+#phead{display:none}
+@media(max-width:560px){section>h2:first-child{padding-right:96px}.prt span{display:none}}
+@media print{
+ .prt{display:none!important}
+ body.printing #out>section:not(.print-me),body.printing #jump,body.printing .empty{display:none!important}
+ #phead{display:flex;justify-content:space-between;gap:16px;font:500 12px var(--f-mono);border-bottom:1px solid #999;padding:0 0 6px;margin:0 0 12px}
+ #phead b{font-size:15px}
+}
+</style>
+
+<header class="mast">
+ <div class="wrap">
+  <div>
+   <div class="eyebrow"><b>Connector reference</b><span>Part number decode &amp; interchange</span></div>
+   <h1 style="margin-top:10px">Circular connector cross-reference</h1>
+   <p class="lede">Enter a part number to decode it and see a to-scale illustration, equivalents, mating connectors, backshells, contacts and keyway positions.</p>
+  </div>
+  <ul class="specs" aria-label="Supported specifications">
+   <li>MIL-DTL-83723 I, II, III</li><li>EN2997</li><li>ESC10</li><li>ESC11</li><li>Pyle BNK</li><li>Boeing BACC63</li><li>D38999 III</li><li>F38999</li><li>MS3450–3459</li><li>Raychem TX / TXR</li><li>Pyle T-Line / T3</li><li>TE Deutsch 983</li><li>Souriau 8534 / 8536</li><li>ESC15 / ESC16</li><li>Pyle BT / BY / BTY / HTK</li>
+  </ul>
+  <form class="box" id="f" onsubmit="return false"><input id="q" placeholder="e.g. EN2997KE616-24F6, 983-6SE 20-39 P6, D38999/26WB35SN" autocomplete="off" spellcheck="false" aria-label="Part number"><button id="go">Look up</button></form>
+  <p class="hint" id="hint" aria-live="polite"></p>
+  <div class="ex" id="recentRow" hidden><span class="lbl">Recent</span><span id="recent" style="display:flex;flex-wrap:wrap;gap:5px"></span></div>
+  <details class="exd"><summary><span class="lbl">Examples</span><span id="exn"></span></summary><div id="exs"></div></details>
+ </div>
+</header>
+<main class="wrap"><div id="phead"><b id="phpn"></b><span id="phsec"></span><span id="phdate"></span></div><nav id="jump" hidden aria-label="Jump to section"></nav><div id="out"><div class="empty">Enter a part number above, or choose an example.</div></div></main>
+<div id="toast" role="status"></div>
+<footer class="wrap"><p class="sources"><b>Sources &amp; limitations</b>Built from the Amphenol/Pyle MIL-DTL-83723 Series III catalog (Section B), the Conesys MIL-DTL-83723 Series III catalog, the Souriau-Sunbank / Proponent ESC10/EN2997 ordering information (SAE-ITC drawing ESC10), the Amphenol MIL-DTL-5015 Matrix crimp rear release catalog (pp. 433-460), and for ESC11 the Eaton Souriau 853 series catalog (8534 scoop-proof / ESC11, 8536 / ESC16) and the Amphenol Pyle catalog (pp. 20-26, 34-35, HTK series). BNK (and BJ, BJ8, BN, BN8) is from the Amphenol Pyle catalog How to Order page for Pyle commercial connectors designed to meet General Electric specifications (M50TF3564). D38999 / F38999 layouts, polarization angles (including Souriau T and V) and the hermetic options come from the Souriau 8D / D38999 Series III and MIL-DTL-38999 hermetic catalogs; F38999 is Souriau's non-QPL marking of the D38999 Series III interface. BACC63 styles and ordering codes come from the rms/Air Electro MIL-DTL-26500 catalog (BV, BP, CB, CC, BN), the Amphenol Boeing BACC63 38999 Series III how-to-order (CT, CU, DB, DC), the Amphenol BACC 5015 series pages (CD, CE), and Stealth Aerospace product pages (BR, CM); a BACC63 part is shown with its nearest military equivalent, which is not an approved substitute. M83723 Series I and II slash sheets and their MS replacements come from the Glenair military connector part number cross-reference; Series I dimensions from the MIL-DTL-26482 Series 2 MS3470 and MS3476 sheets. Illustration diameters come from the catalog dimension tables for each shell size; lengths are split from the catalog overall lengths. TE Deutsch 983 codes are read from TE product pages, which give the EN2997 or ESC15 number for each 983 part; the 983-15 accessory digit (4, 7) and class KV are not decoded. Pyle T-Line and its T3 contacts and sealing plugs come from the Amphenol Aerospace T-Line data sheet. TE Raychem TX / TXR backshell codes (interface code, shell code, entry size code) are read from TE and distributor datasheets for TXR40, TXR54, TXR21 and TXR18 parts; the finish letter C, option letters and variant suffixes are not decoded. Pyle BT, BY, BTY / BFY / BNY and HTK formats come from the Amphenol Pyle MIL-DTL-83723 Series III catalog (pp. 29, 33, 35, 36); Souriau 8534 and 8536 / ESC16 from the Eaton Souriau 853 series catalog. Cross-references are engineering guidance only; verify against the current specification sheets and with the manufacturer before ordering.</p></footer>
+<script>
+const $=id=>document.getElementById(id),pad=n=>String(n).padStart(2,'0');
+// insert arrangements: count x contact size
+const AR={'8-2':'2x20','8-3':'3x20','8-98':'3x20','10-2':'2x20','10-5':'5x20','10-6':'6x20','10-20':'2x16','12-3':'3x16','12-12':'12x20','14-4':'4x12','14-7':'7x16','14-12':'9x20,3x16','14-15':'15x20','16-10':'10x16','16-24':'24x20','18-8':'8x12','18-14':'14x16','18-31':'31x20','20-16':'16x16','20-25':'19x20,6x12','20-28':'24x20,4x12','20-39':'37x20,2x16','20-41':'41x20','22-12':'12x12','22-19':'19x16','22-27':'27x16','22-32':'26x20,6x12','22-39':'27x20,12x16','22-55':'55x20','24-19':'19x12','24-29':'29x16','24-30':'30x16','24-43':'23x20,20x16','24-46':'40x20,4x16,2x8T','24-57':'55x20,2x12','24-61':'61x20','28-41':'41x16','28-42':'42x16','28-91':'91x20'};
+const CT={20:['M39029/4-110','M39029/5-115','MS27488-20','M81969/14-11'],16:['M39029/4-111','M39029/5-116','MS27488-16','M81969/14-03'],12:['M39029/4-113','M39029/5-118','MS27488-12','M81969/14-04']};
+// slash: [kind R/P, coupling, description, gender P/S]
+const S={'71':['R','Bayonet','Square flange receptacle','S'],'72':['R','Bayonet','Square flange receptacle','P'],'73':['R','Bayonet','Jam nut receptacle','S'],'74':['R','Bayonet','Jam nut receptacle','P'],
+'75':['P','Bayonet','Straight plug','S'],'76':['P','Bayonet','Straight plug','P'],'77':['P','Bayonet','RFI grounding plug','S'],'78':['P','Bayonet','RFI grounding plug','P'],
+'82':['R','Threaded','Square flange receptacle','S'],'83':['R','Threaded','Square flange receptacle','P'],'84':['R','Threaded','Jam nut (D-hole) receptacle','S'],'85':['R','Threaded','Jam nut (D-hole) receptacle','P'],
+'86':['P','Threaded','Straight plug','S'],'87':['P','Threaded','Straight plug','P'],'91':['P','Threaded','RFI grounding plug','S'],'92':['P','Threaded','RFI grounding plug','P'],
+'95':['P','Threaded','Self-locking (non-decoupling) plug','S'],'96':['P','Threaded','Self-locking (non-decoupling) plug','P'],'97':['P','Threaded','Self-locking plug, EMI grounding spring','S'],'98':['P','Threaded','Self-locking plug, EMI grounding spring','P'],
+'68':['P','Threaded','Lanyard-release quick-disconnect plug','P'],'69':['P','Threaded','Lanyard-release quick-disconnect plug','S'],
+'88':['R','Hermetic','Hermetic square flange receptacle','P'],'89':['R','Hermetic','Hermetic jam nut receptacle','P'],'90':['R','Hermetic','Hermetic solder/weld mount receptacle','P']};
+const CLS={G:'Stainless steel, 200°C',K:'Stainless steel, 200°C, firewall',S:'Stainless steel, 200°C firewall, EMI grounding spring / 360° teeth',N:'Stainless steel, electrodeposited nickel, firewall, 360° teeth',Y:'Hermetic stainless, 200°C, solderwell',P:'Hermetic stainless, 200°C, eyelet',H:'Hermetic tin-plated carbon steel, 150°C',A:'Aluminum, black anodized',R:'Aluminum, electroless nickel',W:'Aluminum, olive drab cadmium over nickel'};
+const ENCLS={K:'Threaded, stainless, 200°C',S:'Threaded, stainless, EMI spring on plug, 200°C',Y:'Hermetic stainless, solderwell, 200°C',KE:'Threaded, stainless firewall, 260°C',SE:'Threaded, stainless, EMI spring on plug, 260°C',YE:'Hermetic stainless, solderwell, 260°C'};
+const ENST={'0':'Square flange receptacle','1':'Solder mount receptacle (hermetic only)','6':'Non-decoupling plug','7':'Jam nut (D-hole) receptacle','C':'Plug with integrated backshell'};
+const ENCT={M:'Standard pin contacts',C:'#20 pins with #18 crimpwell',A:'Pin insert, less contacts',F:'Standard socket contacts',D:'#20 sockets with #18 crimpwell',B:'Socket insert, less contacts'};
+const KEY={N:'Normal',6:'Alt. position 6',7:'Alt. position 7',8:'Alt. position 8',9:'Alt. position 9',Y:'Alt. position Y',1:'Clocked 1 (inactive for new design)',2:'Clocked 2 (inactive)',3:'Clocked 3 (inactive)',4:'Clocked 4 (inactive)',5:'Clocked 5 (inactive)'};
+const NA={G:['97','98'],K:['91','92','97','98'],S:['86','87','91','92','95','96'],A:['91','92','97','98'],R:['97','98'],W:['97','98']};
+const EN={'82':'0','83':'0','84':'7','85':'7','88':'0','89':'7','90':'1','86':'6','87':'6','91':'6','92':'6','95':'6','96':'6','97':'6','98':'6'};
+function findArr(s){s=s.replace(/-/g,'');for(const pass of [0,1])for(const k in AR){const[a,b]=k.split('-');const f=pass?[a+b,pad(a)+b]:[a+pad(b),pad(a)+pad(b)];if(f.includes(s))return k}}
+function milPN(c){return `M83723/${c.sl}${c.cls}${c.size}${pad(c.arr)}${c.key}`}
+function enPN(c){ // returns {pn,notes} or null
+ if(!EN[c.sl])return null;const n=[];let cl=c.cls;
+ if(['G','A','R','W','N'].includes(cl)){n.push(`Class ${cl} has no EN2997 class; K (firewall) is the nearest stainless class`);cl='K'}
+ if(cl==='P'||cl==='H'){n.push('Eyelet / H-class hermetics have no EN2997 equivalent; Y (solderwell) is the nearest');cl='Y'}
+ if(['97','98','91','92'].includes(c.sl)&&cl==='K'){cl='S'}
+ if(['95','96'].includes(c.sl)&&cl==='S')cl='K';
+ if(['86','87','91','92'].includes(c.sl))n.push('EN2997 has no straight plug; nearest is the non-decoupling plug (style 6)');
+ if(c.sl==='91'||c.sl==='92')n.push('RFI-grounding plug mapped to S (EMI spring)');
+ if(c.t260)cl+='E';
+ return{pn:`EN2997${cl}${EN[c.sl]}${c.size}-${pad(c.arr)}${c.g==='P'?'M':'F'}${c.key}`,notes:n}}
+// ---- ESC10 (SAE-ITC, high temperature, to EN2997 / M83723 Series III) ----
+const ESCCLS={KE:'Stainless steel, firewall, 260°C',SE:'Stainless steel, firewall, 260°C, with grounding spring',YE:'Stainless steel hermetic, 260°C',Y:'Hermetic, stainless steel'};
+const ESCST={'0':'Square flange receptacle, 360° accessory teeth (MS3155)','1':'Hermetic solder mount receptacle','2':'Hermetic square flange receptacle','3':'Hermetic jam nut receptacle','6':'Plug, non-decoupling (self-locking coupling nut), 360° accessory teeth (MS3155)'};
+const ESCV={O:'Basic connector',0:'Basic connector (0 written for letter O)',A:'Lockwire holes on plug'};
+const ESCSZ=['8','10','12','14','16','18','20','24','28'];
+const EN2ESC={'0':'0','6':'6'},EN2ESCH={'0':'2','7':'3','1':'1'};
+function parseESC(s){
+ const m=s.replace(/[-\/]/g,'').match(/^ESC10(KE|SE|YE|Y)([01236])(\d{3,4})([PS])([N6789Y])([0OA]?)$/);
+ if(!m)return{err:'ESC10 part not recognized. Expected ESC10KE01814P6O style: class (KE, SE, YE, Y), shell style (0, 6; hermetic 1, 2, 3), shell size + arrangement, P or S, keying (N, 6, 7, 8, 9, Y), variation (O or A).'};
+ const[,cls,st,sa,ct,key,v0]=m,her=cls[0]==='Y';
+ if('123'.includes(st)&&!her)return{err:`ESC10 shell style ${st} is hermetic only (class Y or YE).`};
+ if('06'.includes(st)&&her)return{err:'Hermetic classes (Y, YE) use shell styles 1 (solder mount), 2 (square flange) or 3 (jam nut).'};
+ const a=findArr(sa);if(!a)return{err:'Could not match the shell size / insert arrangement.'};
+ const[size,arr]=a.split('-'),enst={'0':'0','1':'1','2':'0','3':'7','6':'6'}[st];
+ const r=parse(`EN2997${cls}${enst}${size}-${pad(arr)}${ct==='P'?'M':'F'}${key}`);if(r.err)return r;
+ return Object.assign(r,{src:'C',escCls:cls,escSt:st,escCt:ct,escVar:v0||'O'})}
+const her0=c=>['88','89','90'].includes(c.sl);
+function escPN(c){ // ESC10 equivalent of any parsed part, or null with a reason
+ const e=enPN(c),n=[];if(!e)return{pn:null,notes:['No ESC10 equivalent for this style.']};
+ const m=e.pn.match(/^EN2997(KE|SE|YE|K|S|Y)([0167])/),b=m[1].replace('E',''),st=(her0(c)?EN2ESCH:EN2ESC)[m[2]];
+ if(!her0(c)&&m[2]==='7')return{pn:null,notes:['ESC10 has no non-hermetic jam nut receptacle (styles 2 and 3 are hermetic only).']};
+ if(!/^[N6789Y]$/.test(c.key))return{pn:null,notes:[`Keying ${c.key} (clocked) has no ESC10 equivalent.`]};
+ const her=['88','89','90'].includes(c.sl),cl=c.src==='C'?c.escCls:her?'YE':b+'E';
+ if(!ESCSZ.includes(c.size))n.push(`Shell size ${c.size} is not listed in the ESC10 ordering information (8, 10, 12, 14, 16, 18, 20, 24, 28); check availability.`);
+ if(her&&c.g==='S')n.push('M83723 hermetics are pin only; confirm a socket hermetic ESC10 exists before ordering.');
+ return{pn:`ESC10${cl}${st}${pad(c.size)}${pad(c.arr)}${c.g==='P'?'P':'S'}${c.key}${c.escVar==='A'?'A':'O'}`,notes:n}}
+function parse(raw){
+ let s=raw.toUpperCase().replace(/[\s]/g,'').replace(/^AE833/,'M83723/').replace(/-(340|341|342|01)$/,'');
+ if(/^ESC10/.test(s))return parseESC(s);
+ if(/^B(J|N|T|Y|FY)/.test(s))return parseB(s);
+ let m=s.match(/^M83723\/?(\d{2})([A-Z])([\dA-Z-]+)$/);
+ if(m){const rest=m[3].replace(/-/g,''),key=rest.slice(-1),a=findArr(rest.slice(0,-1)),d=S[m[1]];
+  if(!d)return{err:`/${m[1]} is not a known M83723 slash number.`};if(!a)return{err:'Could not match the shell size / insert arrangement.'};if(!(key in KEY))return{err:'Keying position must be N, 6, 7, 8, 9 or Y.'};
+  const[size,arr]=a.split('-');return{src:'M',sl:m[1],cls:m[2],size,arr,key,g:d[3],t260:false}}
+ m=s.match(/^EN2997(KE|SE|YE|K|S|Y)([0167C])([\dA-Z-]+)$/);
+ if(m){const rest=m[3].replace(/-/g,''),key=rest.slice(-1);let ct=rest.slice(-2,-1),a=findArr(rest.slice(0,-2)),miss=false;
+  if(!ENCT[ct]&&/\d/.test(ct)){const a2=findArr(rest.slice(0,-1));if(a2){a=a2;ct='M';miss=true}}
+  if(!a)return{err:'Could not match the shell size / insert arrangement.'};if(!ENCT[ct])return{err:'Contact style must be M, C, A, F, D or B.'};if(!(key in KEY)||key<'0'&&0)return{err:'Keying position must be N, 6, 7, 8, 9 or Y.'};
+  const[size,arr]=a.split('-'),st=m[2],t=m[1].endsWith('E'),b=m[1].replace('E',''),g='MCA'.includes(ct)?'P':'S';let sl;
+  if(st==='6'||st==='C')sl=b==='S'?(g==='P'?'98':'97'):(g==='P'?'96':'95');
+  else if(st==='1')sl='90';else if(b==='Y')sl=st==='0'?'88':'89';
+  else sl=st==='0'?(g==='P'?'83':'82'):(g==='P'?'85':'84');
+  return{src:'E',sl,cls:b,size,arr,key,g,t260:t,enst:st,enct:ct,enc:m[1],miss}}
+ return{err:'Part number not recognized. Expected M83723/82K1624N, EN2997KE616-24F6 (EN2997 shell style 0, 1, 6, 7 or C) ESC10KE01814P6O or BNK-12E16-24SD06Y186 style.'}}
+function mates(c){
+ const d=S[c.sl],out=[],want=c.g==='P'?'S':'P';let list;
+ if(d[0]==='R')list=d[1]==='Bayonet'?['75','76','77','78']:['86','87','91','92','95','96','97','98','68','69'];
+ else list=d[1]==='Bayonet'?['71','72','73','74']:['82','83','84','85','88','89','90'];
+ const base=['Y','P','H'].includes(c.cls)&&d[0]==='R'?['G','K']:c.cls==='S'&&d[0]==='P'?['S','K']:[c.cls];
+ for(const sl of list){const x=S[sl];if(x[3]!==want)continue;if(d[0]==='P'&&!(x[1]===d[1]||(d[1]==='Threaded'&&x[1]==='Hermetic')))continue;
+  for(const b of base){let cl=b,note='';
+   if(d[0]==='R'){if((NA[cl]||[]).includes(sl)){if(['97','98'].includes(sl)&&['G','K'].includes(cl)){cl='S'}else if(cl==='S'&&['86','87','91','92','95','96'].includes(sl)){cl='K'}else continue}}
+   else if(sl==='90'&&d[1]!=='Hermetic'&&0)continue;
+   if(['68','69'].includes(sl))note='Needs M83723/70 receptacle adapter to mate';
+   const o={...c,sl,cls:cl,g:x[3]};if(d[0]==='P'&&['88','89','90'].includes(sl)){o.cls=['G','K'].includes(c.cls)?'Y':c.cls}
+   if(out.some(z=>z.pn===milPN(o)))continue;out.push({o,pn:milPN(o),note})}}
+ return out}
+const BC={White:'#fff',Brown:'#6b3f1d',Black:'#111',Orange:'#f08a00',Green:'#1f9d3a',Blue:'#1f5fd0',Gray:'#888',Red:'#d22',Yellow:'#f2d000',Violet:'#7a3fb5'};
+const chip=n=>`<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:${BC[n]};border:1px solid var(--mute);vertical-align:-2px;margin-right:3px"></span>${n}`;
+const bd=(a,dot)=>a.map(chip).join('<br>')+(dot?'<br>+ white dot':'');
+const CB={
+ mil:{t:'MIL standard (M83723, 200°C)',n:'Bands read 1st / 2nd / 3rd from the contact tip end.',r:{
+  20:[['M39029/4-110','BA-4020-36LD',['Brown','Brown','Black']],['M39029/5-115','BA-4120-36LD',['Brown','Brown','Green']],'MS27488-20<br>BA-4020-59P Red'],
+  16:[['M39029/4-111','BA-4016-36LD',['Brown','Brown','Brown']],['M39029/5-116','BA-4116-36LD',['Brown','Brown','Blue']],'MS27488-16<br>BA-4016-59P Blue'],
+  12:[['M39029/4-113','BA-4012-36LD',['Brown','Brown','Orange']],['M39029/5-118','BA-4112-36LD',['Brown','Brown','Gray']],'MS27488-12<br>BA-4012-59P Yellow']}},
+ eu:{t:'European standard (200°C, -Y165)',n:'1st band = contact size, 2nd band = AWG wire size. Sealing plugs: Pyle standard BA-40xx-59P.',r:{
+  20:[['BA-4020-36LD-Y165','',['Red','Red']],['BA-4120-36LD-Y165','',['Red','Red']],'BA-4020-59P Red'],
+  '20/18':[['BA-402018-36LD-Y165','',['Red','Violet']],['BA-412018-36LD-Y165','',['Red','Violet']],'BA-4020-59P Red'],
+  16:[['BA-4016-36LD-Y165','',['Blue','Blue']],['BA-4116-36LD-Y165','',['Blue','Blue']],'BA-4016-59P Blue'],
+  12:[['BA-4012-36LD-Y165','',['Yellow','Yellow']],['BA-4112-36LD-Y165','',['Yellow','Yellow']],'BA-4012-59P Yellow']}},
+ ht:{t:'European high temperature (260°C, ESC30)',n:'1st band = contact size, 2nd band = AWG, white dot = high temperature.',d:1,r:{
+  20:[['BA-4020-50LD','ESC30-P20BC',['Red','Red']],['BA-4120-50LD','ESC30-S20BC',['Red','Red']],'BT-4020-60P Red'],
+  '20/18':[['BA-402018-50LD','',['Red','Violet']],['BA-412018-50LD','',['Red','Violet']],'BT-4020-60P Red'],
+  16:[['BA-4016-50LD','ESC30-P16BC',['Blue','Blue']],['BA-4116-50LD','ESC30-S16BC',['Blue','Blue']],'BT-4016-60P Blue'],
+  12:[['BA-4012-50LD','ESC30-P12BC',['Yellow','Yellow']],['BA-4112-50LD','ESC30-S12BC',['Yellow','Yellow']],'BT-4012-60P Yellow']}}};
+function cSvg(t,b,d,s){const f={20:1,16:1.3,12:1.7}[s]||1,y=36,bh=16*f,sh=7*f,th=17*f;
+ let o=`<svg viewBox='0 0 330 80' width='330' height='80' style='color:var(--ink);max-width:100%' role='img' aria-label='${t} contact, size ${s}'><g stroke='currentColor' stroke-width='1.2' fill='var(--panel)'>`;
+ o+=`<rect x='8' y='${y-bh/2}' width='92' height='${bh}' rx='2'/><circle cx='28' cy='${y}' r='2.5' fill='var(--bg)'/>`;
+ b.forEach((n,i)=>{o+=`<rect x='${52+i*10}' y='${y-bh/2}' width='7' height='${bh}' fill='${BC[n]}'/>`});
+ if(d)o+=`<circle cx='40' cy='${y}' r='3' fill='#fff'/>`;
+ o+=`<rect x='100' y='${y-bh/2-4}' width='9' height='${bh+8}'/>`;
+ if(t==='Pin')o+=`<rect x='109' y='${y-sh/2}' width='205' height='${sh}' rx='${sh/2}'/>`;
+ else o+=`<rect x='109' y='${y-th/2}' width='140' height='${th}' rx='2'/><line x1='170' x2='249' y1='${y-th/6}' y2='${y-th/6}'/><line x1='170' x2='249' y1='${y+th/6}' y2='${y+th/6}'/><rect x='200' y='${y-th/2}' width='6' height='${th}' fill='var(--line)'/>`;
+ o+=`</g><g fill='currentColor' font-size='9'><text x='8' y='${y+bh/2+16}'>crimp well, inspection hole, bands</text><text x='${t==='Pin'?150:120}' y='${y+bh/2+16}'>${t==='Pin'?'pin (mating end)':'socket, 4 tines + spring band'}</text></g></svg>`;return o}
+function illus(sz,cur){const v=CB[cur];return `<div style='display:flex;flex-wrap:wrap;gap:6px 24px;margin:6px 0 4px'>`+sz.map(s=>{const r=v.r[s];return r?`<div><b>#${s} pin</b><br>${cSvg('Pin',r[0][2],v.d,s)}</div><div><b>#${s} socket</b><br>${cSvg('Socket',r[1][2],v.d,s)}</div>`:''}).join('')+`</div><small>Schematic only, not to scale. Bands shown are the MIL standard (M83723, 200°C) colours, read from the crimp end.</small>`}
+function bandSec(c,arr){
+ if(!arr)return '';
+ const sz=[...new Set(arr.split(',').map(t=>t.match(/x(\d+)(T?)/)).filter(m=>!m[2]).map(m=>m[1]))];
+ const cur=c.src==='M'||c.src==='B'?'mil':c.t260?'ht':'eu';
+ return '<section><h2>Contact part numbers and colour bands</h2>'+illus(sz,'mil')+Object.keys(CB).map(k=>{const v=CB[k],rows=[];
+  for(const s of sz){const keys=[s];if(s==='20'&&k!=='mil')keys.push('20/18');for(const q of keys){const r=v.r[q];if(!r)continue;
+   const f=x=>`<span class="pn">${x[0]}</span>${x[1]?'<br><span class="pn">'+x[1]+'</span>':''}`;
+   rows.push(['#'+q,f(r[0]),bd(r[0][2],v.d),f(r[1]),bd(r[1][2],v.d),`<span class="pn">${r[2]}</span>`])}}
+  return `<h2 style="font-size:15px;margin-top:14px">${v.t}${k===cur?' <span class="seg">matches your part</span>':''}</h2>${tbl(['Size','Pin P/N','Pin bands','Socket P/N','Socket bands','Sealing plug'],rows)}<small>${v.n}</small>`}).join('')+'<div class="note">Sizes from the Pyle catalog pp. 46-49. #20/#18 means a #20 contact with #18 crimpwell. Thermocouple, twinax and coax contacts are not listed; consult Amphenol.</div></section>'}
+const KP={a:{N:[105,140,215,265],6:[102,132,248,320],7:[80,118,230,312],8:[35,140,205,275],9:[64,155,234,304],Y:[25,115,220,270]},b:{N:[105,140,215,265],6:[18,149,192,259],7:[92,152,222,342],8:[84,152,204,334],9:[24,135,199,240],Y:[98,152,268,338]}};
+function keySec(c){
+ const g=+c.size<=10?'a':'b',cl=/[1-5]/.test(c.key),sel=cl?'N':c.key,E=cl?c.key*10:0,T=KP[g];
+ if(!T[sel])return '';
+ const pos=Object.keys(T).filter(p=>p!=='Y'||c.size==='10'||g==='b');
+ const pk=keyPicker(pos,sel,p=>kwSvg(T[p],{ins:p===sel?E:0}),['Position','A°','B°','C°','D°'],(p,on)=>T[p].map(x=>on?`<b>${x}°</b>`:x+'°'));
+ return `<section><h2>Keyway positions (shell size ${c.size}, position ${c.key})</h2>${pk}<div class="note">Engaging-face view of the receptacle shell. Angles are measured from the master keyway (top, 0°) counter-clockwise, per the catalog diagram. Plug shell keys are the opposite of this diagram.${cl?` Position ${c.key} is an insert clock position: the shell keyways stay normal and the insert is rotated ${E}° (socket insert counter-clockwise, pin insert clockwise). Inactive for new designs.`:''}${c.size==='8'?' Size 8 has no Y position.':''}</div></section>`}
+// ---- Keyway pickers: one diagram per position, rows select which one is shown; the searched part's row stays marked ----
+function kwSvg(a,o){o=o||{};const R=62,cx=100,cy=100,pt=(d,r)=>{const t=d*Math.PI/180;return[cx-r*Math.sin(t),cy-r*Math.cos(t)]},mw=o.mw||16;
+ let s=`<svg viewBox="0 0 200 200" width="260" height="260" role="img" aria-label="Keyway positions"><circle cx="100" cy="100" r="${R}" fill="none" stroke="currentColor" stroke-width="2"/><rect x="${100-mw/2}" y="${cy-R-3}" width="${mw}" height="11" fill="${o.mcol||'var(--acc)'}"/><text x="100" y="${cy-R-8}" text-anchor="middle" font-size="9" fill="currentColor">${o.mlab||'Master key 0°'}</text><line x1="100" y1="20" x2="100" y2="180" stroke="var(--mute)" stroke-dasharray="3 3"/><line x1="20" y1="100" x2="180" y2="100" stroke="var(--mute)" stroke-dasharray="3 3"/>`;
+ a.forEach((d,i)=>{const[x,y]=pt(d,R),[lx,ly]=pt(d,R+22),[ix,iy]=pt(d,R-12);s+=`<line x1="${ix}" y1="${iy}" x2="${x}" y2="${y}" stroke="var(--acc)" stroke-width="${o.sw||7}"/><line x1="100" y1="100" x2="${ix}" y2="${iy}" stroke="var(--line)"/><text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="currentColor">${'ABCD'[i]} ${d}°</text>`});
+ if(o.ins){const[x,y]=pt(o.ins,R-20);s+=`<line x1="100" y1="100" x2="${x}" y2="${y}" stroke="var(--warn)" stroke-width="2"/><text x="${x}" y="${y-4}" text-anchor="middle" font-size="9" fill="var(--warn)">insert ${o.ins}°</text>`}
+ return s+'</svg>'}
+function keyPicker(pos,mine,svgOf,head,cellsOf,lab){
+ lab=lab||(p=>p==='N'?'N (normal)':p);const show=pos.includes(mine)?mine:pos[0];
+ const views=pos.map(p=>`<div class="kv" data-pos="${esc(p)}"${p===show?'':' hidden'}>${svgOf(p)}</div>`).join('');
+ const rows=pos.map(p=>{const on=p===mine;return `<tr class="kpr${on?' mine':''}${p===show?' sel':''}" data-pos="${esc(p)}" data-lab="${esc(lab(p))}" tabindex="0" aria-selected="${p===show}">${[`<span class="pn">${esc(lab(p))}</span>${on?' <span class="mine-tag">your part</span>':''}`,...cellsOf(p,on)].map(x=>`<td>${x}</td>`).join('')}</tr>`}).join('');
+ return `<div class="kpk"><div class="kpk-fig">${views}<p class="kcap">Showing <b class="kcur">${esc(lab(show))}</b>${pos.includes(mine)?` · your part: <b>${esc(lab(mine))}</b>`:''}. Select a row to compare positions.</p></div><div class="kpk-tbl"><div class="scroll"><table><tr>${head.map(x=>`<th>${x}</th>`).join('')}</tr>${rows}</table></div></div></div>`}
+function pickKey(tr){const k=tr.closest('.kpk');if(!k)return;const p=tr.dataset.pos;
+ k.querySelectorAll('.kv').forEach(v=>v.hidden=v.dataset.pos!==p);
+ k.querySelectorAll('tr.kpr').forEach(r=>{const on=r===tr;r.classList.toggle('sel',on);r.setAttribute('aria-selected',on)});
+ k.querySelector('.kcur').textContent=tr.dataset.lab}
+function esc(t){return String(t).replace(/[&<>]/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[x]))}
+function tbl(h,rows){return `<div class="scroll"><table><tr>${h.map(x=>`<th>${x}</th>`).join('')}</tr>${rows.map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</table></div>`}
+function describe(c){const d=S[c.sl];return `${d[2].startsWith(d[1])?'':d[1]+' '}${(d[2].startsWith(d[1])?d[2]:d[2].toLowerCase()).replace(/\b(rfi|emi)\b/g,x=>x.toUpperCase())}, ${d[3]==='P'?'pin':'socket'} contacts`}
+const BSF={N:'Aluminum, electroless nickel',W:'Aluminum, cadmium olive drab over electroless nickel',S:'Stainless steel, passivated',B:'Stainless steel, black cadmium'};
+const BST={'8':'.500-20 UNF','10':'.625-24 UNEF','12':'.750-20 UNEF','14':'.875-20 UNEF','16':'1.000-20 UNEF','18':'1.062-18 UNEF','20':'1.188-18 UNEF','22':'1.313-18 UNEF','24':'1.438-18 UNEF','28':'1.750-18 UNS'};
+function bsSec(c){
+ const d=S[c.sl],th=BST[c.size];
+ if(c.enst==='C')return `<section><h2>Backshell required</h2><p>None. EN2997 style C has an integrated backshell. The M83723 equivalent plug needs <span class="pn">M85049/52-1-${c.size}N</span> (or another finish) fitted separately.</p></section>`;
+ if(d[1]==='Hermetic')return `<section><h2>Backshell required</h2><p>None. Hermetic receptacles (/${c.sl}) have no rear accessory thread.</p></section>`;
+ const rows=Object.keys(BSF).map(f=>[`<span class="pn">M85049/52-1-${c.size}${f}</span>`,BSF[f]]);
+ const n=[];
+ n.push(d[0]==='P'?'M85049/52 is a straight, non-environmental backshell (supersedes MS3417) with a cable clamp, for M83723 Series III plugs.':'Backshells normally fit the plug. This receptacle has a rear accessory thread, so M85049/52 can be fitted if the application needs a cable clamp at the receptacle.');
+ if(d[1]==='Bayonet')n.push('Bayonet styles (/71-/78): confirm the rear accessory thread against the /52 slash sheet.');
+ if(['95','96','97','98'].includes(c.sl))n.push('Self-locking plug: confirm compatibility with the backshell on the /52 slash sheet.');
+ if(c.src==='B'&&'EF'.includes(c.mod))n.unshift(`Modification ${c.mod} gives 360° accessory teeth per MS3155, not the standard 3 teeth. M85049/52 is shown for the shell size, but use a backshell with an MS3155 360° interface (for example the SAE-ITC ESC65 / ESC74 types) to engage the teeth.`);
+ n.push('Style 1 = straight, dash number = connector shell size, last letter = finish. Finish letters follow the M85049 family; confirm availability on the current /52 sheet. EMI/RFI and environmental backshells are separate slash sheets (e.g. /23, /10).');
+ const tx=d[1]==='Bayonet'?'':txrNote('54',c.size,c.src==='C'||c.cls==='N'||(c.src==='B'&&'EF'.includes(c.mod||'x'))?'This part has 360° accessory teeth (MS3155); TE lists interface 54 for M83723 Series III, so confirm the TXR fits the 360° interface.':'');
+ return `<section><h2>Backshell required</h2><div class="big">M85049/52-1-${c.size}<small>N</small></div><p class="sub" style="margin:6px 0 10px">Shell size ${c.size}${th?', rear thread '+th:''}. Replace the last letter with the finish you need.</p>${tbl(['Part number','Finish / material'],rows)}${n.map(x=>`<div class="note">${esc(x)}</div>`).join('')}${tx}</section>`}
+// ---- MIL-DTL-38999 Series III ----
+const DS={'20':['R','Wall mount (square flange) receptacle'],'24':['R','Jam nut receptacle'],'26':['P','Plug'],'29':['P','Plug with accessory threads'],'30':['P','Lanyard-release plug'],'21':['H','Box mount hermetic receptacle'],'23':['H','Jam nut hermetic receptacle'],'25':['H','Solder mount hermetic receptacle'],'27':['H','Weld mount hermetic receptacle']};
+const DZ={A:['09','M12x1'],B:['11','M15x1'],C:['13','M18x1'],D:['15','M22x1'],E:['17','M25x1'],F:['19','M28x1'],G:['21','M31x1'],H:['23','M34x1'],J:['25','M37x1']};
+const DC={C:'Aluminum, non-conductive anodic coating, 200°C',G:'Aluminum, space-grade electroless nickel, 200°C',K:'Stainless steel, passivated, firewall, 200°C',L:'Stainless steel, electrodeposited nickel, non-firewall, 200°C',T:'Aluminum, nickel-PTFE (cadmium-free), 175°C',Z:'Aluminum, black zinc-nickel (cadmium-free), 175°C',F:'Electroless nickel, environment resisting',W:'Olive drab cadmium over electroless nickel',J:'Olive drab cadmium over nickel (composite)',M:'Nickel, electroless or electrodeposited (composite)',S:'Stainless steel shell, electrodeposited nickel, firewall insert',N:'Hermetic, corrosion-resistant steel, electrodeposited nickel',Y:'Hermetic, corrosion-resistant steel, passivated'};
+// insert arrangements (count x contact size), from the Souriau 8D / D38999 Series III layout tables
+const DA={'9-35':'6x22D','9-98':'3x20','11-02':'2x16','11-04':'4x20','11-05':'5x20','11-12':'1x12','11-35':'13x22D','11-98':'6x20','11-99':'7x20','13-04':'4x16','13-08':'8x20','13-26':'6x22D,2x12','13-35':'22x22D','13-98':'10x20','15-05':'5x16','15-15':'14x20,1x16','15-18':'18x20','15-19':'19x20','15-35':'37x22D','15-97':'8x20,4x16','17-06':'6x12','17-08':'8x16','17-20':'16x22D,4x12','17-26':'26x20','17-35':'55x22D','17-99':'21x20,2x16','19-11':'11x16','19-28':'26x20,2x16','19-32':'32x20','19-35':'66x22D','21-11':'11x12','21-16':'16x16','21-35':'79x22D','21-39':'37x20,2x16','21-41':'41x20','21-48':'4x8','23-21':'21x16','23-32':'32x20','23-35':'100x22D','23-53':'53x20','23-54':'40x22D,9x16,4x12','23-55':'55x20','25-04':'48x20,8x16','25-19':'19x12','25-24':'12x16,12x12','25-29':'29x16','25-35':'128x22D','25-37':'37x16','25-43':'23x20,20x16','25-61':'61x20','11-01':'1x12C','11-80':'1x8T','11-81':'1x8Q','17-02':'38x22D,1x8T','17-75':'2x8T','17-81':'32x22D,1x8Q','17-82':'2x8Q','21-75':'4x8T','21-84':'4x8Q','25-07':'97x22D,2x8T','25-08':'8x8T','25-11':'2x20,9x10','25-20':'10x20,13x16,4x12C,3x8T','25-41':'22x22D,3x20,11x16,2x12,3x8T','25-44':'4x16,4x4','25-46':'40x20,4x16,2x8C','25-80':'10x20,13x16,4x12,3x8Q','25-81':'22x22D,3x20,11x16,2x12,3x8Q','25-82':'97x22D,2x8Q','25-86':'40x20,4x16,2x8Q','25-88':'8x8Q'};
+const DSZ=z=>({'8Q':'#8 Quadrax','8T':'#8 Triax','8C':'#8 Coax','12C':'#12 Coax','16C':'#16 Coax','8':'#8 power','4':'#4 power','10':'#10 power'}[z]||'#'+z);
+const DK={N:'Normal',A:'Alternate position A',B:'Alternate position B',C:'Alternate position C',D:'Alternate position D',E:'Alternate position E',T:'Position T (Souriau, 230V hermetic only; not in MIL-DTL-38999)',V:'Position V (Souriau, 230V hermetic only; not in MIL-DTL-38999)'};
+const DCT={P:['pin','Pin contacts'],S:['socket','Socket contacts'],A:['pin','Pin insert, less contacts'],B:['socket','Socket insert, less contacts'],C:['pin','Pin, PC tail (hermetic)'],D:['socket','Socket, PC tail (hermetic)'],X:['pin','Pin, eyelet (hermetic)'],Y:['socket','Socket, eyelet (hermetic)'],H:['pin','Pin, 1500-cycle high-durability contacts (composite)'],J:['socket','Socket, 1500-cycle high-durability contacts (composite)']};
+const DSPEC={'600':'230V qualified connector, delivered with contacts (layouts 13-04, 17-06, 17-08, 21-48; orientation T or V)','022':'Fuel tank version (long-term fuel immersion)','840':'Short PCB contacts','850':'Long PCB contacts','A76':'Fuel tank version with removable crimp contacts (jam nut only)'};
+const D8D={'20':'0','24':'7','26':'5','21':'0','23':'7','25':'1','27':'4'};
+const DB=[['38','Straight strain relief'],['39','90° strain relief'],['88','Straight EMI/RFI, self-locking'],['89','45° EMI/RFI'],['69','Heat shrink boot adapter']];
+// keyway angles (deg from main keyway, counter-clockwise, receptacle front face), Souriau 8D / D38999 Series III orientation tables. T and V are Souriau 230V positions.
+const DKP={A:{N:[105,140,215,265],A:[102,132,248,320],B:[80,118,230,312],C:[35,140,205,275],D:[64,155,234,304],E:[91,131,197,240]},
+B:{N:[95,141,208,236],A:[113,156,182,292],B:[90,145,195,252],C:[53,156,220,255],D:[119,146,176,298],E:[51,141,184,242]},
+F:{N:[80,142,196,293],A:[135,170,200,310],B:[49,169,200,244],C:[66,140,200,257],D:[62,145,180,280],E:[79,153,197,272]}};
+DKP.D=DKP.B;DKP.C={...DKP.B,T:[70,136,218,261],V:[75,138,224,268]};DKP.H=DKP.J=DKP.F;DKP.E=DKP.G={...DKP.F,T:[58,162,188,316],V:[85,150,191,307]};
+function dKey(sh,po,size){
+ const T=DKP[sh],a=T&&T[po];
+ if(!a){const have=T?Object.keys(T).join(', '):'none';return `<section><h2>Keyway positions (shell size ${size}, position ${po==='N'?'N (normal)':po})</h2><p class="err">Angles for this size and position are not loaded (confirmed so far: size ${size} = ${have}). See the MIL-DTL-38999 Series III polarization table on the slash sheet.</p></section>`}
+ const pk=keyPicker(Object.keys(T),po,p=>kwSvg(T[p],{mlab:'Main keyway 0°',mcol:'var(--warn)',mw:20,sw:6}),['Position','A°','B°','C°','D°'],(p,on)=>T[p].map(x=>on?`<b>${x}°</b>`:x+'°'));
+ return `<section><h2>Keyway positions (shell size ${size}, position ${po==='N'?'N (normal)':po})</h2>${pk}<div class="note">Four keyways (A-D) plus the main keyway at 0°. Angles are measured from the main keyway, looking at the front face of the receptacle, counter-clockwise. The insert does not rotate with the keyway. The plug keys are the mirror of the receptacle keyways. Sizes 11, 13 and 15 share one table, as do 17 to 25. T and V exist only in sizes 13, 17 and 21, for Souriau 230V hermetics (spec 600).</div></section>`}
+// Explain where a D38999/F38999 number stops fitting the format, and offer one-character corrections that give a known layout
+function dDiag(t){
+ const RE=/^([DF])38999\/?(\d{2})([A-Z])([A-J])(\d{1,2})([PSABCDXYHJ])([A-ENTV]?)([0-9A-Z]{2,5})?$/;
+ const ok=s=>{const m=s.match(RE);if(!m)return false;const z=+DZ[m[4]][0];return !!DA[z+'-'+pad(+m[5])]&&!!DS[m[2]]&&!!DC[m[3]]};
+ const m0=t.match(/^([DF])38999\/?(\d{2})(.*)$/),steps=[];
+ if(!m0)return $('out').innerHTML=`<section><p class="err">Not recognized as D38999 or F38999. Expected a form like D38999/26WB35SN.</p></section>`;
+ const [,pf,sl,r]=m0;let i=0,why='';
+ steps.push([pf+'38999/'+sl,DS[sl]?esc(DS[sl][1]):'<span class="err">Slash sheet not in this tool</span>']);
+ const nx=()=>r[i]||'';
+ if(DC[nx()]){steps.push([nx(),esc(DC[nx()])]);i++}else why=nx()?`Class letter <b>${esc(nx())}</b> is not a D38999 class.`:'Number ends before the class letter.';
+ if(!why){if(/[A-J]/.test(nx())){steps.push([nx(),`Shell size ${+DZ[nx()][0]}`]);i++}else why=nx()?`Expected a shell size letter A–J after the class; found <b>${esc(nx())}</b>.`:'Number ends before the shell size.'}
+ if(!why){const a=r.slice(i).match(/^\d{1,2}/);if(a){const z=+DZ[r[i-1]][0],k=z+'-'+pad(+a[0]);steps.push([a[0],DA[k]?`Arrangement ${k}`:`<span class="err">Arrangement ${k} is not in this tool's layout table</span>`]);i+=a[0].length;if(!DA[k])why=`Shell ${z} layouts loaded here: ${Object.keys(DA).filter(x=>+x.split('-')[0]===z).join(', ')||'none'}.`}
+  else{const z=+DZ[r[i-1]][0];why=`Expected the insert arrangement number after shell letter ${esc(r[i-1])} (shell ${z}); found <b>${esc(r.slice(i,i+3))}</b>. Shell ${z} layouts loaded here: ${Object.keys(DA).filter(x=>+x.split('-')[0]===z).join(', ')||'none'}.`}}
+ if(!why){if(DCT[nx()]){steps.push([nx(),esc(DCT[nx()][1])]);i++}else why=nx()?`Expected a contact letter (P, S, A, B, H, J, X…); found <b>${esc(nx())}</b>.`:'Number ends before the contact letter.'}
+ if(!why&&i<r.length)why=`Unexpected characters at the end: <b>${esc(r.slice(i))}</b>.`;
+ // one-character fixes
+ const body=r,c=new Set();
+ for(let j=0;j<body.length;j++){c.add(body.slice(0,j)+body.slice(j+1));if(j<body.length-1)c.add(body.slice(0,j)+body[j+1]+body[j]+body.slice(j+2))}
+ const fixes=[...c].map(x=>`${pf}38999/${sl}${x}`).filter(ok).slice(0,8);
+ const shown=t.replace(/^([DF]38999)\/?/,'$1/');
+ $('out').innerHTML=`<section><h2>Part number not valid as written</h2><div class="big">${esc(shown)}</div>${tbl(['Read as','Meaning'],steps.map(s=>[`<span class="seg pn">${esc(s[0])}</span>`,s[1]]))}<p class="err" style="margin:12px 0 0">${why}</p>${fixes.length?`<p style="margin:12px 0 6px">Removing or swapping one character gives these valid numbers:</p><p style="margin:0">${fixes.map(p=>`<button type="button" class="try" data-pn="${p}">${p.replace(/^([DF]38999)/,'$1')}</button>`).join(' ')}</p>`:'<p class="sub" style="margin:12px 0 0">No one-character correction gives a layout in this tool. Check the number against the part marking or drawing.</p>'}<div class="note">D38999 Series III format: slash sheet, one class letter, one shell letter (A–J), arrangement number, contact letter, polarization (N or A–E). Layout tables here cover the common arrangements; a valid layout missing from the table is possible.</div></section>`;
+ $('out').querySelectorAll('button.try').forEach(b=>b.onclick=()=>{$('q').value=b.dataset.pn;lookup()})}
+function runD(v){
+ const E=t=>{$('out').innerHTML=`<section><p class="err">${t}</p></section>`};
+ const t=v.toUpperCase().replace(/[\s-]/g,'').replace(/^M38999/,'D38999'),m=t.match(/^([DF])38999\/?(\d{2})([A-Z])([A-J])(\d{1,2})([PSABCDXYHJ])([A-ENTV]?)([0-9A-Z]{2,5})?$/);
+ if(!m)return dDiag(t);
+ if(!m)return E('Not recognized. Expected D38999/26WB35SN or F38999/21YC04PT600 style: D or F prefix, slash number, class, shell letter (A-J), arrangement, contact letter, polarization (N, A-E; T or V for Souriau 230V), optional Souriau spec suffix (e.g. 600, 022, 201).');
+ const[,pre,sl,cl,sh,ar0,ct,po0,sp]=m,d=DS[sl],z=DZ[sh],po=po0||'N',size=String(+z[0]),ar=pad(+ar0),F=pre==='F',her=d&&d[0]==='H';
+ if(!d||!DC[cl])return E(!d?'/'+sl+' is not a known D38999 Series III slash number (20, 21, 23-27, 29, 30).':'Class '+cl+' is not in this tool (F, W, J, M, S, N, Y).');
+ if(her&&!'NY'.includes(cl))return E(`Hermetic receptacles (/${sl}) are class Y (passivated) or N (nickel) stainless steel.`);
+ if(!her&&'NY'.includes(cl))return E(`Class ${cl} is a hermetic class; use slash 21, 23, 25 or 27.`);
+ if('CDXY'.includes(ct)&&!her)return E(`Contact letter ${ct} (PC tail / eyelet) is for hermetic receptacles only.`);
+ if('HJ'.includes(ct)&&!'JM'.includes(cl))return E('Contact letters H and J (1500-cycle contacts) are for composite classes J and M.');
+ const tv='TV'.includes(po),notes=[],g=DCT[ct][0],ins=DA[size+'-'+ar];
+ if(tv&&!'CEG'.includes(sh))return E('Positions T and V exist only in shell sizes 13 (C), 17 (E) and 21 (G).');
+ if(tv&&!F)notes.push('T and V are Souriau 230V positions, not MIL-DTL-38999 ones; a T or V part is ordered as F38999 or 8D, not D38999.');
+ if(sp&&!F)notes.push(`Spec ${sp} is a Souriau option; the part is F38999 / 8D, not D38999 QPL.`);
+ if(sp==='600'&&!['13-04','17-06','17-08','21-48'].includes(size+'-'+ar))notes.push('Spec 600 (230V) is listed only for layouts 13-04, 17-06, 17-08 and 21-48.');
+ if(sp==='600'&&!tv)notes.push('Spec 600 (230V) is listed with orientation T or V.');
+ if((sp==='022'||sp==='840'||sp==='850')&&!her)notes.push(`Spec ${sp} is listed in the Souriau hermetic range; confirm it for a non-hermetic part.`);
+ if(sp==='A76'&&sl!=='23'&&sl!=='24')notes.push('Spec A76 (fuel tank, crimp contacts) is jam nut only.');
+ if(ins&&/8Q|8T|8C|12C|16C/.test(ins))notes.push(`Layout ${size}-${ar} uses ${/Q/.test(ins)?'Quadrax':/T/.test(ins)?'triax':'coax'} contacts. Souriau shows it as a Souriau layout, not a QPL qualified one, so it is ordered as F38999 or 8D. Order the matching Souriau ${/Q/.test(ins)?'Quadrax':'triax/coax'} contacts separately.`);
+ if(her&&g==='socket')notes.push('Souriau lists hermetic 38999 with pin contacts only (P, C, X); confirm a socket hermetic exists.');
+ const qpl=!tv&&!sp,dpn=`D38999/${sl}${cl}${sh}${ar}${ct}${po}`,fpn=`F38999/${sl}${cl}${sh}${ar}${ct}${po}${sp||''}`,s8=`8D${D8D[sl]||'?'}${her?cl+pad(size):'-'+pad(size)+cl}${ar}${ct}${po}${sp||''}`;
+ const here=F?fpn:dpn,h=[];
+ const rows=[[pre+'38999/'+sl,(F?'Souriau F38999: MIL-DTL-38999 Series III interface and numbering, ordered outside the QPL (Souriau commercial marking). ':'MIL-DTL-38999 Series III (QPL), ')+d[1]],[cl,DC[cl]],[sh,`Shell size ${z[0]}, accessory thread ${z[1]}`],[ar,`Insert arrangement ${size}-${ar}${ins?' ('+ins.replace(/(\d+)x(\w+)/g,(_,n,z)=>n+' × '+DSZ(z)).replace(/,/g,', ')+')':''}`],[ct,ct==='P'&&her?'Pin contacts, solder cup':ct==='P'?'Pin contacts':DCT[ct][1]],[po,DK[po]]];
+ if(sp)rows.push([sp,DSPEC[sp]||'Souriau option / specification code. This code is not in the catalogs used here, so it is not decoded; confirm what it adds with Souriau.']);
+ h.push(`<section><h2>Part number breakdown</h2><div class="big">${esc(here)}</div>${tbl(['Segment','Meaning'],rows.map(r=>[`<span class="seg pn">${esc(r[0])}</span>`,esc(r[1])]))}</section>`);
+ h.push(illSec({t:{'20':'flange','24':'jam','26':'plug','29':'plug','30':'lan','21':'flange','23':'jam','25':'solder','27':'weld'}[sl],opt:{her,fin:{F:'ni',W:'od',J:'od',M:'ni',S:'ni',N:'ni',Y:'ss',L:'ni',G:'ni',K:'ss',C:'blk',T:'ni',Z:'blk'}[cl]||'ss'},arr:ins,ak:size+'-'+ar,g:g==='pin'?'P':'S',recep:d[0]!=='P',keys:DKP[sh]&&DKP[sh][po]||null,cap:d[1]+', '+g+' contacts',D:dimsFor('38',sh),fam:'MIL-DTL-38999 Series III'}));
+ const eq=[];
+ if(F)eq.push(['D38999 (QPL)',qpl?`<span class="pn">${dpn}</span>`:'<small>None</small>',qpl?'Same interface, layout and polarization. Use it where a QPL-marked part is required.':'No QPL equivalent: '+(tv?'T / V polarization':'')+(tv&&sp?' and ':'')+(sp?'spec '+sp:'')+' is Souriau only.']);
+ else eq.push(['F38999 (Souriau)',`<span class="pn">${fpn}</span>`,'Same part in Souriau F38999 marking (not QPL). Add a Souriau spec suffix if needed (600, 022, 840, 850, A76).']);
+ eq.push(['Souriau 8D',`<span class="pn">${s8}</span>`,her?'8D hermetic: style 0 square flange, 1 solder mount, 4 weld mount, 7 jam nut; class, 2-digit size, layout, contact, orientation, spec.':'8D: style 0 square flange, 7 jam nut, 5 plug; 2-digit size, plating, layout, contact, orientation. Confirm the exact format with Souriau.']);
+ if(her)eq.push(['EN3645','<small>Compliant</small>','Souriau states the hermetic 8D / D38999 range is EN3645 compliant; build the EN3645 number from its own ordering page.']);
+ h.push(`<section><h2>Cross-reference</h2>${tbl(['Spec','Part number','Note'],eq)}${notes.map(n=>`<div class="note">${esc(n)}</div>`).join('')}<div class="note">F38999 and D38999 parts with the same layout and polarization intermate. No EN2997 equivalent is mapped for 38999.</div></section>`);
+ const opp=g==='pin'?'S':'P',pc=her?'F':cl,mt=(d[0]==='P'?['20','24','21','23','25','27']:['26','29','30']).map(x=>{const hx=DS[x][0]==='H';if(hx&&(opp==='S'||(ins&&/8Q|8T|8C|12C|16C/.test(ins))))return null;const c2=hx?'Y':pc;return[`<span class="pn">${pre}38999/${x}${c2}${sh}${ar}${opp}${po}</span>`,esc(DS[x][1])+(hx?' <small>(class Y or N)</small>':'')]}).filter(Boolean);
+ h.push(`<section><h2>Mating connectors (same size, arrangement and polarization)</h2>${tbl([pre+'38999 part number','Description'],mt)}<div class="note">Opposite contact gender is shown.${her?' The plug is shown in class F (nickel aluminium); pick the plug class for your environment (W, F, S etc.).':''}${cl==='S'?' Class S is a firewall class: mate with another class S part to keep the firewall rating.':''}${tv?' T / V plugs are Souriau parts; order the mate as F38999 or 8D.':''}</div></section>`);
+ if(her)h.push('<section><h2>Backshell required</h2><p>None. Hermetic receptacles have no rear accessory thread.</p></section>');
+ else h.push(`<section><h2>Backshell required</h2><div class="big">M85049/38-${z[0]}<small>N</small></div><p class="sub" style="margin:6px 0 10px">Shell size ${z[0]}, accessory thread ${z[1]}. Straight strain relief shown first; other styles for the same shell size below.</p>${tbl(['Part number','Style'],DB.map(b=>[`<span class="pn">M85049/${b[0]}-${z[0]}</span>`,b[1]]))}<div class="note">Backshells fit plugs (/26, /29, /30). Receptacles take one only if they have a rear accessory thread. Composite (J, M) parts normally use M85049/91, /92 or /88. Add the finish letter and entry-size code per the slash sheet (e.g. M85049/88-15N02). Verify on the current M85049 slash sheet.</div>${txrNote('40',z[0])}</section>`);
+ h.push(dKey(sh,po,size));
+ if(ins){const rr=ins.split(',').map(x=>{const p=x.match(/(\d+)x(\w+)/);return[p[1],DSZ(p[2])]});h.push(`<section><h2>Insert ${size}-${ar} contacts</h2>${tbl(['Qty','Size'],rr)}<div class="note">${her?'Hermetic: fixed glass-sealed contacts, supplied in the connector. ':''}The insert face in the illustration is schematic; the true layouts come from MIL-STD-1560. Check the slash sheet or Souriau catalog for contact numbering.</div></section>`)}
+ else h.push(`<section><h2>Insert ${size}-${ar}</h2><p class="err">Arrangement not in this tool's table; see the D38999 slash sheet or Souriau catalog for contact quantity and sizes.</p></section>`);
+ $('out').innerHTML=h.join('')}
+// ---- MIL-DTL-5015 crimp rear release: MS3450-MS3459 ----
+const MS5={'3450':['0','Wall mounting (flange) receptacle','R'],'3451':['1','Cable connecting receptacle','R'],'3452':['2','Box mounting receptacle','R'],'3454':['4','Jam nut receptacle','R'],'3456':['6','Straight plug, threaded coupling','P'],'3459':['6','Straight plug, self-locking coupling nut','P']};
+const MCL={L:'Aluminum, electroless nickel, fluid-resistant insert, 200°C',W:'Aluminum, olive drab cadmium, fluid-resistant insert, 175°C',LS:'Stainless steel, passivated, fluid-resistant insert, 200°C',KT:'Firewall: steel, olive drab cadmium, hard dielectric, 175°C',KS:'Firewall: stainless steel, passivated, hard dielectric, 200°C'};
+const MCT={P:'Pin contacts',S:'Socket contacts',A:'Pin insert, less contacts',B:'Socket insert, less contacts'};
+// arrangements confirmed in the catalog (count x contact size); others are not loaded
+const MAR={'8S-1':'1x16','10S-2':'1x16','10SL-3':'3x16','10SL-4':'2x16','12S-1':'2x16','12S-3':'2x16','14S-2':'4x16','14S-5':'5x16','14S-6':'6x16','14S-7':'3x16','14S-12':'3x16','16S-1':'7x16','16S-8':'5x16','18-12':'6x16','20-15':'7x16','20-27':'14x16','20-29':'17x16','20-32':'8x16','20-33':'11x16','22-2':'3x8','22-14':'19x16','24-28':'24x16','28-12':'26x16','28-13':'26x16','28-15':'35x16','28-21':'37x16','32-22':'54x16','32-73':'46x16','36-10':'48x16','36-11':'48x16','36-12':'48x16','36-52':'52x16','40-56':'85x16'};
+const MTH={8:['.5000-20 UNF','.5000-28 UNEF'],10:['.6250-24 UNEF','.6250-24 UNEF'],12:['.7500-20 UNEF','.7500-20 UNEF'],14:['.8750-20 UNEF','.8750-20 UNEF'],16:['1.0000-20 UNEF','1.0000-20 UNEF'],18:['1.0625-18 UNEF','1.1250-18 UNEF'],20:['1.1875-18 UNEF','1.2500-18 UNEF'],22:['1.3125-18 UNEF','1.3750-18 UNEF'],24:['1.4375-18 UNEF','1.5000-18 UNEF'],28:['1.7500-18 UNS','1.7500-18 UNS'],32:['2.0000-18 UNS','2.0000-18 UNS'],36:['2.2500-16 UN','2.2500-16 UN'],40:['2.5000-16 UN','2.5000-16 UN']};
+// contacts: wire AWG, pin MIL, pin Amphenol, socket MIL, socket Amphenol, seal MIL, seal Amphenol, crimp tool, turret, crimp colour, I/R MIL, I/R Amphenol, I/R colour
+const MCS={'16S':['20-16','M39029/29-212','M5000-029-0016L','M39029/30-217','M5100-033-1601L','MS27488-16-3','10-405996-163','M22520/1-01','M22520/1-02','Red/White','M81969/14-03','10-538988-016','Blue/White'],
+'16':['20-16','M39029/29-212','M5000-029-0016L','M39029/30-218','M5100-033-1602L','MS27488-16-3','10-405996-163','M22520/1-01','M22520/1-02','Blue/White','M81969/14-03','10-538988-016','Blue/White'],
+'12':['14-12','M39029/29-213','M5000-029-0012','M39029/30-219','M5100-033-0012','MS27488-12-3','10-405996-123','M22520/1-01','M22520/1-02','Yellow/White','M81969/14-04','10-538988-012','Yellow/White'],
+'8':['10-8','M39029/29-214','M5000-029-0008','M39029/30-220','M5100-033-0008','MS27488-8-3','10-405996-083','M22520/23-01','M22520/23-02','White/Red','M81969/14-06','6500-018-0008','Red'],
+'4':['6-4','M39029/29-215','M5000-029-0004','M39029/30-221','M5100-033-0004','MS27488-4-3','10-405996-043','M22520/23-01','M22520/23-04','White/Blue','M81969/14-07','6500-018-0004','Blue'],
+'0':['2-0','M39029/29-216','M5000-029-0000','M39029/30-222','M5100-033-0000','MS27488-0-3','10-405996-003','M22520/23-01','M22520/23-05','White/Yellow','M81969/14-08','6500-018-0000','Yellow']};
+// alternate insert rotation W/X/Y/Z (degrees; - = not offered)
+const ALG=new Set('16-7 18-5 18-9 18-13 18-14 20-7 20-8 20-9 20-14 20-16 20-22 22-6 22-12 22-14 22-15 22-17 22-18 22-19 22-21 24-1 24-4 24-5 24-6 24-7 24-12 24-16 24-20 24-21 24-28 28-1 28-4 28-8 28-9 28-10 28-11 28-15 28-16 28-17 28-19 28-20 28-21 32-1 32-3 32-6 32-9 32-13 32-22 36-7 36-8 40-2 40-3 40-4 40-5 40-6 40-7 40-11'.split(' '));
+const ALI={};'12S-3 70,145,215,290;14S-2 -,120,240,-;14S-5 -,110,-,-;14S-7 90,180,270,-;14S-9 70,145,215,290;16S-1 80,-,-,280;16S-4 35,110,250,325;16S-8 -,170,265,-;16-9 35,110,250,325;16-10 90,180,270,-;16-11 35,110,250,325;16-13 35,110,250,325;18-1 70,145,215,290;18-4 35,110,250,325;18-8 70,-,-,290;18-10 -,120,240,-;18-11 -,170,265,-;18-12 80,-,-,280;18-15 -,120,240,-;18-19 -,120,240,-;18-22 70,145,215,290;20-4 45,110,250,-;20-15 80,-,-,280;20-17 90,180,270,-;20-18 35,110,250,325;20-19 90,180,270,-;20-21 35,110,250,325;20-24 35,110,250,325;20-27 35,110,250,325;20-29 80,-,-,280;22-2 70,145,215,290;22-4 35,110,250,325;22-5 35,110,250,325;22-9 70,145,215,290;22-10 35,110,250,325;22-11 35,110,250,325;22-22 -,110,250,-;22-23 35,-,250,-;22-27 80,-,250,280;22-36 90,-,270,-;24-2 80,-,-,280;24-10 80,-,-,280;24-11 35,110,250,325;24-22 45,110,250,-;24-27 80,-,-,280;24-80 35,145,240,300;28-2 35,110,250,325;28-3 70,145,215,290;28-5 35,110,250,325;28-12 90,180,270,-;28-18 70,145,215,290;28-22 70,145,215,290;32-2 70,145,215,290;32-7 80,125,235,280;32-15 35,110,250,280;32-17 45,110,250,-;32-73 36,-,-,-;36-3 70,145,215,290;36-5 -,120,240,-;36-6 35,110,250,325;36-9 80,125,235,280;36-10 80,125,235,280;36-15 60,125,245,305;36-52 72,144,216,288;36-66 110,250,260,280;40-1 65,130,235,300;40-9 65,125,255,310;40-10 65,125,255,310;40-56 72,144,216,288;40-62 30,130,220,290'.split(';').forEach(x=>{const[k,v]=x.split(' ');ALI[k]=v.split(',').map(n=>n==='-'?null:+n)});
+const msAlt=k=>ALG.has(k)?[80,110,250,280]:ALI[k]||null;
+const ccol=s=>s.split('/').map(n=>chip(n)).join(' / ');
+function parseMS(raw){
+ const s=raw.toUpperCase().replace(/[\s-]/g,'').replace(/^(MS345\d(?:LS|KT|KS|L|W))105L/,'$110SL'),SZ='(8S|10SL|10S|12S|12|14S|14|16S|16|18|20|22|24|28|32|36|40)';
+ let m=s.match(new RegExp('^MS(345[01246]|3459)(LS|KT|KS|L|W)'+SZ+'(\\d{1,2})([PSAB])([WXYZ]?)(N[A-Z])?$'));
+ return m?{style:m[1],cls:m[2],size:m[3],arr:m[4],ct:m[5],alt:m[6]}:null}
+function msPN(st,c,ct,alt){return `MS${st}${c.cls}${c.size}-${c.arr}${ct}${alt||''}`}
+function msKey(c,a,key){
+ const cw=c.ct==='P'||c.ct==='A',R=60,cx=100,cy=100,pt=(d,r)=>{const t=d*Math.PI/180;return[cx+(cw?1:-1)*r*Math.sin(t),cy-r*Math.cos(t)]};
+ let s=`<svg viewBox="0 0 200 200" width="240" height="240" role="img" aria-label="Alternate insert rotation"><circle cx="100" cy="100" r="${R}" fill="none" stroke="currentColor" stroke-width="2"/><rect x="92" y="${cy-R-3}" width="16" height="11" fill="var(--warn)"/><text x="100" y="${cy-R-8}" text-anchor="middle" font-size="9" fill="currentColor">Shell key 0° (normal)</text>`;
+ a.forEach((d,i)=>{if(d==null)return;const on='WXYZ'[i]===c.alt,[x,y]=pt(d,R-4),[lx,ly]=pt(d,R+16);s+=`<line x1="100" y1="100" x2="${x}" y2="${y}" stroke="${on?'var(--acc)':'var(--line)'}" stroke-width="${on?4:2}"/><text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="currentColor">${'WXYZ'[i]} ${d}°</text>`});
+ return s+'</svg>'}
+function runMS(v){
+ const c=parseMS(v),E=t=>$('out').innerHTML=`<section><p class="err">${t}</p></section>`;
+ const fix=/^MS345\d(LS|KT|KS|L|W)105L/i.test(v.replace(/[\s-]/g,''));
+ if(!c)return E('Not recognized. Expected MS3450L16S-8PW style: shell style (3450, 3451, 3452, 3454, 3456, 3459), class (L, W, LS, KT, KS), shell size-arrangement, P or S, optional alternate position W/X/Y/Z.');
+ const h=[],g=c.ct==='P'||c.ct==='A'?'P':'S',opp=g==='P'?'S':'P',key=c.size+'-'+c.arr,n=parseInt(c.size),d=MS5[c.style];
+ const here=msPN(c.style,c,c.ct,c.alt);
+ h.push(`<section><h2>Part number breakdown</h2><div class="big">${here}</div>${tbl(['Segment','Meaning'],[['MS'+c.style,'MIL-DTL-5015 crimp rear release, '+d[1]],[c.cls,MCL[c.cls]],[c.size+'-'+c.arr,`Shell size ${c.size}, insert arrangement ${key}`],[c.ct,MCT[c.ct]],[c.alt||'(none)',c.alt?`Insert rotated ${c.alt} (see keyway section)`:'Normal position']].map(r=>[`<span class="seg pn">${r[0]}</span>`,r[1]]))}${fix?'<div class="note">Read "105L" as shell size 10SL (letter S, not the digit 5).</div>':''}<div class="note">Military form is MS + style + class + size-arrangement + contact + alternate position + modification (NA etc.). Class L supersedes U; KT supersedes K.</div></section>`);
+ {const al=msAlt(key);h.push(illSec({t:{'3450':'flange','3451':'cable','3452':'box','3454':'jam','3456':'plug','3459':'nd'}[c.style],opt:{fin:{L:'ni',W:'od',LS:'ss',KT:'od',KS:'ss'}[c.cls]||'ss',band:'#2a62c9'},arr:MAR[key],ak:key,g,recep:d[2]==='R',keys:[],rot:c.alt&&al?(al['WXYZ'.indexOf(c.alt)]||0):0,cap:d[1]+', '+(g==='P'?'pin':'socket')+' contacts',D:dimsFor('50',c.size),fam:'MIL-DTL-5015'}))}
+ const sty=d[2]==='R'?['3456','3459']:['3450','3451','3452','3454'],fw=['3450','3456','3459'],cl2=st=>fw.includes(st)||!/^K/.test(c.cls)?c.cls:c.cls==='KT'?'W':'LS';
+ const rows=[...sty.map(st=>{const x={...c,cls:cl2(st)};return[`<span class="pn">${msPN(st,x,opp,c.alt)}</span>`,MS5[st][1]+(x.cls!==c.cls?`<br><small>Firewall not offered in mil spec for this style; ${x.cls} shown</small>`:'')]})];
+ h.push(`<section><h2>Mating connectors (same size, arrangement and rotation)</h2>${tbl(['MS part number','Description'],rows)}<div class="note">Opposite contact gender shown. Firewall classes KT and KS exist only for 3450, 3456 and 3459. Intermateable with MIL-DTL-5015 solder and crimp versions.</div></section>`);
+ const th=MTH[n];
+ h.push(`<section><h2>Shell and backshell</h2>${tbl(['Item','Value'],[['Coupling thread (J)',th[1]+(d[2]==='R'?' external, Class 2A':' internal, Class 2B')],['Accessory (rear) thread (H)',c.style==='3452'?'None listed for box mount':th[0]+', Class 2A'],['Protection cap',d[2]==='R'?`MS25043-${n}DA (receptacle)`:`MS25042-${n}DA (plug)`],['Strain relief codes (modification no.)','(189) M85049/31 E-nut, (190) M85049/52 straight, (191) M85049/51 90°']])}<div class="note">A blue colour band on the shell identifies a rear-release contact connector. Backshells for this family are in the Amphenol backshell section (family J). Shell sizes 44 and 48: consult Amphenol.</div>${txrNote('54',n,'TE lists AS50151 crimp classes L and W under interface 54 for some shells, and MIL-DTL-5015 classes A, E, R under interface 18; check which applies to this shell size.')}</section>`);
+ const ar=MAR[key];let sz=ar?[...new Set(ar.split(',').map(t=>t.split('x')[1]))]:['16','12','8','4','0'];
+ if(ar)h.push(`<section><h2>Insert ${key}</h2>${tbl(['Qty','Contact size'],ar.split(',').map(t=>t.split('x')))}</section>`);
+ else h.push(`<section><h2>Insert ${key}</h2><p class="err">This arrangement's contact layout is not loaded (only unambiguous catalog entries are). See the Amphenol MIL-DTL-5015 crimp rear release insert pages (pp. 434-445). All contact sizes are listed below.</p></section>`);
+ if(sz.includes('16'))sz=['16S',...sz];
+ h.push(`<section><h2>Contacts, tools and colour codes</h2>${tbl(['Size','Wire AWG','Pin (MIL / Amphenol)','Socket (MIL / Amphenol)','Sealing plug','Crimp tool / turret','Crimp colour code','I/R tool','I/R colour'],sz.map(s=>{const r=MCS[s];return['#'+s,r[0],`<span class="pn">${r[1]}<br>${r[2]}</span>`,`<span class="pn">${r[3]}<br>${r[4]}</span>`,`<span class="pn">${r[5]}<br>${r[6]}</span>`,`<span class="pn">${r[7]}<br>${r[8]}</span>`,ccol(r[9]),`<span class="pn">${r[10]}<br>${r[11]}</span>`,ccol(r[12])]}))}<div class="note">Colour codes are the crimp tool turret and insertion/removal tool colours. The catalog gives no colour bands on the contacts themselves. 16S has a shorter wire barrel and uses the same pin as 16. Thermocouple contacts: consult Amphenol.</div></section>`);
+ const a=msAlt(key);
+ if(!a)h.push(`<section><h2>Alternate insert positions</h2><p>No alternate rotation is listed for ${key}. Normal position only.${c.alt?' <span class="err">Position '+c.alt+' is not available.</span>':''}</p></section>`);
+ else h.push(`<section><h2>Alternate insert positions (${key})</h2>${keyPicker(['N',...'WXYZ'.split('').filter((p,i)=>a[i]!=null)],c.alt||'N',p=>msKey({...c,alt:p==='N'?'':p},a),['Position','Rotation'],(p,on)=>[p==='N'?'0° (shell key)':`<span${on?' style="font-weight:600"':''}>${a['WXYZ'.indexOf(p)]}°</span>`],p=>p==='N'?'Normal':p)}${'WXYZ'.split('').filter((p,i)=>a[i]==null).length?`<p class="sub" style="margin:8px 0 0">Not offered for ${key}: ${'WXYZ'.split('').filter((p,i)=>a[i]==null).join(', ')}.</p>`:''}<div class="note">The shell key stays fixed. The pin insert is rotated clockwise from the normal key and the socket insert counter-clockwise by the same angle, looking at the pin front face or socket rear face. W, X, Y, Z prevent cross-plugging of same-size connectors.${c.alt&&a['WXYZ'.indexOf(c.alt)]==null?' <b class="err">Position '+c.alt+' is not offered for this arrangement.</b>':''}</div></section>`);
+ $('out').innerHTML=h.join('')}
+
+// ---- ESC11 (SAE-ITC, 260°C firewall, 100% scoop-proof recessed pins) ----
+// Sources: Eaton Souriau 853 catalog (8534 series / ESC11 ordering, layouts, orientation) and Amphenol Pyle 83723 catalog (pp. 20-26, 34-35, HTK series).
+const E11ST={'0':'Square flange receptacle, 360° accessory teeth (MS3155)','6':'Plug, non-decoupling (self-locking coupling nut), 360° accessory teeth (MS3155)','1':'Hermetic solder mount receptacle','2':'Hermetic square flange receptacle','3':'Hermetic jam nut receptacle'};
+const E11CL={KE:'Stainless steel firewall, 260°C (standard receptacle; plug without RFI grounding ring)',SE:'Stainless steel firewall, 260°C (standard receptacle; plug with RFI grounding ring)',YE:'Stainless steel hermetic, solderwell contacts, 260°C'};
+const E11AR=['14-15','16-24','18-31','20-39','20-41','22-55','24-61'];
+const E11KO='N6789'.split('');
+const KP11={N:[95,145,220,255],6:[101,168,211,342],7:[18,138,208,268],8:[26,156,208,276],9:[120,161,225,336]};
+const E11KS={14:'N6789',16:'N67',18:'N6',20:'N678',22:'N678',24:'N678'};
+const E11EN={'0':'0','6':'6','1':'1','2':'0','3':'7'};
+function e11Alt(pn,c){ // ESC11 scoop-proof alternative to an ESC10 part number
+ if(!pn||+c.size<12||!/^[N6789]$/.test(c.key))return null;
+ const x=pn.replace(/^ESC10/,'ESC11').replace(/[OA0]$/,'0');
+ return['ESC11',`<span class="pn">${x}</span>`,'Scoop-proof (recessed pins) alternative with the same insert. <b>Different keyway angles: will not mate</b> with this part or any EN2997 / M83723 / ESC10 mate.']}
+function parseE11(raw){
+ const s=raw.toUpperCase().replace(/[\s\/-]/g,''),m=s.match(/^ESC11(KE|SE|YE)([01236])(\d{2})(\d{2})([PS])([A-Z0-9])([0OA]?)$/);
+ if(!m)return{err:'ESC11 part not recognized. Expected ESC11SE61415PN0 style: class (KE, SE, YE), shell style (0, 6; hermetic 1, 2, 3), 2-digit shell size, 2-digit arrangement, P or S, keying (N, 6, 7, 8, 9), variation (0).'};
+ const[,cls,st,sz,ar,ct,key,v]=m,her=cls==='YE',size=String(+sz),arr=String(+ar),k=size+'-'+arr;
+ if(her&&!'123'.includes(st))return{err:'Class YE (hermetic) uses shell styles 1 (solder mount), 2 (square flange) or 3 (jam nut).'};
+ if(!her&&!'06'.includes(st))return{err:`ESC11 shell style ${st} is hermetic only (class YE).`};
+ if(+size<12)return{err:'ESC11 is not offered in shell sizes 8 and 10.'};
+ if(!AR[k])return{err:`Insert arrangement ${size}-${pad(arr)} is not in this tool's MIL-DTL-83723 Series III table.`};
+ if(key==='Y')return{err:'Keying position Y is not offered in ESC11. Positions are N, 6, 7, 8 and 9.'};
+ if(!E11KO.includes(key))return{err:'Keying position must be N, 6, 7, 8 or 9.'};
+ return{cls,st,size,arr,ct,key,v:v||'0',her,k}}
+function e11Key(c){
+ const av=E11KS[c.size]||'';
+ const warn=av&&!av.includes(c.key)?` <b class="err">Position ${c.key} is not in Souriau's list for size ${c.size}; confirm availability.</b>`:'';
+ const pk=keyPicker(E11KO,c.key,p=>kwSvg(KP11[p]),['Position','A°','B°','C°','D°',`Souriau, size ${c.size}`],(p,on)=>[...KP11[p].map(x=>on?`<b>${x}°</b>`:x+'°'),av?(av.includes(p)?'Yes':'<small>not listed</small>'):'<small>consult</small>']);
+ return `<section><h2>Keyway positions (ESC11, shell size ${c.size}, position ${c.key})</h2>${pk}<div class="note">ESC11 (HTK series) keyway table, shell sizes 14 to 24. These angles differ from EN2997 / M83723 / ESC10 (N = 105°, 140°, 215°, 265°), so ESC11 parts do not cross-mate with them. Position 7 C° is 138° in the Amphenol table and 136° in Souriau's 8534 table. Souriau offers: size 14 N, 6, 7, 8, 9; size 16 N, 6, 7; size 18 N, 6; sizes 20, 22, 24 N, 6, 7, 8. Y is not offered.${warn}</div></section>`}
+function runE11(v){
+ const c=parseE11(v);if(c.err){$('out').innerHTML=`<section><p class="err">${esc(c.err)}</p></section>`;return}
+ const h=[],sa=pad(c.size)+pad(c.arr),opp=c.ct==='P'?'S':'P',arr=AR[c.k],plug=c.st==='6';
+ const pn=(cl,st,ct)=>`ESC11${cl}${st}${sa}${ct}${c.key}0`,here=`ESC11${c.cls}${c.st}${sa}${c.ct}${c.key}${c.v}`;
+ const ins=arr.split(',').map(t=>t.replace(/(\d+)x(\d+)(T?)/,(_,n,z,t2)=>`${n} × #${z}${t2?' twinax':''}`)).join(', ');
+ // breakdown
+ h.push(`<section><h2>Part number breakdown</h2><div class="big">${esc(here)}</div>${tbl(['Segment','Meaning'],[
+  ['ESC11','SAE-ITC high-temperature engine connector, 100% scoop-proof (recessed pins), threaded coupling, MIL-DTL-83723 Series III shell'],
+  [c.cls,E11CL[c.cls]],[c.st,E11ST[c.st]],
+  [sa,`Shell size ${c.size}, insert arrangement ${c.size}-${pad(c.arr)} (${ins})`],
+  [c.ct,(c.ct==='P'?'Pin':'Socket')+' contacts'+(c.her?' (fixed solderwell)':'')],
+  [c.key,c.key==='N'?'Normal':`Alternate keying position ${c.key} (ESC11 table)`],
+  [c.v,c.v==='A'?'A = lockwire holes on plug (confirm with the supplier for ESC11)':'Basic connector, supplied without contacts (O and 0 both used)']
+ ].map(r=>[`<span class="seg pn">${esc(r[0])}</span>`,r[1]]))}</section>`);
+ h.push(illSec({t:{'0':'flange','6':'nd','1':'solder','2':'flange','3':'jam'}[c.st],opt:{fin:'ss',her:c.her,teeth:!c.her,scoop:true},arr,ak:c.size+'-'+pad(c.arr),g:c.ct,recep:c.st!=='6',keys:KP11[c.key],cap:E11ST[c.st]+', '+(c.ct==='P'?'pin':'socket')+' contacts',D:dimsFor('83',c.size),fam:'MIL-DTL-83723 Series III'}));
+ // cross-reference
+ const eq=[],notes=[];
+ if(!c.her){
+  eq.push(['Souriau 8534',`<span class="pn">8534${c.st}${c.cls}${sa}${c.ct}${c.key}</span>`,'ESC11-qualified scoop-proof series. Use A / B instead of P / S for less contacts.']);
+  eq.push(['Amphenol Pyle HTK',`<span class="pn">HTK-${plug?'12':'17'}${plug?(c.cls==='SE'?' F':' E'):''} ${c.size}-${pad(c.arr)} ${c.ct} D ${c.key==='N'?'N':pad(c.key)} Y144</span>`,`Commercial equivalent to ESC11, class K${plug?(c.cls==='SE'?', F = EMI grounding':', E = no EMI grounding'):''}, D = gold contacts, Y144 = 260°C. Fields spaced as in the Amphenol how-to-order example; confirm exact format.`]);
+  eq.push(['ESC16 (integrated backshell)',`<span class="pn">${plug?`ESC16${c.cls}7`:'ESC16KE2'}${sa}${c.ct}${c.key}0</span>`,'Scoop-proof with integrated backshell (Souriau 8536); fully intermateable with ESC11.'+(!plug&&c.cls==='SE'?' Receptacle is KE2 only.':'')]);
+ } else notes.push('Hermetic ESC11 (YE1, YE2, YE3) is listed by Amphenol Pyle; Souriau does not list hermetic ESC11. There is no HTK or 8534 hermetic equivalent.');
+ const enpn=`EN2997${c.cls}${E11EN[c.st]}${c.size}-${pad(c.arr)}${c.ct==='P'?'M':'F'}${c.key}`,mc=parse(enpn);
+ const nm='<b>Not intermateable with ESC11</b>: same shell, insert and keying letter, but standard keyway angles and flush pins.';
+ eq.push(['ESC10',`<span class="pn">ESC10${c.cls}${c.st}${sa}${c.ct}${c.key}O</span>`,'Non-scoop-proof 260°C counterpart. '+nm]);
+ eq.push(['EN2997',`<span class="pn">${enpn}</span>`,'Non-scoop-proof counterpart. '+nm]);
+ if(!mc.err)eq.push(['M83723',`<span class="pn">${milPN(mc)}</span>`,'Nearest 200°C mil part. '+nm]);
+ if(!c.her&&!E11AR.includes(c.k))notes.push(`Arrangement ${c.size}-${pad(c.arr)} is not in Souriau's ESC11 layout list (14-15, 16-24, 18-31, 20-39, 20-41, 22-55, 24-61). Amphenol HTK refers to the full Series III chart; confirm availability.`);
+ if(+c.size<14||+c.size>24)notes.push(`Souriau ESC11 covers shell sizes 14 to 24; Amphenol HTK lists ${c.size}. Confirm availability.`);
+ if(c.her&&c.ct==='S')notes.push('Hermetic receptacles are normally pin only; confirm a socket version exists.');
+ if(/16/.test(arr)&&!c.her)notes.push('ESC11 (Souriau 8534) uses #20 and #16 contacts only.');
+ h.push(`<section><h2>Cross-reference</h2>${tbl(['Spec','Part number','Note'],eq)}${notes.map(n=>`<div class="note">${esc(n)}</div>`).join('')}</section>`);
+ // mates
+ const ms=[];
+ if(plug){
+  ms.push([pn('KE','0',opp),'ESC11 square flange receptacle'],[pn('SE','0',opp),'ESC11 square flange receptacle (SE)'],[`ESC16KE2${sa}${opp}${c.key}0`,'ESC16 square flange receptacle, integrated backshell']);
+  if(opp==='P')ms.push([pn('YE','2','P'),'ESC11 hermetic square flange receptacle'],[pn('YE','3','P'),'ESC11 hermetic jam nut receptacle'],[pn('YE','1','P'),'ESC11 hermetic solder mount receptacle']);
+ }else ms.push([pn('KE','6',opp),'ESC11 plug, no RFI grounding ring'],[pn('SE','6',opp),'ESC11 plug with RFI grounding ring'],[`ESC16KE7${sa}${opp}${c.key}0`,'ESC16 plug, integrated backshell, no RFI ring'],[`ESC16SE7${sa}${opp}${c.key}0`,'ESC16 plug, integrated backshell, RFI ring']);
+ h.push(`<section><h2>Mating connectors (same size, arrangement and keying)</h2>${tbl(['Part number','Description'],ms.map(r=>[`<span class="pn">${r[0]}</span>`,esc(r[1])]))}<div class="note">ESC11 mates only with ESC11 and ESC16 (scoop-proof) parts. Opposite contact gender shown. It will not couple correctly with EN2997, ESC10 or M83723 parts because the keyway angles differ.</div></section>`);
+ // backshell
+ if(c.her)h.push('<section><h2>Backshell required</h2><p>None. Hermetic receptacles have no rear accessory thread.</p></section>');
+ else{const th=BST[c.size];h.push(`<section><h2>Backshell required</h2><p class="sub" style="margin:0 0 10px">Rear thread ${th||'see catalog'}, 360° accessory teeth per MS3155. Use an MS3155-interface backshell, for example:</p>${tbl(['Part number','Style'],[[`<span class="pn">ESC65-${pad(c.size)}</span>`,'Straight, RFI/EMI cone grounding, anti-decoupling (SAE-ITC)'],[`<span class="pn">ESC74-${pad(c.size)}</span>`,'45°, RFI/EMI cone grounding, anti-decoupling (SAE-ITC)']])}<div class="note">Or use the ESC16 integrated-backshell version listed above. Confirm the backshell against the current SAE-ITC drawing and your harness requirements.</div></section>`)}
+ // insert / contacts
+ const rr=arr.split(',').map(t=>{const p=t.match(/(\d+)x(\d+)(T?)/);return[p[1],p[3]?'#8 twinax (consult supplier)':'#'+p[2]]});
+ h.push(`<section><h2>Insert ${c.size}-${pad(c.arr)} contacts</h2>${tbl(['Qty','Size'],rr)}<div class="note">${c.her?'Hermetic: fixed solderwell contacts, supplied in the connector.':'ESC11 is supplied without contacts. Use 260°C ESC30 crimp contacts (below), with high-temperature sealing plugs.'} See the Pyle (pp. 27-28) or Souriau (pp. 6-8) insert drawings for contact numbering.</div></section>`);
+ if(!c.her)h.push(bandSec({src:'E11',t260:true},arr));
+ h.push(e11Key(c));
+ $('out').innerHTML=h.join('')}
+
+// ---- Pyle BNK series (GE M50TF3564 family: BJ, BJ8, BN, BN8, BNK) ----
+// Source: Amphenol Pyle MIL-DTL-83723 Series III catalog, How to Order - Pyle Commercial designed to meet GE specifications, and quick reference pages.
+const BSER={BT:'Pyle commercial BT: threaded, O-ring seal in receptacle (equivalent to M83723 Series III / EN2997)',BY:'Pyle commercial BY: bayonet coupling (equivalent to M83723 Series III bayonet styles)',BTY:'Pyle commercial hermetic, O-ring seal',BFY:'Pyle commercial hermetic, static/dynamic seal',BNY:'Pyle commercial hermetic, nickel finish, static/dynamic seal',BNK:'Pyle commercial, designed to GE M50TF3564: stainless steel firewall, electro-deposited nickel, static/dynamic seal in receptacle',BN:'Pyle commercial (GE): stainless steel, electro-deposited nickel, static/dynamic seal; not firewall',BN8:'As BN, with scoop-proof recessed pins',BJ:'Pyle commercial (GE): stainless steel, static/dynamic seal in receptacle; not firewall',BJ8:'As BJ, with scoop-proof recessed pins'};
+const BSTY={'14':'Solder mount receptacle (hermetic)','10':'Bayonet plug','11':'Threaded straight plug','12':'Threaded non-decoupling plug','17':'Square flange receptacle','19':'Jam nut (D-hole mount) receptacle'};
+const BMOD={E:'360° accessory teeth per MS3155, plug and receptacle',F:'360° accessory teeth per MS3155, EMI grounding spring on plug only',G:'3 accessory teeth, EMI grounding spring on plug only'};
+const BCT={P:'Pin contacts',K:'#20 pins with #18 crimpwell',S:'Socket contacts',L:'#20 sockets with #18 crimpwell'};
+const BFIN={D:'Contacts gold plated per SAE AS39029',E:'Without contacts'};
+const BHFIN={D:'Gold .000050 in per MIL-DTL-83723',V:'Gold .000100 in'};
+const BCLS={G:'Stainless steel, 200°C, not firewall',K:'Stainless steel, firewall'};
+const BVAR={Y176:['260°C per GE M50TF3564 Class B, no accessory teeth',1],Y186:['260°C per GE M50TF3564 Class B',1],Y188:['200°C per GE M50TF3564 Class A',0],Y185:['Older 200°C style, European market (superseded by Y163)',0],Y144:['260°C, Euro market (listed for BT/HTK; confirm for this series)',1],Y163:['200°C, Euro market (listed for BT/HTK; confirm for this series)',0]};
+function parseB(s){
+ const m=s.replace(/\s/g,'').match(/^(BJ8|BN8|BNK|BTY|BFY|BNY|BJ|BN|BT|BY)([GK]?)-?(10|11|12|14|17|19)([EFG]?)-?(\d{1,2}-?\d{1,2})([PKSL])([14]?)([DEV]?)(N|Y|0?[6-9])?(Y\d{3})?$/);
+ if(!m)return{err:'Pyle part not recognized. Expected BNK-12E16-24SD06Y186, BTG-12E18-14PD08Y144, BYK-1716-24PN or BTY-1716-24P1D06Y144 style (spaces allowed): series (BNK, BN, BN8, BJ, BJ8, BT, BY, BTY, BFY, BNY), class G or K for BT/BY, shell style (-10, -11, -12, -14, -17, -19), optional modification (E, F, G), shell size-arrangement, contact (P, K, S, L), hermetic contact style (1 or 4), finish (D, E; V on hermetics), keying (N, 06-09, Y), variation (e.g. Y186, Y144).'};
+ const[,ser,bc,st,mod,sa,ct,cs,fin,k0,vr]=m,a=findArr(sa),her=/^B[TFN]Y$/.test(ser),bt=/^B[TY]$/.test(ser);
+ if(!a)return{err:'Could not match the shell size / insert arrangement.'};
+ if(bc&&!bt)return{err:`Class letter ${bc} is used only with BT and BY. ${ser} has its own class.`};
+ if(cs&&!her)return{err:'Contact style 1 or 4 (solderwell / eyelet) is used only on hermetic BTY, BFY and BNY parts.'};
+ if(her&&!['14','17','19'].includes(st))return{err:`${ser} hermetic shell styles are -17 (square flange), -19 (jam nut) and -14 (solder mount).`};
+ if(!her&&st==='14')return{err:'Shell style -14 (solder mount) is hermetic only (BTY, BFY, BNY).'};
+ if(ser==='BY'&&!['10','17','19'].includes(st))return{err:'BY is bayonet coupling: shell styles -10 (plug), -17 (square flange) and -19 (jam nut).'};
+ const[size,arr]=a.split('-'),key=!k0||k0==='N'?'N':k0==='Y'?'Y':k0.replace(/^0/,''),g='PK'.includes(ct)?'P':'S';
+ if(st==='10'&&size==='28')return{err:'Shell size 28 is not available in bayonet coupling.'};
+ if(key==='Y'&&!(+size>=10))return{err:'Keying position Y is not offered in shell size 8.'};
+ const fw=ser==='BNK'||(bt&&bc==='K'),spring=st==='12'&&'FG'.includes(mod);let sl,cls=bt?(bc||'G'):fw?'K':'G';
+ if(her){sl={'17':'88','19':'89','14':'90'}[st];cls=cs==='4'?'P':'Y'}
+ else if(ser==='BY'){if(st==='17')sl=g==='P'?'72':'71';else if(st==='19')sl=g==='P'?'74':'73';else sl=g==='P'?'76':'75'}
+ else if(st==='17')sl=g==='P'?'83':'82';else if(st==='19')sl=g==='P'?'85':'84';else if(st==='11')sl=g==='P'?'87':'86';else if(st==='10')sl=g==='P'?'76':'75';
+ else if(spring&&fw){sl=g==='P'?'98':'97';cls='S'}else sl=g==='P'?'96':'95';
+ const v=BVAR[vr];
+ return{src:'B',sl,cls,size,arr,key,g:her?'P':g,t260:v?!!v[1]:false,ser,bst:st,mod,bct:ct,fin,vr:vr||'',bkey:k0||'N',spring,bcls:bc||(bt?'G':''),her,cs,hsock:her&&g==='S'}}
+function bnkPN(c){ // Pyle BNK equivalent of any parsed M83723 / EN2997 / ESC10 part
+ const st={'82':'17','83':'17','84':'19','85':'19','86':'11','87':'11','91':'11','92':'11','95':'12','96':'12','97':'12','98':'12','75':'10','76':'10','77':'10','78':'10'}[c.sl];
+ if(!st)return{pn:null,note:['88','89','90'].includes(c.sl)?'Hermetic: the Pyle commercial hermetic is BNY-17 / BNY-19 / BNY-14 (nickel, static/dynamic seal), not BNK.':'No BNK equivalent for bayonet receptacles (the GE family offers only a -10 bayonet plug).'};
+ if(!/^[N6789Y]$/.test(c.key))return{pn:null,note:`Keying ${c.key} (clocked) has no BNK equivalent.`};
+ const mod=['97','98','91','92'].includes(c.sl)||c.cls==='S'?'F':'E',ct=c.g==='P'?(c.enct==='C'?'K':'P'):(c.enct==='D'?'L':'S'),fin='AB'.includes(c.enct||'x')?'E':'D',k=/^[6-9]$/.test(c.key)?'0'+c.key:c.key;
+ return{pn:`BNK-${st} ${mod} ${c.size}-${pad(c.arr)} ${ct} ${fin} ${k} ${c.t260?'Y186':'Y188'}`,st}}
+// ---- Illustrations: side view of the connector body + front-face insert layout ----
+const CDIA={'22':.72,'20':1,'18':1.2,'16':1.4,'12':1.9,'10':2.3,'8':2.9,'4':3.8,'0':5};
+const CCOL={'22':'#7a3fb5','20':'#d22','18':'#c2185b','16':'#1f5fd0','12':'#c9a400','10':'#1f9d3a','8':'#f08a00','4':'#6b3f1d','0':'#555'};
+const CKND={T:' triax',Q:' Quadrax',C:' coax',D:''};
+function cids(n){const U='ABCDEFGHJKLMNPRSTUVWXYZ',L='abcdefghjkmnprstuvwxyz',o=[];for(let r=1;o.length<n;r++)for(const s of [U,L])for(const ch of s){if(o.length>=n)break;o.push(ch.repeat(r))}return o}
+function insLayout(arr){
+ const it=[];arr.split(',').forEach(t=>{const m=t.match(/(\d+)x(\d+)([A-Z]?)/);if(m)for(let i=0;i<+m[1];i++)it.push({s:m[2],k:m[3],d:CDIA[m[2]]||1})});
+ it.sort((a,b)=>a.d-b.d);
+ const n=it.length,rings=[],c0=n>=7?1:0,m=n-c0;let K=1;while(c0+3*K*(K+1)<n)K++;
+ const sw=K*(K+1)/2,cnt=[];let used=0;for(let k=1;k<=K;k++){cnt.push(Math.floor(m*k/sw));used+=cnt[k-1]}
+ for(let k=K-1;used<m;k=(k+K-1)%K){cnt[k]++;used++}
+ let i=0,R=0,pd=0;if(c0){rings.push({r:0,c:[it[0]]});i=1;pd=it[0].d}
+ cnt.forEach((q,k)=>{if(!q)return;const c=it.slice(i,i+q);i+=q;const md=Math.max(...c.map(x=>x.d)),arc=c.reduce((s,x)=>s+1.2*x.d,0);
+  let r=rings.length?R+1.2*(pd+md)/2:(c.length>1?1.3*md/(2*Math.sin(Math.PI/c.length)):0);
+  if(c.length>1)r=Math.max(r,arc/(2*Math.PI));rings.push({r,c});R=r;pd=md});
+ const pts=[];
+ rings.slice().reverse().forEach((g,ri)=>{const tot=g.c.reduce((s,x)=>s+x.d,0);let cum=0;const off=g.c[0].d/2/tot*2*Math.PI,stag=ri%2?Math.PI/g.c.length:0;
+  g.c.forEach(x=>{const th=(cum+x.d/2)/tot*2*Math.PI-off+stag;cum+=x.d;pts.push({...x,x:g.r*Math.sin(th),y:-g.r*Math.cos(th)})})});
+ return pts}
+function faceSvg(arr,g,keys,plug,rot){
+ const P=insLayout(arr),n=P.length,id=cids(n),sock=g==='S',rr=(rot||0)*Math.PI/180;
+ P.forEach((p,i)=>{p.id=id[i];const x=p.x*Math.cos(rr)-p.y*Math.sin(rr),y=p.x*Math.sin(rr)+p.y*Math.cos(rr);p.x=sock?-x:x;p.y=y});
+ const E=Math.max(1,...P.map(p=>Math.hypot(p.x,p.y)+p.d/2)),Ri=E+.55,Ro=Ri*1.13+.35,S=112/Ro;
+ let s=`<svg viewBox="-150 -150 300 278" width="100%" style="max-width:330px;display:block;color:var(--ink)" role="img" aria-label="Insert front face, ${n} contacts">`;
+ s+=`<circle r="${Ro*S}" fill="var(--line)" stroke="currentColor" stroke-width="1.5"/><circle r="${Ri*S}" fill="var(--bg)" stroke="currentColor" stroke-width="1"/>`;
+ const kw=(a,w,c)=>`<rect x="${-w/2}" y="${-Ro*S-2}" width="${w}" height="${(Ro-Ri)*S+3}" fill="${c}" stroke="currentColor" stroke-width=".6" transform="rotate(${plug?a:-a})"/>`;
+ s+=kw(0,14,'var(--warn)');(keys||[]).forEach(a=>s+=kw(a,8,'var(--acc)'));
+ s+=`<text y="${-Ro*S-10}" text-anchor="middle" font-size="10" fill="currentColor">${plug?'Master key':'Master keyway'}</text>`;
+ const lab=n<=91;
+ P.forEach(p=>{const x=(p.x*S).toFixed(1),y=(p.y*S).toFixed(1),r=p.d/2*S*.8,c=CCOL[p.s]||'#888',fs=Math.min(11,Math.max(4.5,r*(p.id.length>1?.8:1.05)));
+  s+=`<g><title>${p.id}: #${p.s}${p.k||''}${CKND[p.k]||''} ${sock?'socket':'pin'}</title>`;
+  if(sock)s+=`<circle cx="${x}" cy="${y}" r="${r}" fill="var(--panel)" stroke="${c}" stroke-width="${Math.max(1.4,r*.28).toFixed(1)}"/>`;
+  else s+=`<circle cx="${x}" cy="${y}" r="${r}" fill="${c}" stroke="currentColor" stroke-width=".7"/>`;
+  if(p.k&&p.k!=='D')s+=`<circle cx="${x}" cy="${y}" r="${r*.55}" fill="none" stroke="${sock?c:'#fff'}" stroke-width="1"/>`;
+  if(lab)s+=`<text x="${x}" y="${y}" dy=".36em" text-anchor="middle" font-size="${fs.toFixed(1)}" font-weight="600" fill="${sock?'currentColor':'#fff'}">${p.id}</text>`;
+  else if(sock)s+=`<circle cx="${x}" cy="${y}" r="${r*.25}" fill="currentColor"/>`;
+  s+='</g>'});
+ s+='</svg>';
+ const cnt={};P.forEach(p=>{const k='#'+p.s+(p.k||'')+(CKND[p.k]||'');cnt[k]=cnt[k]||[0,CCOL[p.s]||'#888'];cnt[k][0]++});
+ return s+`<div style="display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;margin-top:6px">${Object.entries(cnt).map(([k,v])=>`<span><span style="display:inline-block;width:11px;height:11px;border-radius:50%;background:${sock?'var(--panel)':v[1]};border:2px solid ${v[1]};vertical-align:-1px;margin-right:4px"></span>${v[0]} × ${k}</span>`).join('')}<span><small>${n} contacts total</small></span></div>`}
+// ---- Catalog dimensions (inches) used to draw connectors to proportion ----
+// M83723 Series III (Pyle catalog pp. 38-40): [coupling thread J, flange square A, hole spacing B, accessory thread H, jam flange G, hex C, jam thread V, plug nut S1, self-locking nut S2]
+const DIM83={8:[.5625,.812,.594,.5,1.068,.828,.625,.776,.832],10:[.6875,.937,.719,.625,1.192,.953,.75,.906,.958],12:[.875,1.031,.812,.75,1.38,1.14,.938,1.078,1.09],14:[.9375,1.125,.906,.875,1.505,1.205,1,1.141,1.203],16:[1.0625,1.25,.969,1,1.63,1.329,1.125,1.266,1.326],18:[1.1875,1.343,1.062,1.0625,1.756,1.455,1.25,1.375,1.432],20:[1.3125,1.437,1.156,1.1875,1.86,1.574,1.375,1.5,1.557],22:[1.4375,1.562,1.25,1.3125,2.068,1.705,1.5,1.625,1.682],24:[1.5625,1.703,1.375,1.4375,2.16,1.83,1.625,1.75,1.817],28:[1.8125,1.953,1.562,1.75,2.33,2.08,1.875,2,2.122]};
+// D38999 Series III (mm): [coupling thread, flange square, hole spacing, jam flange, jam hex, plug nut]
+const DIM38={A:[12,23.8,18.26,30.5,23,21.8],B:[15,26.2,20.62,35.2,26,25],C:[18,28.6,23.01,38.4,31,29.4],D:[22,31,24.61,41.6,34,32.5],E:[25,33.3,26.97,44.8,37,35.7],F:[28,36.5,29.36,49.5,41,38.5],G:[31,39.7,31.75,52.7,46,41.7],H:[34,42.9,34.93,55.9,47,44.9],J:[37,46,38.1,59,52,48]};
+// MIL-DTL-5015 MS3456 plug max diameter A
+const DIM50={8:.844,10:.969,12:1.062,14:1.156,16:1.25,18:1.344,20:1.469,22:1.594,24:1.719,28:1.969,32:2.219,36:2.469,40:2.719};
+// MIL-DTL-26482 Series 2: MS3470 flange A, hole spacing B, barrel C; MS3476 coupling ring A
+const DIM26={8:[.828,.594,.471,.782],10:[.954,.719,.588,.926],12:[1.047,.812,.748,1.043],14:[1.141,.906,.873,1.183],16:[1.234,.969,.998,1.305],18:[1.328,1.062,1.123,1.391],20:[1.453,1.156,1.248,1.531],22:[1.578,1.25,1.373,1.656],24:[1.703,1.375,1.498,1.777]};
+const thrd=s=>{const m=String(s).match(/^(\d*\.?\d+)/);return m?+m[1]:0};
+function dimsFor(fam,sz){
+ if(fam==='38'){const r=DIM38[sz]||DIM38.E,mm=v=>v/25.4,big='GHJ'.includes(sz);
+  return{fam,label:'shell '+(DZ[sz]?+DZ[sz][0]:''),cpl:mm(r[0]),fl:mm(r[1]),hs:mm(r[2]),tf:mm(big?3.2:2.5),Lf:mm(big?5.5:7.8),Lr:mm(6),body:mm(r[0]-.5),acc:mm(r[0]-1.5),La:mm(big?5.4:4.6),jamFl:mm(r[3]),hex:mm(r[4]),mount:mm(r[0]+3),Lm:mm(9.9),nut:mm(r[5]),nut2:mm(r[5]),Ln:mm(20),pbody:mm(r[0]),Lpb:mm(9),Lpa:mm(8)}}
+ if(fam==='50'){const n=parseInt(sz)||16,A=DIM50[n]||1.25,t=MTH[n]||MTH[16],cp=thrd(t[1]),ac=thrd(t[0]);
+  return{fam,est:1,label:'shell '+sz,cpl:cp,fl:A,hs:A*.775,tf:.094,Lf:.62,Lr:.45,body:(cp+ac)/2,acc:ac,La:.4,jamFl:A*1.12,hex:A*.95,mount:cp+.125,Lm:.45,nut:A,nut2:A*1.04,Ln:.95,pbody:ac+.1,Lpb:.7,Lpa:.4}}
+ if(fam==='26'){const n=parseInt(sz)||16,r=DIM26[n]||DIM26[16],h=DIM83[n]||DIM83[16];
+  return{fam,label:'shell '+n,cpl:r[2],fl:r[0],hs:r[1],tf:n>=20?.094:.062,Lf:n>=20?.57:.45,Lr:.4,body:(r[2]+h[3])/2,acc:h[3],La:.3,jamFl:r[0]*1.15,hex:r[0]*.95,mount:r[2]+.12,Lm:.4,nut:r[3],nut2:r[3],Ln:.62,pbody:h[3]+.1,Lpb:.25,Lpa:.3}}
+ const n=parseInt(sz)||16,r=DIM83[n]||DIM83[16];
+ return{fam:'83',label:'shell '+n,cpl:r[0],fl:r[1],hs:r[2],tf:.094,Lf:.5,Lr:.33,body:(r[0]+r[3])/2,acc:r[3],La:.32,jamFl:r[4],hex:r[5],mount:r[6],Lm:.4,nut:r[7],nut2:r[8],Ln:.66,pbody:r[3]+.12,Lpb:.22,Lpa:.3}}
+let SVGN=0;
+const FINS={ss:['#fbfcfd','#d6dade','#a6adb4','#6e757d','#474d54'],ni:['#ffffff','#e6e9ec','#bfc5ca','#858c93','#565c62'],od:['#c9cc9f','#9fa36f','#7a7e4d','#585c35','#3b3e23'],blk:['#73777c','#45494e','#2c2f33','#1c1e21','#0e0f11']};
+const FINN={ss:'passivated stainless steel',ni:'nickel plate',od:'olive drab cadmium',blk:'black anodize'};
+function sideSvg(t,o){
+ o=o||{};const D=o.D||dimsFor('83','16'),id='cx'+(++SVGN),F=FINS[o.fin]||FINS.ss,k=.3,cy=94,f1=v=>(+v).toFixed(1);
+ const plug=['plug','nd','lan','intg'].includes(t),her=o.her||t==='solder'||t==='weld',nutD=t==='nd'?D.nut2:D.nut;
+ // overall length (in) and tallest part, to set the scale
+ let Lt,Hm;
+ if(plug){Lt=D.Ln+D.Lpb+(t==='intg'?.95:D.Lpa);Hm=nutD}
+ else if(t==='jam'){Lt=D.Lf+D.tf+D.Lm+(her?.2:D.La);Hm=D.jamFl}
+ else if(t==='box'){Lt=D.Lf+D.tf+.22;Hm=D.fl}
+ else if(t==='cable'){Lt=D.Lf+D.Lr+D.La;Hm=D.cpl}
+ else if(t==='solder'||t==='weld'){Lt=D.Lf+.07+.22;Hm=D.cpl*1.3}
+ else{Lt=D.Lf+D.tf+(her?.22:D.Lr+D.La);Hm=D.fl}
+ const sc=Math.min(260/(Lt+Hm*k*.5),140/Hm),u=v=>v*sc,X0=26+u(Hm/2)*k,W=Math.max(380,Math.ceil(X0+u(Lt)+u(Hm/2)*k+(plug&&t==='intg'?40:96))),XR=W-4;
+ const defs=`<linearGradient id="${id}m" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${F[3]}"/><stop offset=".16" stop-color="${F[1]}"/><stop offset=".3" stop-color="${F[0]}"/><stop offset=".5" stop-color="${F[2]}"/><stop offset=".82" stop-color="${F[3]}"/><stop offset="1" stop-color="${F[4]}"/></linearGradient>`
+ +`<linearGradient id="${id}f" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${F[1]}"/><stop offset="1" stop-color="${F[3]}"/></linearGradient>`
+ +`<linearGradient id="${id}k" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#55595e"/><stop offset=".3" stop-color="#2a2d31"/><stop offset="1" stop-color="#0f1012"/></linearGradient>`
+ +`<linearGradient id="${id}gl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef5f7"/><stop offset=".35" stop-color="#b9cfd8"/><stop offset="1" stop-color="#6d8894"/></linearGradient>`;
+ const M=`url(#${id}m)`,FF=`url(#${id}f)`,ln=F[4];let s='',n=0;const labs=[];
+ const P=(x0,x1,r)=>`M${f1(x0)} ${f1(cy-r)}H${f1(x1)}A${f1(r*k)} ${f1(r)} 0 0 1 ${f1(x1)} ${f1(cy+r)}H${f1(x0)}A${f1(r*k)} ${f1(r)} 0 0 1 ${f1(x0)} ${f1(cy-r)}Z`;
+ const face=(x,r,f)=>`<ellipse cx="${f1(x)}" cy="${cy}" rx="${f1(r*k)}" ry="${f1(r)}" fill="${f||FF}" stroke="${ln}" stroke-width=".8"/>`;
+ const pitch=Math.max(2.6,u(1/20));
+ const tex=(x0,x1,r,kind)=>{const c=id+'c'+(++n),h=2*r;let g='';
+  if(kind==='thr')for(let x=x0-r*k-4;x<x1+4;x+=pitch)g+=`<path d="M${f1(x)} ${f1(cy-r)}l${f1(r*k*.9)} ${f1(h)}" stroke="${F[4]}" stroke-opacity=".55" stroke-width="${f1(pitch*.3)}"/><path d="M${f1(x+pitch*.36)} ${f1(cy-r)}l${f1(r*k*.9)} ${f1(h)}" stroke="${F[0]}" stroke-opacity=".75" stroke-width="${f1(pitch*.17)}"/>`;
+  if(kind==='knurl')for(let x=x0-h*.4;x<x1+4;x+=3.6)g+=`<path d="M${f1(x)} ${f1(cy-r)}l${f1(h*.3)} ${f1(h)}M${f1(x)} ${f1(cy+r)}l${f1(h*.3)} ${f1(-h)}" stroke="${F[4]}" stroke-opacity=".5" stroke-width=".8"/>`;
+  if(kind==='rib')for(let x=x0+2;x<x1;x+=3.4)g+=`<path d="M${f1(x)} ${f1(cy-r)}v${f1(h)}" stroke="${F[4]}" stroke-opacity=".55" stroke-width="1.2"/><path d="M${f1(x+1.4)} ${f1(cy-r)}v${f1(h)}" stroke="${F[0]}" stroke-opacity=".7" stroke-width=".6"/>`;
+  return `<clipPath id="${c}"><path d="${P(Math.max(x0,x0),x1,r)}"/></clipPath><g clip-path="url(#${c})">${g}</g>`};
+ const cyl=(x0,x1,r,kind,f,nf)=>`<path d="${P(x0,x1,r)}" fill="${f||M}" stroke="${ln}" stroke-width=".8"/>`+(kind?tex(x0,x1,r,kind):'')+(nf?'':face(x0,r,f&&f!==M?f:FF));
+ const teeth=(x,r)=>{if(!o.teeth)return '';let p='';for(let i=0;i<=28;i++){const a=-Math.PI/2+Math.PI*i/28,rr=i%2?r+2:r;p+=(i?'L':'M')+f1(x+rr*k*Math.cos(a))+' '+f1(cy+rr*Math.sin(a))}return `<path d="${p}" fill="none" stroke="${F[4]}" stroke-width="1"/>`};
+ const flange=(xf,a,t,hs)=>`<rect x="${f1(xf+a*k)}" y="${f1(cy-a)}" width="${f1(t)}" height="${f1(2*a)}" fill="${F[3]}" stroke="${ln}" stroke-width=".8"/><rect x="${f1(xf-a*k)}" y="${f1(cy-a)}" width="${f1(2*a*k)}" height="${f1(2*a)}" rx="1.5" fill="${FF}" stroke="${ln}" stroke-width=".8"/>`+[[-1,-1],[1,-1],[-1,1],[1,1]].map(([p,q])=>`<ellipse cx="${f1(xf+p*hs*k)}" cy="${f1(cy+q*hs)}" rx="${f1(u(.06)*k)}" ry="${f1(u(.06))}" fill="#16181b" stroke="${F[0]}" stroke-width=".5"/>`).join('');
+ const hexnut=(x0,x1,R)=>`<rect x="${f1(x0)}" y="${f1(cy-R)}" width="${f1(x1-x0)}" height="${f1(R/2)}" fill="${F[2]}" stroke="${ln}" stroke-width=".8"/><rect x="${f1(x0)}" y="${f1(cy-R/2)}" width="${f1(x1-x0)}" height="${f1(R)}" fill="${F[0]}" stroke="${ln}" stroke-width=".8"/><rect x="${f1(x0)}" y="${f1(cy+R/2)}" width="${f1(x1-x0)}" height="${f1(R/2)}" fill="${F[3]}" stroke="${ln}" stroke-width=".8"/><polygon points="${[30,90,150,210,270,330].map(d=>{const a=d*Math.PI/180;return f1(x0+R*Math.cos(a)*k)+','+f1(cy+R*Math.sin(a))}).join(' ')}" fill="${FF}" stroke="${ln}" stroke-width=".8"/>`;
+ const wires=(x,r)=>{let w='';const sp=Math.max(3.2,r*.28);for(let i=-2;i<=2;i++){const y=cy+i*sp,d=`M${f1(x-6)} ${f1(y)}C${f1(x+40)} ${f1(y)},${f1(x+60)} ${f1(y+i*6)},${XR} ${f1(y+i*9+4)}`;w+=`<path d="${d}" fill="none" stroke="#3b3f44" stroke-width="4.6"/><path d="${d}" fill="none" stroke="${i===0?'#e8dfa8':'#f3f3f1'}" stroke-width="3.1"/>`}return w};
+ const spins=(x,r)=>{let w='';const sp=Math.max(4,r*.3);for(const v of [-2,-1,0,1,2])w+=`<path d="M${f1(x-6)} ${f1(cy+v*sp)}H${f1(x+u(.22))}" stroke="#a9800f" stroke-width="2.6" stroke-linecap="round"/><path d="M${f1(x-6)} ${f1(cy+v*sp-.7)}H${f1(x+u(.22))}" stroke="#f6dc7a" stroke-width=".9"/><rect x="${f1(x+u(.22)-4)}" y="${f1(cy+v*sp-2.4)}" width="8" height="4.8" rx="1.4" fill="#d9ad35" stroke="#8a6510" stroke-width=".6"/>`;return w};
+ const front=(x,r,rb,dp,sh)=>{const c1=id+'c'+(++n);let w=face(x,r)+`<ellipse cx="${f1(x)}" cy="${cy}" rx="${f1(rb*k)}" ry="${f1(rb)}" fill="#121417"/><clipPath id="${c1}"><ellipse cx="${f1(x)}" cy="${cy}" rx="${f1(rb*k)}" ry="${f1(rb)}"/></clipPath><g clip-path="url(#${c1})">`;
+  let xi=x+dp,ri=rb,end='</g>';
+  if(sh){const c2=id+'c'+(++n),xs=x+sh[0];w+=face(xs,sh[1])+`<ellipse cx="${f1(xs)}" cy="${cy}" rx="${f1(sh[2]*k)}" ry="${f1(sh[2])}" fill="#121417"/><clipPath id="${c2}"><ellipse cx="${f1(xs)}" cy="${cy}" rx="${f1(sh[2]*k)}" ry="${f1(sh[2])}"/></clipPath><g clip-path="url(#${c2})">`;ri=sh[2];end+='</g>'}
+  const pin=o.g==='P';w+=`<ellipse cx="${f1(xi)}" cy="${cy}" rx="${f1(ri*k)}" ry="${f1(ri)}" fill="${pin?'#33383d':'#d9d3c3'}"/><rect x="${f1(xi-2)}" y="${f1(cy-ri-2)}" width="4" height="${f1(Math.max(4,ri*.18))}" fill="#121417"/>`;
+  if(o.arr){const L=insLayout(o.arr),E=Math.max(1,...L.map(p=>Math.hypot(p.x,p.y)+p.d/2)),q=ri*.86/E;
+   L.map(p=>({...p,x:pin?p.x:-p.x})).sort((a,b)=>b.x-a.x).forEach(p=>{const px=xi+p.x*q*k,py=cy+p.y*q,dd=p.d*q;
+    if(pin){const len=o.scoop?u(.03):u(.1),wd=Math.max(1,dd*.42);w+=`<path d="M${f1(px)} ${f1(py)}H${f1(px-len)}" stroke="#9c7410" stroke-width="${f1(wd)}" stroke-linecap="round"/><path d="M${f1(px)} ${f1(py-wd*.22)}H${f1(px-len)}" stroke="#f5d86a" stroke-width="${f1(Math.max(.45,wd*.35))}" stroke-linecap="round"/>`}
+    else w+=`<ellipse cx="${f1(px)}" cy="${f1(py)}" rx="${f1(Math.max(.45,dd*.34*k))}" ry="${f1(Math.max(.7,dd*.34))}" fill="#17191c"/>`})}
+  return w+end};
+ const studs=(x,r)=>`<circle cx="${f1(x)}" cy="${f1(cy-r+.6)}" r="${f1(Math.max(2.2,u(.045)))}" fill="${F[1]}" stroke="${ln}"/><circle cx="${f1(x)}" cy="${f1(cy+r-.6)}" r="${f1(Math.max(2.2,u(.045)))}" fill="${F[3]}" stroke="${ln}"/>`;
+ const lab=(x,y,top,txt)=>labs.push({x,y,top,txt});
+ const coupL=o.pp?'Push-pull coupling (retention spring)':o.bay?'Bayonet studs':'Coupling thread';
+ // rear end shared by receptacles: accessory thread + wires, or glass seal + solder cups
+ const rear=(x,rb)=>{if(her){const r=u(D.body/2)*.9,xe=x+u(.12);lab(xe+u(.12),cy-r*.3,1,'Solder cups, glass seal');return spins(xe,r)+cyl(x,xe,r,'',`url(#${id}gl)`)}
+  const r=u(D.acc/2),xe=x+u(D.La);lab((x+xe)/2,cy-r,1,'Accessory thread'+(o.teeth?' (360° teeth)':''));return wires(xe,r)+cyl(x,xe,r,'thr')+teeth(xe,r)};
+ const rc=u(D.cpl/2);
+ if(!plug){
+  const xb=X0+u(D.Lf);let back='';
+  if(t==='flange'||t==='box'){const a=u(D.fl/2),tf=u(D.tf),xr=xb+a*k+tf;
+   if(t==='box'){const r=u(D.body/2);back=wires(xr+u(.2),r)+cyl(xr-2,xr+u(.2),r)}
+   else back=rear(xr+(her?0:u(D.Lr)),0)+(her?'':cyl(xr-2,xr+u(D.Lr),u(D.body/2)));
+   s+=back+flange(xb,a,tf,u(D.hs/2));lab(xb,cy+a,0,t==='box'?'Box mounting flange':(o.narrow?'Narrow mounting flange':'Square mounting flange'))}
+  else if(t==='jam'){const fr=u(D.jamFl/2),tf=u(D.tf),xm=xb+tf,xe=xm+u(D.Lm),pt=u(.09),hx=u(D.hex/2)/.866,hn=Math.max(5,u(.14));
+   s+=rear(xe,0)+cyl(xm,xe,u(D.mount/2),'thr')+hexnut(xm+pt+2,xm+pt+2+hn,hx);
+   s+=`<rect x="${f1(xm)}" y="${f1(cy-fr-10)}" width="${f1(pt)}" height="${f1(2*fr+20)}" fill="var(--line)" fill-opacity=".9" stroke="var(--mute)" stroke-dasharray="3 2"/>`;
+   s+=cyl(xb,xm,fr);lab(xm+pt/2,cy-fr-10,1,'Panel');lab(xm+pt+2+hn/2,cy+hx,0,'Jam nut');lab(xb,cy+fr,0,'Mounting flange')}
+  else if(t==='cable'){const xr=xb+u(D.Lr);s+=rear(xr,0)+cyl(xb-2,xr,u(D.body/2)*1.05);lab((xb+xr)/2,cy+u(D.body/2),0,'In-line receptacle body')}
+  else{const fl=u(D.cpl*1.3/2),tf=u(.07),xr=xb+tf;s+=rear(xr,0)+cyl(xb,xr,fl);lab(xb,cy+fl,0,t==='weld'?'Weld mount flange':'Solder mount flange')}
+  s+=cyl(X0,xb,rc,o.bay||o.pp?'':'thr')+(o.bay?studs(X0+u(D.Lf)*.55,rc):'')+front(X0,rc,rc*.84,3);
+  lab(X0+u(D.Lf)*.45,cy-rc,1,coupL)}
+ else{
+  const rn=u(nutD/2),xn=X0+u(D.Ln),rb=u(D.pbody/2),xb=xn+u(D.Lpb);
+  if(t==='intg'){const rcab=u(.17),xc=xb+u(.6);s+=cyl(xc,XR,rcab,'',`url(#${id}k)`)+`<path d="M${f1(xb)} ${f1(cy-rb)}L${f1(xc)} ${f1(cy-rcab)}A${f1(rcab*k)} ${f1(rcab)} 0 0 1 ${f1(xc)} ${f1(cy+rcab)}L${f1(xb)} ${f1(cy+rb)}Z" fill="${M}" stroke="${ln}" stroke-width=".8"/>`;lab((xb+xc)/2,cy+rb*.7,0,'Integrated backshell');lab(xc+30,cy-rcab,1,'Cable')}
+  else{const ra=u(D.acc/2),xe=xb+u(D.Lpa);s+=wires(xe,ra)+cyl(xb,xe,ra,'thr')+teeth(xe,ra);lab((xb+xe)/2,cy-ra,1,'Accessory thread'+(o.teeth?' (360° teeth)':''))}
+  s+=cyl(xn-3,xb,rb);
+  if(o.band){const cb=id+'c'+(++n),bx=xn+u(D.Lpb)*.45;s+=`<clipPath id="${cb}"><path d="${P(xn-3,xb,rb)}"/></clipPath><rect x="${f1(bx)}" y="${f1(cy-rb)}" width="${f1(Math.max(4,u(.08)))}" height="${f1(2*rb)}" fill="${o.band}" clip-path="url(#${cb})"/>`}
+  lab((xn+xb)/2,cy+rb,0,'Plug body');
+  s+=cyl(X0,xn,rn,'');
+  const kn0=X0+u(D.Ln)*.38;
+  if(o.bay)s+=tex(kn0,xn,rn,'rib')+`<path d="M${f1(X0+u(D.Ln)*.16)} ${f1(cy-rn)}v${f1(rn*.42)}l${f1(u(D.Ln)*.18)} ${f1(rn*.18)}" fill="none" stroke="#121417" stroke-width="2.6" stroke-linejoin="round"/>`;
+  else s+=tex(kn0,t==='nd'?xn-u(D.Ln)*.2:xn,rn,o.pp?'rib':'knurl');
+  if(t==='nd'){s+=tex(xn-u(D.Ln)*.2,xn,rn,'rib');lab(xn-u(D.Ln)*.1,cy+rn,0,'Self-locking ratchet')}
+  s+=front(X0,rn,rc,u(.03),[2,rc*.86,rc*.72]);
+  if(t==='lan'){s+=`<path d="M${f1(xn+8)} ${f1(cy+rb)}C${f1(xn+20)} 172,${f1(xn+120)} 178,${f1(xn+150)} 166" fill="none" stroke="#6f767d" stroke-width="3"/><path d="M${f1(xn+8)} ${f1(cy+rb-1)}C${f1(xn+20)} 171,${f1(xn+120)} 177,${f1(xn+150)} 165" fill="none" stroke="#d8dde1" stroke-width="1"/><circle cx="${f1(xn+158)}" cy="162" r="7" fill="none" stroke="#6f767d" stroke-width="3"/>`;lab(xn+158,169,0,'Lanyard')}
+  lab(X0+u(D.Ln)*.3,cy-rn,1,o.pp?'Push-pull sleeve, mating indicator band':o.bay?'Bayonet coupling ring':'Coupling nut')}
+ // labels: spread each row so text never overlaps
+ const cw=6.1;
+ for(const top of [1,0]){const row=labs.filter(l=>!!l.top===!!top).sort((a,b)=>a.x-b.x);let edge=top?4:96;
+  row.forEach(l=>{const w=l.txt.length*cw;l.tx=Math.max(l.x,edge+w/2);l.tx=Math.min(l.tx,XR-w/2);edge=l.tx+w/2+12});
+  for(let i=row.length-2;i>=0;i--){const a=row[i],b=row[i+1],need=(a.txt.length+b.txt.length)*cw/2+12;if(b.tx-a.tx<need)a.tx=b.tx-need}
+  row.forEach(l=>{const ty=top?14:182;s+=`<line x1="${f1(l.x)}" y1="${f1(l.y)}" x2="${f1(l.tx)}" y2="${top?ty+4:ty-11}" stroke="var(--mute)" stroke-width=".8"/><text x="${f1(l.tx)}" y="${ty}" font-size="10" text-anchor="middle" fill="currentColor">${l.txt}</text>`})}
+ const sb=u(.5);
+ s+=`<text x="12" y="200" font-size="10" fill="var(--mute)">&#9664; mating end</text><g stroke="currentColor" stroke-width="1"><path d="M${f1(XR-6-sb)} 196v4h${f1(sb)}v-4"/><path d="M${f1(XR-6-sb/2)} 198v2"/></g><text x="${f1(XR-10-sb)}" y="200" font-size="10" text-anchor="end" fill="currentColor">0.5 in</text>`;
+ return `<svg viewBox="0 0 ${W} 206" width="100%" style="display:block;color:var(--ink)" role="img" aria-label="Connector drawn to catalog proportions"><defs>${defs}</defs>${s}</svg>`}
+function illSec(o){
+ const face=o.arr?faceSvg(o.arr,o.g,o.keys,!o.recep,o.rot):`<p class="err">The contact layout for arrangement ${esc(o.ak||'')} is not loaded in this tool, so the insert face cannot be drawn.</p>`;
+ const kt=o.keys&&o.keys.length?(o.recep?' Blue = keyways, amber = master keyway.':' Blue = keys, amber = master key (mirror of the receptacle).'):' Amber = master key; this series keys by insert rotation, not extra keyways.';
+ return `<section><h2>Connector illustration</h2><div class="ill"><figure><div class="scroll ill-side">${sideSvg(o.t,{...o.opt,g:o.g,arr:o.arr,D:o.D})}</div><figcaption>${esc(o.cap)}, ${o.D?o.D.label+(/not decoded/.test(o.cap)?' as an example':''):''}, drawn to ${o.fam?esc(o.fam)+' ':''}catalog proportions${o.D&&o.D.est?' (flange size estimated from the plug diameter)':''}. Mating end on the left, finish shown as ${FINN[(o.opt&&o.opt.fin)||'ss']}. ${o.g==='P'?'Gold pins stand proud of the insert':'Socket holes sit in the insert face'}${o.opt&&o.opt.scoop?' (pins recessed: scoop-proof)':''}${o.opt&&o.opt.band?'; blue band marks rear-release contacts':''}.</figcaption></figure><figure>${face}<figcaption>Front (mating) face of the ${o.g==='P'?'pin':'socket'} insert${o.rot?`, insert rotated ${o.rot}°`:''}.${kt}</figcaption></figure></div><div class="note">${o.arr?`The insert face is schematic. Contact quantities and sizes match arrangement ${esc(o.ak||'')}. Contact positions`:'No insert layout is loaded for this part. Contact positions'} and letters are generated (A at the master key, ${o.g==='P'?'clockwise':'counter-clockwise'} on this face, spiralling inward, MIL-STD-1560 letter sequence) and are not traced from the catalog drawing. Use the catalog insert drawing for wiring.</div></section>`}
+const STY={'71':'flange','72':'flange','82':'flange','83':'flange','88':'flange','73':'jam','74':'jam','84':'jam','85':'jam','89':'jam','90':'solder','75':'plug','76':'plug','77':'plug','78':'plug','86':'plug','87':'plug','91':'plug','92':'plug','95':'nd','96':'nd','97':'nd','98':'nd','68':'lan','69':'lan'};
+// ---- M83723 Series I (bayonet, MIL-DTL-26482 Series 2 based) and Series II (threaded, MIL-DTL-5015 based) ----
+// Slash sheets and their MS replacements: Glenair military connector part number cross-reference.
+const S12={
+'1':['I','Wall mount receptacle, narrow flange','flange','MS3470',{narrow:1}],'2':['I','Wall mount receptacle, narrow flange','flange','MS3470',{narrow:1}],
+'3':['I','Wall mount receptacle, wide flange','flange','MS3472'],'4':['I','Wall mount receptacle, wide flange','flange','MS3472'],
+'5':['I','Jam nut receptacle','jam','MS3474'],'6':['I','Jam nut receptacle','jam','MS3474'],
+'7':['I','Cable connecting (in-line) receptacle','cable','MS3471'],'8':['I','Cable connecting (in-line) receptacle','cable','MS3471'],
+'9':['I','Hermetic receptacle, narrow flange','flange','MS3440',{her:1,narrow:1}],'10':['I','Hermetic receptacle, wide flange','flange','MS3442',{her:1}],
+'11':['I','Hermetic receptacle, solder flange','solder','MS3443',{her:1}],'12':['I','Hermetic receptacle, solder flange','solder','MS3443',{her:1}],
+'13':['I','Straight plug','plug','MS3476'],'14':['I','Straight plug','plug','MS3476'],
+'42':['I','Straight plug, RFI shielded','plug','MS3475'],'43':['I','Straight plug, RFI shielded','plug','MS3475'],
+'45':['I','Dummy (stowage) receptacle','flange','MS3115',{dummy:1}],'37':['I','Plug, pre-wired','plug',''],
+'36':['I','Cancelled, no replacement','',''],'38':['I','Cancelled, no replacement','',''],'39':['I','Cancelled, no replacement','',''],'40':['I','Cancelled, no replacement','',''],'41':['I','Cancelled, no replacement','',''],'48':['I','Cancelled, no replacement','',''],'49':['I','Cancelled, no replacement','',''],
+'17':['II','Cable connecting (in-line) receptacle','cable','MS3451'],'18':['II','Cable connecting (in-line) receptacle','cable','MS3451'],
+'19':['II','Wall mount receptacle','flange','MS3450'],'20':['II','Wall mount receptacle','flange','MS3450'],
+'21':['II','Box mount receptacle','box','MS3452'],'22':['II','Box mount receptacle','box','MS3452'],
+'23':['II','Straight plug','plug','MS3456'],'24':['II','Straight plug','plug','MS3456'],
+'25':['II','Hermetic receptacle, box mount','flange','MS3142',{her:1}],'26':['II','Hermetic receptacle, solder mount','solder','MS3143',{her:1}],
+'52':['II','Self-locking plug','nd','MS3459'],'53':['II','Self-locking plug','nd','MS3459'],
+'27':['II','Series II sheet (inactive for new design)','',''],'35':['II','Series II sheet','',''],'50':['II','Series II sheet (inactive for new design)','','']};
+// Common MIL-DTL-26482 Series 2 insert arrangements (contact count x size); confirm against MIL-STD-1554 before use
+const AR26={'8-2':'2x20','8-3':'3x20','8-4':'4x20','8-33':'3x20','8-98':'3x20','10-2':'2x20','10-6':'6x20','10-98':'6x20','12-3':'3x16','12-8':'8x20','12-10':'10x20','12-98':'10x20','14-5':'5x16','14-12':'12x20','14-15':'15x20','14-18':'18x20','14-19':'19x20','16-8':'8x16','16-26':'26x20','16-99':'23x20,2x16','18-11':'11x16','18-32':'32x20','20-16':'16x16','20-39':'37x20,2x16','20-41':'41x20','22-21':'21x16','22-55':'55x20','24-31':'31x16','24-61':'61x20'};
+const CLS12={A:'Aluminum, black anodize (non-conductive)',R:'Aluminum, electroless nickel (conductive)',W:'Aluminum, olive drab cadmium over nickel',N:'Stainless steel / nickel finish (see slash sheet)',K:'Firewall (see slash sheet)'};
+const S12SZ={I:['8','10','12','14','16','18','20','22','24'],II:['8S','10S','10SL','12S','12','14S','14','16S','16','18','20','22','24','28','32','36','40']};
+function runS12(v){
+ const E=t=>{$('out').innerHTML=`<section><p class="err">${t}</p></section>`};
+ const s=v.toUpperCase().replace(/\s/g,''),m=s.match(/^M83723\/?(\d{1,2})([A-Z])?(.*)$/);
+ if(!m||!S12[m[1]])return E('Not a recognised M83723 Series I or II slash number.');
+ const [ser,desc,t,ms,ex]=S12[m[1]],x=ex||{},cls=m[2]||'',rest=(m[3]||'').replace(/^-/,'');
+ // shell size + arrangement: try every split and keep the one with a valid shell size for this series
+ let size='',arr='',ct='',pol='',dec=false;
+ const mm=rest.match(/^(\d{1,2}(?:SL|S)?)-?(\d{1,3})([PSAB]?)([NWXYZ0-9]?)$/)||rest.match(/^(\d)(\d{1,3})([PSAB]?)([NWXYZ0-9]?)$/);
+ if(rest){for(const re of [/^(\d{2}(?:SL|S)?)-?(\d{1,3})([PSAB]?)([NWXYZ]?)$/,/^(\d(?:SL|S)?)-?(\d{1,3})([PSAB]?)([NWXYZ]?)$/]){const q=rest.match(re);if(q&&S12SZ[ser].includes(String(parseInt(q[1]))+q[1].replace(/^\d+/,''))){size=String(parseInt(q[1]))+q[1].replace(/^\d+/,'');arr=String(+q[2]);ct=q[3];pol=q[4];dec=true;break}}}
+ const g=ct==='S'||ct==='B'?'S':'P',key=size+'-'+arr,h=[];
+ const ins=ser==='I'?AR26[key]:MAR[key];
+ const rows=[['M83723/'+m[1],`MIL-DTL-83723 Series ${ser}: ${desc}`+(t?(ser==='I'?' (bayonet coupling)':' (threaded coupling)'):'')]];
+ if(cls)rows.push([cls,CLS12[cls]||'Class letter not in this tool; see the slash sheet']);
+ if(dec){rows.push([size+'-'+arr,`Shell size ${size}, insert arrangement ${key}${ins?' ('+ins.replace(/(\d+)x(\d+)/g,'$1 × #$2').replace(/,/g,', ')+')':''}`]);if(ct)rows.push([ct,{P:'Pin contacts',S:'Socket contacts',A:'Pin insert, less contacts',B:'Socket insert, less contacts'}[ct]]);if(pol)rows.push([pol,pol==='N'?'Normal polarization':'Alternate position '+pol])}
+ else if(rest)rows.push([rest,`Shell size and arrangement code not decoded: the tool expected a Series ${ser} shell size (${S12SZ[ser].join(', ')}) followed by the arrangement. Check the slash sheet's PIN format.`]);
+ h.push(`<section><h2>Part number breakdown</h2><div class="big">${esc(s)}</div>${tbl(['Segment','Meaning'],rows.map(r=>[`<span class="seg pn">${esc(r[0])}</span>`,esc(r[1])]))}<div class="note">Series ${ser} is inactive for new design. ${ser==='I'?'Series I was superseded by, and transferred to, MIL-DTL-26482 Series 2 (MS347x).':'Series II was superseded by MIL-DTL-5015 / SAE AS50151 crimp rear-release parts (MS345x).'} Each pair of slash sheets covers one style; the two sheets differ by contact type, so confirm pin or socket on the sheet.${dec&&!ct?' No contact letter in this part number, so pins are assumed for the drawing.':''}</div></section>`);
+ if(t){const fin={A:'blk',R:'ni',W:'od',N:'ni'}[cls]||'ni';
+  h.push(illSec({t,opt:{fin,bay:ser==='I',her:x.her,narrow:x.narrow},arr:x.dummy?'':ins,ak:dec?key:'',g,recep:!['plug','nd'].includes(t),keys:[],cap:`M83723 Series ${ser} ${desc.toLowerCase()}`+(dec?'':' (shell size not decoded, typical size shown)'),D:dimsFor(ser==='I'?'26':'50',dec?size:'16'),fam:ser==='I'?'MIL-DTL-26482 Series 2':'MIL-DTL-5015'}))}
+ const msCls=ser==='I'?({A:'A',R:'L',W:'W'}[cls]||'?'):({R:'L',W:'W',A:'?'}[cls]||'?');
+ const msPN=p=>dec?`${p}${msCls}${size}-${arr}${ct||'P'}${pol&&pol!=='N'?pol:''}`:`${p}( )`;
+ const eq=[];
+ if(ms)eq.push(['Superseded by',`<span class="pn">${esc(msPN(ms))}</span>`,(ser==='I'?'MIL-DTL-26482 Series 2':'MIL-DTL-5015 / AS50151')+' replacement.'+(msCls==='?'?' Class has no direct MS equivalent; choose the MS class (L, W, A…) for your finish.':` Class ${cls} → MS class ${msCls}.`)+(dec&&!ct?' Contact letter assumed P.':'')]);
+ else eq.push(['Superseded by','<small>None</small>',desc.startsWith('Cancelled')?'Cancelled with no replacement.':'No MS replacement listed.']);
+ eq.push(['Intermates with',ser==='I'?'MIL-DTL-26482 Series 2 (MS3470–MS3476)':'MIL-DTL-5015 / AS50151 (MS3450–MS3459, MS3100 family)',ser==='I'?'Same bayonet interface and insert layouts as MIL-DTL-26482.':'Same threaded interface and MIL-STD-1651 insert layouts as MIL-DTL-5015.']);
+ eq.push(['Series III','<small>Not intermateable</small>','M83723 Series III (/71–/98) uses a different interface. For a new design pick a Series III part with the same shell size and contacts.']);
+ h.push(`<section><h2>Cross-reference</h2>${tbl(['Spec','Part number','Note'],eq)}</section>`);
+ if(t&&dec){const opp=g==='P'?'S':'P',list=ser==='I'?(t==='plug'?['MS3470','MS3472','MS3474','MS3471']:['MS3476','MS3475']):(['plug','nd'].includes(t)?['MS3450','MS3451','MS3452']:['MS3456','MS3459']);
+  const DES={MS3470:'Wall mount receptacle, narrow flange',MS3472:'Wall mount receptacle, wide flange',MS3474:'Jam nut receptacle',MS3471:'Cable connecting receptacle',MS3476:'Straight plug',MS3475:'Straight plug, RFI shielded',MS3450:'Wall mount receptacle',MS3451:'Cable connecting receptacle',MS3452:'Box mount receptacle',MS3456:'Straight plug',MS3459:'Self-locking plug'};
+  h.push(`<section><h2>Mating connectors (same size, arrangement and polarization)</h2>${tbl(['MS part number','Description'],list.map(p=>[`<span class="pn">${p}${msCls==='?'?'L':msCls}${size}-${arr}${opp}${pol&&pol!=='N'?pol:''}</span>`,DES[p]]))}<div class="note">Opposite contact type shown, as current MS parts. The matching M83723 Series ${ser} sheets are inactive.</div></section>`)}
+ if(ins)h.push(`<section><h2>Insert ${key} contacts</h2>${tbl(['Qty','Size'],ins.split(',').map(t=>t.split('x')).map(p=>[p[0],'#'+p[1]]))}<div class="note">${ser==='I'?'From the common MIL-DTL-26482 layouts (MIL-STD-1554). Confirm on the slash sheet.':'From the MIL-DTL-5015 crimp rear-release layout table used for MS345x.'}</div></section>`);
+ else if(dec)h.push(`<section><h2>Insert ${key}</h2><p class="err">This arrangement is not in the tool's table; see the slash sheet for contact count and sizes.</p></section>`);
+ $('out').innerHTML=h.join('')}
+// ---- Boeing BACC63 (Amphenol / Cinch / rms how-to-order pages) ----
+// [description, family (83 = MIL-DTL-26500 / M83723 III shells, 38 = D38999 III, 50 = MIL-DTL-5015), R/P, coupling]
+const B63={
+ BV:['Threaded receptacle, square flange mount (MIL-DTL-26500 Type T)','83','R','T'],
+ BP:['Threaded plug, self-locking (MIL-DTL-26500 Type T)','83','P','T'],
+ BR:['Threaded firewall plug, self-locking, 220°C (MIL-DTL-83723 Series III type; similar to M83723/95 and /96)','83','P','T'],
+ CM:['Threaded firewall plug, self-locking, 260°C (MIL-DTL-83723 Series III type; one-way replacement for BACC63BR)','83','P','T'],
+ CB:['Bayonet plug, vibration resistant (MIL-DTL-26500 Type B)','83','P','B'],
+ BN:['Bayonet plug, vibration resistant, cable clamp option (MIL-DTL-26500 Type B)','83','P','B'],
+ CC:['Bayonet receptacle, square flange (MIL-DTL-26500 Type B)','83','R','B'],
+ CT:['Composite plug (MIL-DTL-38999 Series III type)','38','P'],
+ CU:['Composite receptacle (MIL-DTL-38999 Series III type)','38','R'],
+ DB:['Stainless steel plug (MIL-DTL-38999 Series III type)','38','P'],
+ DC:['Stainless steel receptacle (MIL-DTL-38999 Series III type)','38','R'],
+ CD:['Front mount square flange receptacle (MIL-DTL-5015 type)','50','R'],
+ CE:['Plug (MIL-DTL-5015 type)','50','P']};
+const B63X=['BT','CN','DU','DV','EK','EP','ER','ET'];
+// finish / option letter: [meaning, nearest mil class, grounding spring]
+const B63F={
+ BV:{B:['Stainless steel, accessory teeth','G'],F:['Cadmium plated aluminum, accessory teeth','W'],H:['Anodized aluminum, accessory teeth','A']},
+ BP:{C:['Cadmium plated aluminum, teeth and grounding spring','W',1],D:['Stainless steel, teeth and grounding spring','S',1],H:['Anodized aluminum, accessory teeth','A']},
+ BR:{B:['Stainless steel, accessory teeth (code assumed as for BACC63BV)','K'],D:['Stainless steel, teeth and grounding spring (code assumed as for BACC63BP)','S',1],'-':['No finish letter','K']},
+ CB:{'-':['Cadmium plated aluminum','W'],A:['Anodized aluminum','A'],B:['Passivated stainless steel','G']},
+ CC:{'-':['Cadmium plated aluminum (code assumed as for BACC63CB)','W'],A:['Anodized aluminum (code assumed as for BACC63CB)','A'],B:['Passivated stainless steel (code assumed as for BACC63CB)','G']},
+ BN:{'-':['No cable clamp','W'],B:['Right-angle cable clamp','W'],C:['Straight cable clamp','W']},
+ CT:{C:['Cadmium plated, grounded','J'],D:['Cadmium plated, ungrounded','J'],G:['Nickel plated, grounded','M'],'-':['Nickel plated, ungrounded','M']},
+ DB:{C:['Cadmium plated, grounded','S'],D:['Cadmium plated, ungrounded','S'],G:['Nickel plated, grounded','S'],'-':['Nickel plated, ungrounded','S']},
+ CD:{'-':['No cable clamp'],A:['BACC10HV straight cable clamp'],B:['BACC10HW right-angle cable clamp']}};
+B63F.CU=B63F.CT;B63F.DC=B63F.DB;B63F.CE=B63F.CD;
+const B63M={BV:['BP','BR','CM'],BP:['BV'],BR:['BV'],CM:['BV'],CB:['CC'],BN:['CC'],CC:['CB','BN'],CT:['CU'],CU:['CT'],DB:['DC'],DC:['DB'],CD:['CE'],CE:['CD']};
+const B63FX={CM:{BV:{'':'B'}},BV:{BP:{B:'D',F:'C',H:'H'},BR:{B:'B',F:'B',H:'B'}},BP:{BV:{D:'B',C:'F',H:'H'}},BR:{BV:{B:'B',D:'B','-':'B'}},CC:{BN:{'-':'-',A:'-',B:'-'}}};
+const DSH={9:'A',11:'B',13:'C',15:'D',17:'E',19:'F',21:'G',23:'H',25:'J'};
+function runBACC(v){
+ const E=t=>{$('out').innerHTML=`<section><p class="err">${t}</p></section>`};
+ const s=v.toUpperCase().replace(/[\s]/g,''),m=s.match(/^BACC63([A-Z]{2})(.*)$/);
+ if(!m)return E('Not recognized. Expected BACC63 + two-letter style + shell size, finish or clamp letter, arrangement, P or S, keying, optional H (e.g. BACC63BV12B3SN, BACC63CT15D97SNH, BACC63CE20-29PWH).');
+ const st=m[1],rest=m[2],d=B63[st];
+ if(!d){if(B63X.includes(st))return E(`BACC63${st} is a Boeing BACC63 style, but its ordering page was not available, so it is not decoded here. Check the Boeing standard or the supplier's how-to-order page.`);return E(`BACC63${st} is not a BACC63 style this tool knows (${Object.keys(B63).join(', ')}).`)}
+ const fam=d[1],h=[],notes=[];let q;
+ if(st==='CM')q=rest.match(/^(\d{2})(\d{2})([PS])([N6789Y]?)([A-Z]?)$/);
+ else if(fam==='50')q=rest.match(/^(\d{1,2}(?:SL|S)?)([AB]|-)?-?(\d{1,3})([PS])([WXYZ]?)(H?)$/);
+ else q=rest.match(/^(\d{1,2})([A-Z]|-)?-?(\d{1,3})([PS])(10|[N6789A-E])?([A-Z]*)$/);
+ if(!q)return E(`BACC63${st} recognized (${esc(d[0])}), but the rest of the number "${esc(rest)}" did not match. Expected shell size, ${fam==='50'?'clamp letter (- A B)':st==='CM'?'two-digit arrangement':'finish letter'}, arrangement, P or S, ${fam==='50'?'rotation W X Y Z':fam==='38'?'keying N or A-E':'keying N, 6, 7, 8, 9 or 10'}, optional H.`);
+ let size,fin,arr,ct,key,opt;
+ if(st==='CM'){[,size,arr,ct,key,opt]=q;size=String(+size);arr=String(+arr);fin=''}else{[,size,fin,arr,ct,key,opt]=q;fin=fin||'-';size=String(size).replace(/^0/,'')}
+ key=key||(fam==='50'?'':'N');const F=(B63F[st]||{})[fin];
+ // breakdown
+ const rows=[['BACC63','Boeing standard circular connector'],[st,d[0]],[size,'Shell size '+size+(fam==='38'?` (D38999 shell letter ${DSH[size]||'?'})`:'')]];
+ if(st!=='CM')rows.push([fin,F?F[0]:`Letter ${fin} is not in the ${st} codes this tool has (${Object.keys(B63F[st]||{}).join(', ')||'none'}).`]);
+ rows.push([arr,`Insert arrangement ${size}-${arr}`],[ct,ct==='P'?'Pin contacts':'Socket contacts']);
+ if(key)rows.push([key,key==='N'?'Normal keying':fam==='50'?'Insert rotation '+key:'Alternate keying position '+key]);
+ if(opt)rows.push([opt,opt==='H'?'Supplied without contacts and seal plugs (not marked on the part)':st==='CM'&&opt==='A'?'Suffix A: not defined on the pages used here; confirm with Boeing':'Suffix not defined on the pages used here; confirm with Boeing']);
+ else if(fam!=='50'||1)rows.push(['(no H)','Supplied with contacts and seal plugs']);
+ h.push(`<section><h2>Part number breakdown</h2><div class="big">${esc(s)}</div>${tbl(['Segment','Meaning'],rows.map(r=>[`<span class="seg pn">${esc(r[0])}</span>`,esc(r[1])]))}</section>`);
+ // nearest military part
+ let eq,eqN;const g=ct;
+ if(fam==='83'){const k2=key==='10'?'N':key;if(key==='10')notes.push('Keying position 10 has no M83723 letter; the equivalent is shown in N. Confirm the keyway angles before mixing parts.');
+  if(st==='CM'){eq=`EN2997KE6${size}-${pad(arr)}${g==='P'?'M':'F'}${k2}`;eqN='Nearest EN2997 part (260°C firewall, non-decoupling plug)'}
+  else{const spring=F&&F[2],cls=F?F[1]:(st==='BR'?'K':'W');let sl;
+   if(st==='BV')sl=g==='P'?'83':'82';else if(st==='CC')sl=g==='P'?'72':'71';else if(st==='CB'||st==='BN')sl=g==='P'?'76':'75';else sl=spring?(g==='P'?'98':'97'):(g==='P'?'96':'95');
+   eq=`M83723/${sl}${cls}${size}${pad(arr)}${k2}`;eqN='Nearest M83723 Series III part';
+   if(d[3]&&st!=='BR')notes.push('BACC63 '+st+' is built to MIL-DTL-26500, which shares shells, inserts and keying with M83723 Series III. Suppliers state intermateability with M83723 parts but some ask you to confirm it with the factory.')}}
+ else if(fam==='38'){const L=DSH[size];if(!L)return E(`Shell ${size} is not a D38999 Series III size (9 to 25, odd).`);
+  const cls=F?F[1]:(st[0]==='D'?'S':'M');eq=`D38999/${d[2]==='P'?'26':'20'}${cls}${L}${pad(arr)}${ct}${key}`;eqN='Nearest D38999 Series III part';
+  if(d[2]==='R')notes.push('The BACC63 '+st+' receptacle mounting style is not given on the ordering page; the wall-mount (/20) equivalent is shown.');
+  if(st[0]==='D')notes.push('Stainless BACC63 '+st+': class S (stainless, nickel) shown. Use K if the application needs a firewall part.')}
+ else{eq=`MS${d[2]==='P'?'3456':'3450'}L${size}-${arr}${ct}${key}`;eqN='Nearest MIL-DTL-5015 crimp rear-release part (class L shown; the BACC number carries no finish)'}
+ const mates=(B63M[st]||[]).map(o=>{const op=g==='P'?'S':'P';let f2=fin;const mx=(B63FX[st]||{})[o];if(mx)f2=mx[fin]||Object.values(mx)[0];if(o==='CM')return `BACC63CM${pad(size)}${pad(arr)}${op}${key}`;if(fam==='50')return `BACC63${o}${size}${f2==='-'?'-':f2}${arr}${op}${key}`;return `BACC63${o}${size}${f2}${arr}${op}${key==='N'&&fam==='38'?'N':key}`.replace(/(\d)-(\d)/,'$1-$2')});
+ h.push(`<section><h2>Cross-reference</h2>${tbl(['Spec','Part number','Note'],[[eqN.split(' (')[0],`<span class="pn">${esc(eq)}</span>`,esc(eqN.includes('(')?eqN.slice(eqN.indexOf('(')+1,-1):'Same shell size, insert arrangement, contacts and keying. Full decode of this part follows below.')],...mates.map(p=>['BACC63 mate',`<span class="pn">${esc(p)}</span>`,'Boeing mating style with the same size, arrangement and keying, opposite contacts. Check the finish letter against the mating style\'s own codes.'])])}${notes.map(n=>`<div class="note">${esc(n)}</div>`).join('')}<div class="note">BACC63 parts are Boeing-controlled. The military part shown is the nearest equivalent for interface and fit, not an approved substitute; check the Boeing standard before replacing one with the other.</div></section>`);
+ // full decode of the equivalent via the existing lookups
+ const qi=$('q'),old=qi.value;qi.value=eq;run();qi.value=old;
+ let rest2=$('out').innerHTML.replace('<h2>Part number breakdown</h2>',`<h2>Equivalent ${esc(eq)}: breakdown</h2>`);
+ rest2=rest2.replace(/(Connector illustration<\/h2>)/,'Connector illustration (drawn from the equivalent military part)</h2>');
+ $('out').innerHTML=h.join('')+rest2}
+// ---- Unrecognised prefix: match the ending (shell size + arrangement + contact + keying) against every family ----
+function runGuess(v){
+ const s=v.toUpperCase().replace(/\s/g,''),m=s.match(/^(.*?)[-\/]?(\d{3,4}|\d{1,2}S?L?-\d{1,3})([PSAB])([A-Z0-9]?)$/);
+ const E=t=>{$('out').innerHTML=`<section><p class="err">${t}</p></section>`};
+ if(!m)return E('Part number not recognized. Supported: M83723 Series I-III, EN2997, ESC10, ESC11, Pyle BNK/BJ/BN, BACC63, D38999/F38999, MS3450-MS3459, Raychem TX/TXR backshells, TE Deutsch 983, Souriau 8534, Pyle T-Line and T3 contacts. For a company or drawing number, the tool can still try the ending if it is shell size + arrangement + P/S + keying (e.g. ...-1726PN).');
+ const [,pre,sa,ct,key]=m,cands=[],g=ct==='S'||ct==='B'?'socket':'pin';
+ const splits=sa.includes('-')?[sa.split('-')]:[[sa.slice(0,2),sa.slice(2)],[sa.slice(0,1),sa.slice(1)]];
+ const fmt=a=>a.replace(/(\d+)x(\w+)/g,(_,n,z)=>n+' × '+DSZ(z)).replace(/,/g,', ');
+ for(const[z0,a0]of splits){const z=String(+z0||z0),a=+a0;if(!a)continue;
+  const L=Object.keys(DZ).find(k=>+DZ[k][0]===+z);
+  if(L&&DA[z+'-'+pad(a)])cands.push({fam:'MIL-DTL-38999 Series III (D38999, Souriau 8D, BACC63 CT/CU/DB/DC)',lay:`${z}-${pad(a)}: ${fmt(DA[z+'-'+pad(a)])}`,ok:/^[NA-E]?$/.test(key),keyNote:'keying N or A-E',ex:[`D38999/20W${L}${pad(a)}${ct}${key||'N'}`,`D38999/26W${L}${pad(a)}${ct}${key||'N'}`],exNote:'wall-mount receptacle / plug, class W assumed'});
+  if(AR[z+'-'+a])cands.push({fam:'MIL-DTL-83723 Series III / EN2997 / ESC10 / BACC63 (26500)',lay:`${z}-${pad(a)}: ${fmt(AR[z+'-'+a])}`,ok:/^[N6789Y]?$/.test(key),keyNote:'keying N, 6, 7, 8, 9 or Y',ex:[`M83723/${ct==='P'?'83':'82'}K${z}${pad(a)}${/^[N6789Y]$/.test(key)?key:'N'}`,`M83723/${ct==='P'?'96':'95'}K${z}${pad(a)}${/^[N6789Y]$/.test(key)?key:'N'}`],exNote:'square flange receptacle / self-locking plug, class K assumed'});
+  if(AR26[z+'-'+a])cands.push({fam:'MIL-DTL-26482 Series 2 (MS347x, M83723 Series I)',lay:`${z}-${a}: ${fmt(AR26[z+'-'+a])}`,ok:/^[NWXYZ]?$/.test(key),keyNote:'polarization N, W, X, Y or Z',ex:[`M83723/1R${z}${pad(a)}${ct}${key||'N'}`,`M83723/14R${z}${pad(a)}${ct}${key||'N'}`],exNote:'Series I receptacle / plug, class R assumed'});
+  for(const zz of [z,z+'S',z+'SL'])if(MAR[zz+'-'+a])cands.push({fam:'MIL-DTL-5015 crimp rear release (MS345x, BACC63 CD/CE)',lay:`${zz}-${a}: ${fmt(MAR[zz+'-'+a])}`,ok:/^[WXYZ]?$/.test(key),keyNote:'insert rotation W, X, Y or Z (none = normal)',ex:[`MS3450L${zz}-${a}${ct}${/^[WXYZ]$/.test(key)?key:''}`,`MS3456L${zz}-${a}${ct}${/^[WXYZ]$/.test(key)?key:''}`],exNote:'wall-mount receptacle / plug, class L assumed'})}
+ const best=cands.filter(c=>c.ok),list=best.length?best:cands;
+ let h=`<section><h2>Prefix not recognized</h2><div class="big">${esc(s)}</div><p><span class="pn seg">${esc(pre||'(none)')}</span> is not a specification this tool knows. A number like this is usually a company or source-control drawing that calls up a standard connector, so the drawing (or the supplier's marking on the part) is the only way to be sure what it is.</p><p>The ending <span class="pn seg">${esc(sa+ct+key)}</span> reads as shell size + insert arrangement + ${g} contacts${key?' + keying '+esc(key):''}. ${list.length?'It matches these insert layouts:':'It does not match any insert layout in this tool.'}</p>`;
+ if(list.length)h+=tbl(['Family','Layout','Keying','Look up an example'],list.map(c=>[esc(c.fam),esc(c.lay),c.ok?`<small>${esc(key||'N')} fits (${esc(c.keyNote)})</small>`:`<span class="err">${esc(key)} does not fit (${esc(c.keyNote)})</span>`,c.ex.map(p=>`<button type="button" class="try" data-pn="${p}">${p}</button>`).join(' ')+`<br><small>${esc(c.exNote)}</small>`]));
+ h+=`<div class="note">These are candidates from the contact layout only. Shell style, class, finish and temperature rating come from the drawing ${esc(pre||'')}, not from this ending. Click an example to see the full decode, illustration and mates for that family.</div></section>`;
+ $('out').innerHTML=h;
+ $('out').querySelectorAll('button.try').forEach(b=>b.onclick=()=>{$('q').value=b.dataset.pn;lookup()})}
+// Pyle BT commercial equivalent (Amphenol Pyle catalog p. 34): BT + class + shell style + modification + size-insert + contact + finish + keying + variation
+function btPN(c){
+ if(['88','89','90'].includes(c.sl))return{note:'Hermetic: the Pyle commercial hermetic is the BTY / BFY series, whose ordering format is not on the catalog page used here.'};
+ const st={'82':'17','83':'17','84':'19','85':'19','86':'12','87':'12','91':'12','92':'12','95':'12','96':'12','97':'12','98':'12'}[c.sl];
+ if(!st)return{note:'No Pyle BT equivalent for bayonet or lanyard styles (BT is threaded only).'};
+ if(!/^[N6789Y]$/.test(c.key))return{note:`Keying ${c.key} (clocked) has no Pyle BT equivalent.`};
+ const spring=['97','98','91','92'].includes(c.sl)||c.cls==='S',cls=c.cls==='G'?'G':'K',teeth=c.src==='C'||c.cls==='N'||spring;
+ const mod=spring?'F':teeth?'E':'',fin='AB'.includes(c.enct||'x')?'E':'D',k=/^[6-9]$/.test(c.key)?'0'+c.key:c.key,v=c.t260?'Y144':'Y163';
+ const n=[`Class ${cls} = stainless steel${cls==='K'?', firewall':''}.`,mod==='F'?'F = 360° teeth (MS3155) with EMI grounding spring on the plug.':mod==='E'?'E = 360° teeth (MS3155).':'No modification letter = standard 3 accessory teeth.',fin==='D'?'D = gold contacts.':'E = without contacts.',`${v} = ${c.t260?'260':'200'}°C (European market).`];
+ if(['86','87','91','92'].includes(c.sl))n.push('BT has no straight plug (-11 is not on the BT page); the non-decoupling plug (-12) is shown.');
+ if(!['G','K','S'].includes(c.cls))n.push(`Class ${c.cls} has no BT class; stainless K shown.`);
+ return{pn:`BT${cls}-${st}${mod?' '+mod:''} ${c.size}-${pad(c.arr)} ${c.g==='P'?'P':'S'} ${fin} ${k} ${v}`,note:n.join(' ')+' Spacing as in the catalog example; confirm with Amphenol.'}}
+// ---- TE Raychem TX / TXR backshells (Tinel-Lock), e.g. TXR40AB00-1416BI ----
+// Sources: TE / RS / distributor datasheets for TXR40, TXR54, TXR21, TXR18 parts (interface code, shell code, entry size code fields).
+const TXI={'40':['MIL-DTL-38999 Series III and IV','38'],'54':['MIL-DTL-83723 Series III (classes A, G, K, R, S, W, H) and Series I, MIL-DTL-26482 Series 2 (classes A, L), AS81703 Series 3, AS50151 crimp (classes L, W)','83'],'21':['MIL-DTL-26482 Series 1 (classes E, F, J, P)','26'],'18':['MIL-DTL-5015 (classes A, E, R), Bendix 10-214, Cannon CA-RX','50']};
+const TXMF={AB:'Aluminium, cadmium olive drab (AMS-QQ-P-416 Type II Class 3)',AZ:'Aluminium, black zinc-nickel (cadmium-free)',SJ:'Stainless steel, passivated',AC:'Aluminium; finish letter C is not stated in the sources used, confirm with TE'};
+const TXA={'00':'Straight (180° cable exit)','45':'45°','90':'Right angle (90°)'};
+const txDia=e=>`${(e/16).toFixed(2).replace(/^0/,'')} in / ${(e*1.5875).toFixed(1)} mm`;
+const TXE=['04','06','07','08','10','12','14','16','18','20'];
+function txShell(code,sc){const n=+sc;
+ if(code==='40'){const z=n+1,L=DSH[z];return L?{txt:`Shell ${z} / ${L}`,size:String(z),L}:null}
+ return{txt:`Shell size ${n}`,size:String(n)}}
+// backshell suggestion for a connector: interface code + shell code
+function txrFor(code,size){const n=+size,sc=pad(code==='40'?n-1:n);return `TXR${code}AB00-${sc}`}
+function txrNote(code,size,extra){const pn=txrFor(code,size);
+ return `<h2>Raychem TXR alternative (Tinel-Lock)</h2><p style="margin:0 0 6px"><button type="button" class="try" data-pn="${pn}">${pn}</button> <small>+ entry size code + termination letters (e.g. ${pn}08BI)</small></p><div class="note">TE Raychem TXR straight backshell, interface code ${code}, aluminium olive drab cadmium shown (AZ = black zinc-nickel, SJ = stainless). Pick the entry size code for your cable (code = maximum cable diameter in sixteenths of an inch, e.g. 08 = .50 in / 12.7 mm). Use 45 or 90 instead of 00 for angled versions.${extra?' '+extra:''} Confirm the full number on TE's datasheet before ordering.</div>`}
+function runTX(v){
+ const E=t=>{$('out').innerHTML=`<section><p class="err">${t}</p></section>`};
+ const t=v.toUpperCase().replace(/\s/g,''),m=t.match(/^(TXR?)(\d{2})([A-Z])([A-Z])(\d{2})([A-Z]?)-?(\d{2})(\d{2})?([A-Z]{2})?([A-Z0-9]*)$/);
+ if(!m)return E('TX / TXR part not recognized. Expected TXR40AB00-1416BI style: TX or TXR, 2-digit interface code (40, 54, 21, 18), material and finish letters, angle (00, 45, 90), shell code, entry size code, termination letters.');
+ const[,pre,ic,mat,fin,ang,opt,sc,ent,term,sfx]=m,I=TXI[ic],sh=I?txShell(ic,sc):null,h=[],notes=[];
+ const rows=[[pre,pre==='TXR'?'TE Raychem TXR ruggedized backshell with Tinel-Lock screen termination':'TE TX backshell (Tinel-Lock). TX listings seen are cadmium-free variants; some are listed without braid and ring, so confirm what is supplied'],
+  [ic,I?`Interface code ${ic}: ${I[0]}`:`Interface code ${ic} is not one this tool knows (40, 54, 21, 18).`],
+  [mat+fin,TXMF[mat+fin]||(mat==='A'?'Aluminium':mat==='S'?'Stainless steel':'Material '+mat)+`, finish ${fin} (not decoded; confirm with TE)`],
+  [ang,TXA[ang]||'Angle code not decoded']];
+ if(opt)rows.push([opt,'Option letter after the angle code; not decoded in the sources used. Confirm with TE']);
+ rows.push([sc,sh?`${sh.txt}${ic==='40'?` (TXR shell code ${sc} = 38999 shell ${sh.size} − 1)`:''}`:(I?`Shell code ${sc} does not map to a D38999 Series III shell (codes 08 to 24, even).`:`Shell code ${sc} (not decoded: unknown interface).`)]);
+ if(ent)rows.push([ent,`Entry size code ${ent}: cable diameter .01 to ${txDia(+ent)} (0.2 mm minimum)`]);
+ else notes.push('No entry size code given. Pick one from the table below for your cable diameter.');
+ if(term)rows.push([term,'Termination device (Tinel-Lock ring) code, supplied with the backshell (for example TR07AI, TR16BI)']);
+ if(sfx)rows.push([sfx,'Variant suffix; not decoded. Confirm with TE']);
+ const here=`${pre}${ic}${mat}${fin}${ang}${opt}-${sc}${ent||''}${term||''}${sfx||''}`;
+ h.push(`<section><h2>Part number breakdown</h2><div class="big">${esc(here)}</div>${tbl(['Segment','Meaning'],rows.map(r=>[`<span class="seg pn">${esc(r[0])}</span>`,esc(r[1])]))}${notes.map(n=>`<div class="note">${esc(n)}</div>`).join('')}</section>`);
+ // compatible connectors
+ if(I&&sh){const z=sh.size,ex=[];
+  if(ic==='40'){const a=Object.keys(DA).find(k=>k.split('-')[0]===z);if(a){const ar=a.split('-')[1];ex.push([`D38999/26W${sh.L}${ar}SN`,'Plug'],[`D38999/20W${sh.L}${ar}PN`,'Wall mount receptacle (rear accessory thread)'])}}
+  if(ic==='54'){const a=Object.keys(AR).find(k=>k.split('-')[0]===z);if(a){const ar=pad(a.split('-')[1]);ex.push([`M83723/96K${z}${ar}N`,'M83723 Series III self-locking plug'],[`EN2997K6${z}-${ar}MN`,'EN2997 non-decoupling plug'])}
+   const b=Object.keys(AR26).find(k=>k.split('-')[0]===z);if(b)ex.push([`M83723/14R${z}${pad(b.split('-')[1])}PN`,'M83723 Series I (MIL-DTL-26482 Series 2) plug'])}
+  if(ic==='18'){const a=Object.keys(MAR).find(k=>parseInt(k)===+z);if(a)ex.push([`MS3456L${a}P`,'MIL-DTL-5015 plug (check: TE lists MIL-DTL-5015 classes A, E, R; crimp rear-release classes L, W are under interface 54)'])}
+  h.push(`<section><h2>Fits these connectors</h2><p class="sub">${esc(I[0])}, ${esc(sh.txt.replace(/^S/,'s'))}.</p>${ex.length?tbl(['Example connector','Description'],ex.map(r=>[`<button type="button" class="try" data-pn="${r[0]}">${r[0]}</button>`,esc(r[1])])):'<p class="sub">No example connector in this tool for this interface and shell.</p>'}<div class="note">The backshell fits any connector with this rear accessory interface and shell size, regardless of insert arrangement or keying. ${ic==='54'?'Check the accessory interface (3 teeth vs 360° MS3155 teeth on ESC10 / ESC11 / BNK-E) against TE\'s datasheet.':''}</div></section>`)}
+ // entry sizes
+ h.push(`<section><h2>Entry size codes</h2>${tbl(['Code','Cable diameter range'],TXE.map(e=>[`<span class="pn">${e===ent?'<b>'+e+'</b> <span class="mine-tag">your part</span>':e}</span>`,'.01 in / 0.2 mm to '+txDia(+e)]))}<div class="note">The code is the maximum cable diameter in sixteenths of an inch, which matches every TE datasheet checked (04, 06, 07, 08, 10, 12, 16, 18). Not every code exists for every shell size; codes 14 and 20 are extrapolated. Confirm availability with TE.</div></section>`);
+ $('out').innerHTML=h.join('');
+ $('out').querySelectorAll('button.try').forEach(b=>b.onclick=()=>{$('q').value=b.dataset.pn;lookup()})}
+// ---- Amphenol Pyle T-Line (subminiature push-pull, D38999 Series III inserts) and its T3- contacts ----
+// Source: Amphenol Aerospace T-Line data sheet (ordering key, insert table, contacts, sealing plugs, lanyard lengths).
+const TLM={W:'Aluminium, olive drab cadmium over nickel',F:'Aluminium, electroless nickel',S:'Stainless steel',N:'Stainless steel, nickel plated',H:'Stainless steel, hermetic'};
+const TLT={'2':'In-line (cable) shell','6':'Lanyard shell','7':'Square flange shell','9':'Jam nut mount shell'};
+const TLI={'23':'9x23','35':'6x22D','94':'2x20','98':'3x20'};
+const TLL={A:4,B:4.5,C:5,D:5.5,E:6,F:6.5,G:7,H:7.5,I:8};
+const T3C={'4022':['Pin','22D','M39029/58-360','MS27493-22D'],'4020':['Pin','20','M39029/58-363','MS27493-20'],'4122':['Socket','22D','M39029/56-348','MS27490-22D'],'4120':['Socket','20','M39029/56-351','MS27490-20']};
+const T3P={'22D':['T3-4022-59L','Black','MS27488-22 (superseded)'],'20':['T3-4020-59L','Red','MS27488-20 (superseded)']};
+function t3Rows(sizes){return sizes.filter(z=>T3P[z]).map(z=>{const p=Object.keys(T3C).find(k=>T3C[k][0]==='Pin'&&T3C[k][1]===z),q=Object.keys(T3C).find(k=>T3C[k][0]==='Socket'&&T3C[k][1]===z);
+ return['#'+z,`<span class="pn">T3-${p}-36LD<br>${T3C[p][2]}</span>`,`<span class="pn">T3-${q}-36LD<br>${T3C[q][2]}</span>`,`<span class="pn">${T3P[z][0]}</span><br>${chip(T3P[z][1])}`,'<span class="pn">M22520/5-01 + M22520/5-37<br>TP-201380-TO + TP-201450</span>']})}
+function runT3(v){
+ const E=t=>{$('out').innerHTML=`<section><p class="err">${t}</p></section>`};
+ const m=v.toUpperCase().replace(/\s/g,'').match(/^T3-?(4[01])(22|20)-?(36LD|59L)$/);
+ if(!m)return E('T3 part not recognized. Expected T3-4022-36LD (pin), T3-4122-36LD (socket) or T3-4022-59L (sealing plug) style, contact size 22 (22D) or 20.');
+ const[,g,sz,suf]=m,key=g+sz,z=sz==='22'?'22D':'20',plug=suf==='59L',h=[];
+ if(plug&&g==='41')return E('Sealing plugs are listed only as T3-4022-59L and T3-4020-59L (one per contact size, no 41 version).');
+ const c=T3C[key],pn=`T3-${key}-${suf}`;
+ const rows=[['T3','Amphenol Pyle T-Line contact / accessory prefix'],[g,g==='40'?'Pin (used in receptacles)':'Socket (used in plugs)'],[sz,`Contact size ${z}`],[suf,plug?'Sealing plug':'Crimp contact, standard gold plating']];
+ if(plug)rows[1]=[g,'Sealing plug family (shared by pin and socket inserts)'];
+ h.push(`<section><h2>Part number breakdown</h2><div class="big">${pn}</div>${tbl(['Segment','Meaning'],rows.map(r=>[`<span class="seg pn">${esc(r[0])}</span>`,esc(r[1])]))}</section>`);
+ const eq=plug?[['MIL equivalent',`<span class="pn">${T3P[z][2].split(' ')[0]}</span>`,'Superseded military sealing plug for this size'],['Colour',chip(T3P[z][1]),'Sealing plug colour']]
+  :[['MIL (current)',`<span class="pn">${c[2]}</span>`,`${c[0]} contact, size ${z}`],['MIL (superseded)',`<span class="pn">${c[3]}</span>`,'Older MS number for the same contact'],['Crimp tool',`<span class="pn">M22520/5-01</span>`,`Die set M22520/5-37 (Amphenol TP-201380-TO, TP-201450). Crimp well ${z==='22D'?'.0345':'.047'} ± .001 in.`]];
+ h.push(`<section><h2>Cross-reference</h2>${tbl(['Item','Part number','Note'],eq)}<div class="note">M39029/56 and /58 are the D38999 Series III contact sheets, so these contacts also fit D38999 Series III inserts using size ${z} contacts.</div></section>`);
+ const ins=Object.keys(TLI).filter(k=>TLI[k].endsWith('x'+z));
+ h.push(`<section><h2>Used in T-Line inserts</h2>${tbl(['Insert','Contacts','Example connector'],ins.map(k=>[`A${k}`,TLI[k].replace('x',' × #'),`<button type="button" class="try" data-pn="TS7A${k}PTN">TS7A${k}PTN</button> <button type="button" class="try" data-pn="TS2A${k}STN">TS2A${k}STN</button>`]))}</section>`);
+ h.push(`<section><h2>Contacts and sealing plugs, size ${z}</h2>${tbl(['Size','Pin (Pyle / MIL)','Socket (Pyle / MIL)','Sealing plug','Crimp tool / die'],t3Rows([z]))}</section>`);
+ $('out').innerHTML=h.join('');$('out').querySelectorAll('button.try').forEach(b=>b.onclick=()=>{$('q').value=b.dataset.pn;lookup()})}
+function runTL(v){
+ const E=t=>{$('out').innerHTML=`<section><p class="err">${t}</p></section>`};
+ const t=v.toUpperCase().replace(/\s/g,''),m=t.match(/^T([WFSNH])([2679])(A|09)(\d{2})([PSXD])(T?)([ABCDN]?)(?:-?([A-I]))?$/);
+ if(!m)return E('T-Line part not recognized. Expected TS6A35PTN-E style: T, shell material (W, F, S, N, H), shell type (2, 6, 7, 9), shell size A, insert (23, 35, 94, 98), P or S (hermetic P, X, D), T for threaded rear accessory, keying (N, A-D), optional lanyard length (-A to -I).');
+ const[,mat,ty,,ins,ct,acc,k0,lan]=m,her=mat==='H',key=k0||'N',arr=TLI[ins],h=[],notes=[];
+ if(!arr)return E(`Insert ${ins} is not on the T-Line data sheet (23, 35, 94, 98).`);
+ if(her&&!'PXD'.includes(ct))return E('Hermetic (H) receptacles use P (solderwell), X (eyelet) or D (PC termination).');
+ if(!her&&!'PS'.includes(ct))return E('Contact letter must be P (pin, receptacle) or S (socket, plug). X and D are hermetic only.');
+ if(her&&acc)notes.push('Hermetic parts have no rear accessory, so the T is not used.');
+ if(!her&&!acc)notes.push('No rear accessory letter: the data sheet always shows T (threaded) on environmental parts.');
+ if(lan&&ty!=='6')notes.push('A lanyard length is only used on the lanyard shell (type 6).');
+ if(ty==='6'&&!lan)notes.push('Lanyard shell without a length letter; add -A to -I (4.0 to 8.0 in).');
+ if(her&&ty==='2')notes.push('Hermetic in-line shell is not shown on the data sheet; confirm with Amphenol.');
+ if(ins==='23')notes.push('Insert 23 is listed as 9 size-23 contacts; the data sheet gives no part numbers for size 23 contacts, so confirm the contacts with Amphenol.');
+ const g=ct==='S'?'S':'P',recep=g==='P',kind=recep?'receptacle':'plug';
+ const pn=`T${mat}${ty}A${ins}${ct}${acc}${key}${lan?'-'+lan:''}`;
+ const rows=[['T','Amphenol Pyle T-Line subminiature push-pull connector (MIL-DTL-38999 Series III inserts)'],[mat,TLM[mat]],[ty,TLT[ty]+`, ${kind}`],['A','Shell size A (09), M12 × 1 shell thread'],[ins,`Insert A${ins}: ${arr.replace('x',' × #')}`],[ct,{P:her?'Pin contacts, solderwell':'Pin contacts (receptacle)',S:'Socket contacts (plug)',X:'Pin contacts, eyelet',D:'Pin contacts, PC termination'}[ct]]];
+ if(acc)rows.push([acc,'Threaded rear accessory']);
+ rows.push([key,key==='N'?'Normal keying':`Alternate keying position ${key}`]);
+ if(lan)rows.push(['-'+lan,`Lanyard length ${TLL[lan].toFixed(1)} in`]);
+ h.push(`<section><h2>Part number breakdown</h2><div class="big">${esc(pn)}</div>${tbl(['Segment','Meaning'],rows.map(r=>[`<span class="seg pn">${esc(r[0])}</span>`,esc(r[1])]))}${notes.map(n=>`<div class="note">${esc(n)}</div>`).join('')}</section>`);
+ const st=recep?{'2':'cable','6':'cable','7':'flange','9':'jam'}[ty]:'plug';
+ h.push(illSec({t:st,opt:{pp:1,her,fin:{W:'od',F:'ni',S:'ss',N:'ni',H:'ss'}[mat]},arr,ak:'A'+ins,g,recep,keys:[],cap:`T-Line ${TLT[ty].toLowerCase()}, ${kind}, ${g==='P'?'pin':'socket'} contacts${ty==='6'?' (lanyard not drawn)':''}`,D:dimsFor('38','A'),fam:'D38999 Series III shell size A (T-Line shares the M12 × 1 shell thread)'}));
+ // mates
+ const opp=g==='P'?'S':'P',mm=her?'S':mat,mt=recep?[[`T${mm}2A${ins}ST${key}`,'In-line plug, socket contacts']]:['7','9','2','6'].map(x=>[`T${mat}${x}A${ins}PT${key}${x==='6'?'-E':''}`,TLT[x]+', pin receptacle'+(x==='6'?' (lanyard length E = 6.0 in shown)':'')]);
+ if(!recep)mt.push([`TH7A${ins}P${key}`,'Hermetic square flange receptacle, solderwell pins']);
+ h.push(`<section><h2>Mating connectors (same insert and keying)</h2>${tbl(['T-Line part number','Description'],mt.map(r=>[`<button type="button" class="try" data-pn="${r[0]}">${r[0]}</button>`,esc(r[1])]))}<div class="note">T-Line is push-pull and mates only with T-Line. It uses D38999 Series III inserts and contacts, but not the D38999 threaded coupling, so it does not mate with D38999 shells. The data sheet pairs TS2A35PTN with TS2A35STN and TS7A98PTA with TS7A98STA; other pairings shown here follow the same rule (same insert and keying, opposite contacts).${her?' Hermetic receptacle shown with a stainless plug (S); pick the plug material you need.':''}</div></section>`);
+ // insert cross-reference to D38999
+ const dk={'35':'9-35','98':'9-98'}[ins];
+ h.push(`<section><h2>Insert and D38999 equivalent layout</h2>${tbl(['Insert','Contacts','D38999 Series III layout'],[[`A${ins}`,arr.replace('x',' × #'),dk?`<button type="button" class="try" data-pn="D38999/26WA${ins}${g==='P'?'S':'P'}N">D38999 layout ${dk}</button>`:'<small>Not in this tool\'s D38999 table</small>']])}<div class="note">Inserts are qualified to MIL-DTL-38999 Series III and take M39029/56 and /58 contacts. The D38999 link shows the same layout in a threaded connector, for reference only.</div></section>`);
+ // contacts
+ const sizes=[...new Set(arr.split(',').map(x=>x.split('x')[1]))];
+ if(!her)h.push(`<section><h2>T3 contacts, sealing plugs and tools</h2>${t3Rows(sizes).length?tbl(['Size','Pin (Pyle / MIL)','Socket (Pyle / MIL)','Sealing plug','Crimp tool / die'],t3Rows(sizes)):'<p class="err">No contact part numbers for this size on the data sheet.</p>'}<div class="note">Pins go in receptacles, sockets in plugs. Older MS numbers: 22D pin MS27493-22D, socket MS27490-22D; #20 pin MS27493-20, socket MS27490-20.</div></section>`);
+ else h.push('<section><h2>Contacts</h2><p>Hermetic: fixed contacts, supplied in the connector.</p></section>');
+ // backshell
+ if(her)h.push('<section><h2>Backshell required</h2><p>None. Hermetic receptacles have no rear accessory.</p></section>');
+ else h.push(`<section><h2>Backshell and accessories</h2>${tbl(['Part number','Description'],[['<span class="pn">M85049/38-9</span>','Straight strain relief (data sheet: accepts standard M85049/38 backshells)'],['<span class="pn">T9-R-5309-10F / W / K</span>','Crimp shield adapter; last letter F = aluminium electroless nickel, W = aluminium olive drab cadmium, K = stainless passivated'],[`<button type="button" class="try" data-pn="TXR40AB00-08">TXR40AB00-08</button>`,'Raychem TXR Tinel-Lock backshell for D38999 shell A (same M12 × 1 rear thread; confirm fit on the T-Line shell)']])}</section>`);
+ h.push(`<section><h2>Keying</h2><p>Position <b>${key}</b>${key==='N'?' (normal)':''}. The data sheet shows the normal key at 180° and alternate positions at 120°, 150°, 210° and 240°, but its text does not tie each letter (A to D) to an angle. Check the keying drawing on the data sheet before relying on a position.</p></section>`);
+ $('out').innerHTML=h.join('');$('out').querySelectorAll('button.try').forEach(b=>b.onclick=()=>{$('q').value=b.dataset.pn;lookup()})}
+// ---- TE Deutsch 983 series (EN2997 / ESC10 / ESC15 equivalent), e.g. 983-6SE 20-39 P6, 983-0SE 08-03 S6 L, 983-15 KE 7-18-31 S6 L ----
+// Source: TE product pages, which list the EN2997 or ESC15 number for each 983 part (983-6SE 20-39 P6 = EN2997SE62039M6, 983-0SE 08-03 S6 L = EN2997SE00803B6, 983-15 KE 7-18-31 S6 L = ESC15KE71831S60, 983-15 KV 4-08-03 PN-L = ESC15KV40803PNV).
+function deutschPN(c){
+ const e=c.src==='E'?`EN2997${c.enc}${c.enst}${c.size}-${pad(c.arr)}${c.enct}${c.key}`:(enPN(c)||{}).pn;if(!e)return null;
+ const m=e.match(/^EN2997(KE|SE|YE|K|S|Y)([0167C])(\d+)-(\d+)([MCAFDB])(\w)$/);if(!m||m[2]==='C')return null;
+ const[,cl,st,z,a,ct,k]=m,g='MCA'.includes(ct)?'P':'S',L='AB'.includes(ct);
+ return{pn:`983-${st}${cl} ${pad(z)}-${pad(a)} ${g}${k}${L?' L':''}`,note:(L?'L = supplied less contacts. ':'')+('CD'.includes(ct)?'#20 contacts with #18 crimpwell: confirm the 983 equivalent with TE. ':'')+'TE Deutsch commercial equivalent of the EN2997 part; TE lists the EN2997 number against each 983 part.'}}
+const D15={KE:'Stainless steel firewall, passivated, 260°C',KV:'Stainless steel firewall, passivated, 260°C (KV is TE\'s code; the difference from KE is not stated on the pages used)'};
+function runDeutsch(v){
+ const E=t=>{$('out').innerHTML=`<section><p class="err">${t}</p></section>`};
+ const t=v.toUpperCase().replace(/\s/g,'');
+ let m=t.match(/^983-?(15|16)(KE|KV|SE)(\d)-?(\d{2})-?(\d{1,2})([PS])([N6789Y])-?(L?)$/),esc15=!!m;
+ if(!m)m=t.match(/^983-?([0167])(KE|SE|YE|K|S|Y)-?(\d{1,2})-?(\d{1,2})([PS])([N6789Y])-?(L?)$/);
+ if(!m)return E('983 part not recognized. Expected 983-6SE 20-39 P6, 983-0SE 08-03 S6 L or 983-15 KE 7-18-31 S6 L style: 983, shell style (0, 1, 6, 7; 15 = integral accessory), class (K, KE, S, SE, Y, YE; KV on style 15), shell size-arrangement, P or S, keying (N, 6, 7, 8, 9, Y), optional L (less contacts).');
+ let st,cl,acc,z,a,ct,k,L;
+ if(esc15)[,st,cl,acc,z,a,ct,k,L]=m;else[,st,cl,z,a,ct,k,L]=m;
+ const ak=findArr(z+'-'+a)||findArr(pad(z)+pad(a));
+ if(!ak)return E(`Shell size ${+z} with arrangement ${a} is not in this tool's MIL-DTL-83723 Series III / EN2997 layout table.`);
+ const[size,arr]=ak.split('-');
+ if(st==='16')return E('983-16 is not on the TE pages used here. 983-15 (integral accessory receptacle) is decoded; check the 983 data sheet for style 16.');
+ const enCl=cl==='KV'?'KE':cl,enSt=esc15?'0':st,enCt=ct==='P'?(L?'A':'M'):(L?'B':'F'),en=`EN2997${enCl}${enSt}${size}-${pad(arr)}${enCt}${k}`;
+ const here=esc15?`983-${st} ${cl} ${acc}-${pad(size)}-${pad(arr)} ${ct}${k}${L?' L':''}`:`983-${st}${cl} ${pad(size)}-${pad(arr)} ${ct}${k}${L?' L':''}`;
+ const rows=[['983','TE Deutsch 983 series: threaded high-temperature connector, EN2997 / MIL-DTL-83723 Series III interface'],
+  [st,esc15?'Square flange receptacle with factory-installed integral accessory (backshell); SAE-ITC ESC15':ENST[st]],
+  [cl,esc15?D15[cl]||ENCLS[cl]:ENCLS[cl]]];
+ if(esc15)rows.push([acc,`Integral accessory code ${acc} (TE shows 4 and 7; not decoded on the pages used, see TE drawing 983-15X)`]);
+ rows.push([pad(size)+'-'+pad(arr),`Shell size ${size}, insert arrangement ${size}-${pad(arr)}`],[ct,ct==='P'?'Pin contacts':'Socket contacts'],[k,KEY[k]]);
+ rows.push(L?['L','Supplied less contacts (EN2997 contact letter '+enCt+')']:['(no L)','No L: contacts included. TE lists them as not preloaded, so they likely come loose for crimping; confirm with TE']);
+ const eq=[];
+ if(esc15){const sfx=cl==='KV'?'V':'0';eq.push(['ESC15',`<span class="pn">ESC15${cl}${acc}${pad(size)}${pad(arr)}${ct}${k}${sfx}</span>`,`Direct equivalent as listed by TE (TE pages show suffix 0 for KE and V for KV).`],['EN2997 (nearest)',`<span class="pn">${en}</span>`,'Same shell, insert and keying as a plain square flange receptacle, without the integral accessory. Full decode below.'])}
+ else eq.push(['EN2997',`<span class="pn">${en}</span>`,'Direct equivalent (TE lists this EN2997 number against the 983 part). Full decode below.']);
+ const qi=$('q'),old=qi.value;qi.value=en;run();qi.value=old;
+ let rest=$('out').innerHTML.replace('<h2>Part number breakdown</h2>',`<h2>Equivalent ${esc(en)}: breakdown</h2>`).replace(/(Connector illustration)<\/h2>/,`$1 (drawn from ${esc(en)})</h2>`);
+ $('out').innerHTML=`<section><h2>Part number breakdown</h2><div class="big">${esc(here)}</div>${tbl(['Segment','Meaning'],rows.map(r=>[`<span class="seg pn">${esc(r[0])}</span>`,esc(r[1])]))}${cl==='KV'?'<div class="note">KV is mapped to EN2997 KE for the equivalents below; confirm with TE.</div>':''}</section><section><h2>Cross-reference</h2>${tbl(['Spec','Part number','Note'],eq)}<div class="note">TE lists the 983 series as compatible with EN2997, ESC10 and BACC63 (CM/CN). The sections below decode the EN2997 equivalent, including its mates, backshell, contacts and keyways.</div></section>`+rest}
+// ---- Souriau 8534 (ESC11 scoop-proof), e.g. 8534 6SE 14 15 S N ----
+// Source: Eaton Souriau 853 series catalog, 8534 ordering (shell type 0SE, 6SE, 6KE; sizes 14-24; contact P, S, A, B; orientation N, 6-9).
+const S34={'0SE':['Stainless steel square flange receptacle','SE','0'],'6SE':['Stainless steel plug with RFI screening ring','SE','6'],'6KE':['Stainless steel plug without RFI screening ring','KE','6']};
+function run8534(v){
+ const E=t=>{$('out').innerHTML=`<section><p class="err">${t}</p></section>`};
+ const m=v.toUpperCase().replace(/[\s-]/g,'').match(/^8534(0SE|6SE|6KE|0KE)(\d{2})(\d{2})([PSAB])([A-Z0-9])$/);
+ if(!m)return E('8534 part not recognized. Expected 8534 6SE 14 15 S N style: 8534, shell type (0SE receptacle; 6SE or 6KE plug), 2-digit shell size (14 to 24), 2-digit layout, contact (P, S; A or B = less pin or socket contacts), orientation (N, 6, 7, 8, 9).');
+ const[,ty,sz,ar,ct,key]=m;
+ if(ty==='0KE')return E('8534 receptacles are listed as 0SE only. Use 8534 0SE for the square flange receptacle.');
+ if(!E11KO.includes(key))return E('8534 orientation must be N, 6, 7, 8 or 9 (Y is not offered).');
+ const d=S34[ty],g='PA'.includes(ct)?'P':'S',less='AB'.includes(ct),esc=`ESC11${d[1]}${d[2]}${sz}${ar}${g}${key}0`,k=+sz+'-'+(+ar);
+ const notes=[];
+ if(+sz<14||+sz>24)notes.push('Souriau lists 8534 shell sizes 14 to 24 only.');
+ if(!E11AR.includes(k))notes.push(`Layout ${+sz}-${ar} is not in Souriau's 8534 layout list (14-15, 16-24, 18-31, 20-39, 20-41, 22-55, 24-61); confirm availability.`);
+ const rows=[['8534','Souriau 853 family, scoop-proof (recessed pins) high-temperature firewall connector, ESC11 qualified, threaded coupling'],[ty,d[0]+', 260°C'],[sz,`Shell size ${+sz}`],[ar,`Layout ${+sz}-${ar}`],[ct,{P:'Pin contacts',S:'Socket contacts',A:'Supplied less pin contacts',B:'Supplied less socket contacts'}[ct]],[key,key==='N'?'Normal orientation':`Alternate orientation ${key} (ESC11 keyway table)`]];
+ const qi=$('q'),old=qi.value;runE11(esc);qi.value=old;
+ if(/class="err"/.test($('out').innerHTML.slice(0,200)))return;
+ const rest=$('out').innerHTML.replace('<h2>Part number breakdown</h2>',`<h2>Equivalent ${esc}: breakdown</h2>`);
+ $('out').innerHTML=`<section><h2>Part number breakdown</h2><div class="big">8534 ${ty} ${sz} ${ar} ${ct} ${key}</div>${tbl(['Segment','Meaning'],rows.map(r=>[`<span class="seg pn">${r[0]}</span>`,r[1]]))}${notes.map(n=>`<div class="note">${n}</div>`).join('')}</section><section><h2>Cross-reference</h2>${tbl(['Spec','Part number','Note'],[['ESC11',`<span class="pn">${esc}</span>`,'Direct equivalent. Variant 0 = delivered without contacts'+(less?'':'; 8534 '+ct+' is supplied with contacts, so order ESC30 contacts separately with the ESC11 part')+'. Full decode below.']])}<div class="note">8534 is scoop-proof. It mates only with ESC11, 8534 and ESC16 / 8536 parts, not with EN2997, ESC10, 8533 or M83723, because the keyway angles differ.</div></section>`+rest;
+ $('out').querySelectorAll('button.try').forEach(b=>b.onclick=()=>{$('q').value=b.dataset.pn;lookup()})}
+// ---- Pyle HTK / HNK / HSK (ESC11 scoop-proof commercial equivalents) ----
+function runHTK(v){
+ const E=t=>{$('out').innerHTML=`<section><p class="err">${t}</p></section>`};
+ const m=v.toUpperCase().replace(/\s/g,'').match(/^(HTK|HNK|HSK)-?(12|17)([EF]?)-?(\d{1,2})-?(\d{1,2})([PS])([DE]?)(N|0?[6-9])?(Y\d{3})?$/);
+ if(!m)return E('HTK part not recognized. Expected HTK-12 F 16-24 S D 06 Y144 or HTK-17 16-24 P D N Y144 style: series (HTK, HNK, HSK), shell style (-12 plug, -17 square flange receptacle), modification (E or F, plug), shell size-arrangement, P or S, finish (D gold, E without contacts), keying (N, 06-09), variation.');
+ const[,ser,st,mod,sz,ar,ct,fin,k0,vr]=m,key=!k0||k0==='N'?'N':k0.replace(/^0/,''),plug=st==='12',cl=plug&&mod==='F'?'SE':'KE',esc=`ESC11${cl}${plug?'6':'0'}${pad(sz)}${pad(ar)}${ct}${key}0`;
+ runE11(esc);if(/^<section><p class="err">/.test($('out').innerHTML))return;
+ const rows=[[ser,ser==='HTK'?'Amphenol Pyle commercial ESC11 equivalent, scoop-proof, stainless firewall (class K)':`Amphenol Pyle ${ser}, listed with HTK as an ESC11 scoop-proof equivalent; the series letter (finish) is not decoded here`],['-'+st,plug?'Non-decoupling plug':'Square flange receptacle'],[mod||'(none)',mod==='F'?'EMI grounding spring on plug (ESC11 class SE)':mod==='E'?'No EMI grounding (ESC11 class KE)':'No modification letter'],[`${+sz}-${pad(ar)}`,`Shell size ${+sz}, insert arrangement ${+sz}-${pad(ar)}`],[ct,ct==='P'?'Pin contacts':'Socket contacts'],[fin||'(none)',fin==='D'?'Gold contacts':fin==='E'?'Without contacts':'Finish not given'],[k0||'N',key==='N'?'Normal':'Alternate position '+key+' (ESC11 keyway table)'],[vr||'(none)',vr==='Y144'?'260°C':vr==='Y163'?'200°C':vr?'Variation not decoded':'No variation suffix']];
+ $('out').innerHTML=`<section><h2>Part number breakdown</h2><div class="big">${esc11Esc(`${ser}-${st}${mod?' '+mod:''} ${+sz}-${pad(ar)} ${ct}${fin?' '+fin:''} ${k0||'N'}${vr?' '+vr:''}`)}</div>${tbl(['Segment','Meaning'],rows.map(r=>[`<span class="seg pn">${esc11Esc(r[0])}</span>`,esc11Esc(r[1])]))}</section><section><h2>Cross-reference</h2>${tbl(['Spec','Part number','Note'],[['ESC11',`<span class="pn">${esc}</span>`,'Direct equivalent. Full decode below.']])}<div class="note">HTK is scoop-proof and mates only with ESC11 / 8534 / ESC16 / 8536 parts.</div></section>`+$('out').innerHTML.replace('<h2>Part number breakdown</h2>',`<h2>Equivalent ${esc}: breakdown</h2>`)}
+const esc11Esc=t=>String(t).replace(/[&<>]/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[x]));
+// ---- ESC15 / ESC16 (integral accessory) and Souriau 8536 (ESC16) ----
+function runESC1516(v){
+ const E=t=>{$('out').innerHTML=`<section><p class="err">${t}</p></section>`};
+ const m=v.toUpperCase().replace(/[\s\/-]/g,'').match(/^ESC1([56])(KE|SE|KV)(\d)(\d{2})(\d{2})([PS])([N6789Y])([0OV]?)$/);
+ if(!m)return E('ESC15 / ESC16 part not recognized. Expected ESC15KE21814SN0 or ESC16KE71624PN0 style: class (KE, SE, KV), accessory / shell code digit, 2-digit shell size, 2-digit layout, P or S, keying, variant (0 for KE/SE, V for KV).');
+ const[,n,cl,dg,sz,ar,ct,key,vv]=m,scoop=n==='6',h=[];let eq,eqNote,plug;
+ if(scoop){plug=dg==='7'?true:dg==='2'?false:null;
+  if(plug===null)return E(`ESC16 code ${cl}${dg} is not decoded here (2 = square flange receptacle, 7 = plug). Try `+[`ESC11${cl==='KV'?'KE':cl}0${sz}${ar}${ct}${key}0`,`ESC11${cl==='KV'?'KE':cl}6${sz}${ar}${ct}${key}0`].map(p=>`<button type="button" class="try" data-pn="${p}">${p}</button>`).join(' '));
+  eq=`ESC11${cl==='KV'?'KE':cl}${plug?'6':'0'}${sz}${ar}${ct}${key}0`;eqNote='Same scoop-proof interface without the integral backshell; fully intermateable with ESC16.';runE11(eq)}
+ else{plug=cl==='SE';eq=`EN2997${cl==='KV'?'KE':cl}${plug?'6':'0'}${+sz}-${ar}${ct==='P'?'M':'F'}${key}`;eqNote=`Same interface without the integral accessory. ESC15 is not scoop-proof, so it intermates with EN2997 / ESC10 / M83723 Series III. ${plug?'SE taken as a plug (EMI spring)':'KE / KV taken as a square flange receptacle, as on the TE 983-15 parts'}; confirm on the drawing.`;
+  const qi=$('q'),o=qi.value;qi.value=eq;run();qi.value=o}
+ if(/^<section><p class="err">/.test($('out').innerHTML))return;
+ const rows=[['ESC1'+n,scoop?'SAE-ITC scoop-proof (recessed pins) connector with integral backshell; ESC11 interface (Souriau 8536)':'SAE-ITC firewall connector with integral accessory; EN2997 / ESC10 interface (TE Deutsch 983-15)'],[cl,cl==='KV'?'Stainless steel firewall, 260°C; KV variant (difference from KE not decoded)':cl==='SE'?'Stainless steel firewall, 260°C, with RFI grounding ring':'Stainless steel firewall, 260°C'],[dg,scoop?(dg==='2'?'Square flange receptacle':'Plug'):'Integral accessory code (not decoded on the sources used)'],[sz,`Shell size ${+sz}`],[ar,`Layout ${+sz}-${ar}`],[ct,ct==='P'?'Pin contacts':'Socket contacts'],[key,key==='N'?'Normal':'Alternate position '+key],[vv||'(none)',vv==='V'?'Variant V (used with KV)':'Basic connector']];
+ $('out').innerHTML=`<section><h2>Part number breakdown</h2><div class="big">ESC1${n}${cl}${dg}${sz}${ar}${ct}${key}${vv}</div>${tbl(['Segment','Meaning'],rows.map(r=>[`<span class="seg pn">${r[0]}</span>`,r[1]]))}</section><section><h2>Cross-reference</h2>${tbl(['Spec','Part number','Note'],[[scoop?'ESC11':'EN2997',`<span class="pn">${eq}</span>`,eqNote+' Full decode below.'],scoop?['Souriau 8536',`<span class="pn">8536 ${plug?(cl==='SE'?'3ES':'?'):'0ES'} ${sz} ${ar} ${ct} ${key}</span>`,'Souriau ESC16 series; class / shell code from the 853 catalog (0ES receptacle, 3ES plug with RFI ring). Confirm the code for a KE plug.']:['TE Deutsch 983',`<span class="pn">983-15 ${cl} ${dg}-${sz}-${ar} ${ct}${key}</span>`,'TE lists 983-15 parts against ESC15 numbers.']])}</section>`+$('out').innerHTML.replace('<h2>Part number breakdown</h2>',`<h2>Equivalent ${eq}: breakdown</h2>`);
+ $('out').querySelectorAll('button.try').forEach(b=>b.onclick=()=>{$('q').value=b.dataset.pn;lookup()})}
+function run8536(v){
+ const E=t=>{$('out').innerHTML=`<section><p class="err">${t}</p></section>`};
+ const m=v.toUpperCase().replace(/[\s-]/g,'').match(/^8536(4KV|5KV|0ES|3ES|4ES)(\d{2})(\d{2})([PS])([N6789])(L?)$/);
+ if(!m)return E('8536 part not recognized. Expected 8536 3ES 18 14 S N style: 8536, class and shell code (4KV, 5KV knurl type 1; 0ES, 3ES, 4ES knurl type 2), shell size, layout, P or S, orientation, optional L (without contacts).');
+ const[,c,sz,ar,ct,key,L]=m,map={'0ES':['KE','0','Square flange receptacle, knurl type 2'],'3ES':['SE','6','Plug with RFI grounding ring, knurl type 2']}[c];
+ if(!map)return E(`8536 code ${c} is listed in the Souriau 853 catalog (${c.endsWith('KV')?'knurl type 1':'knurl type 2'}) but its shell type is not decoded here. The ESC11 equivalents for this insert are `+['0','6'].map(t=>`<button type="button" class="try" data-pn="ESC11KE${t}${sz}${ar}${ct}${key}0">ESC11KE${t}${sz}${ar}${ct}${key}0</button>`).join(' '));
+ const eq=`ESC11${map[0]}${map[1]}${sz}${ar}${ct}${key}0`;runE11(eq);if(/^<section><p class="err">/.test($('out').innerHTML))return;
+ const rows=[['8536','Souriau 853 family, scoop-proof connector with integrated backshell (ESC16)'],[c,map[2]+', stainless steel, 260°C'],[sz,`Shell size ${+sz}`],[ar,`Layout ${+sz}-${ar}`],[ct,ct==='P'?'Pin contacts':'Socket contacts'],[key,key==='N'?'Normal':'Alternate position '+key],[L||'(none)',L?'Delivered without contacts':'Delivered with contacts']];
+ $('out').innerHTML=`<section><h2>Part number breakdown</h2><div class="big">8536 ${c} ${sz} ${ar} ${ct} ${key}${L?' L':''}</div>${tbl(['Segment','Meaning'],rows.map(r=>[`<span class="seg pn">${r[0]}</span>`,r[1]]))}</section><section><h2>Cross-reference</h2>${tbl(['Spec','Part number','Note'],[['ESC11',`<span class="pn">${eq}</span>`,'Same scoop-proof interface without the integrated backshell; intermateable. Full decode below.']])}<div class="note">An aluminium version is available on request (Souriau).</div></section>`+$('out').innerHTML.replace('<h2>Part number breakdown</h2>',`<h2>Equivalent ${eq}: breakdown</h2>`)}
+function run(){
+ const v=$('q').value.trim();if(!v){$('out').innerHTML='';return}
+ if(/^BACC63/i.test(v.replace(/\s/g,''))){runBACC(v);return}
+ if(/^TXR?\d{2}[A-Z]/i.test(v.replace(/\s/g,''))){runTX(v);return}
+ if(/^T3-?4/i.test(v.replace(/\s/g,''))){runT3(v);return}
+ if(/^983/.test(v.replace(/\s/g,''))){runDeutsch(v);return}
+ if(/^8534/.test(v.replace(/[\s-]/g,''))){run8534(v);return}
+ if(/^8536/.test(v.replace(/[\s-]/g,''))){run8536(v);return}
+ if(/^H[TNS]K/i.test(v.replace(/\s/g,''))){runHTK(v);return}
+ if(/^ESC1[56]/i.test(v.replace(/[\s\/-]/g,''))){runESC1516(v);return}
+ if(/^T[WFSNH][2679]/i.test(v.replace(/\s/g,''))){runTL(v);return}
+ {const q=v.toUpperCase().replace(/\s/g,'').match(/^M83723\/?(\d{1,2})(?=[A-Z]|$)/);if(q&&S12[q[1]]){runS12(v);return}}
+ if(/^MS345\d/i.test(v.replace(/\s/g,''))){runMS(v);return}
+ if(/^ESC11/i.test(v.replace(/[\s\/-]/g,''))){runE11(v);return}
+ if(/^[DMF]?38999/i.test(v.replace(/\s/g,''))){runD(v);return}
+ if(!/^(M83723|AE833|EN2997|ESC1|BJ|BN|BT|BY|BFY)/i.test(v.replace(/[\s\/-]/g,''))){runGuess(v);return}
+ const c=parse(v);if(c.err){$('out').innerHTML=`<section><p class="err">${esc(c.err)}</p></section>`;return}
+ const d=S[c.sl],key=c.size+'-'+c.arr,arr=AR[key],h=[];
+ // breakdown
+ let rows;
+ const escHere=c.src==='C'?`ESC10${c.escCls}${c.escSt}${pad(c.size)}${pad(c.arr)}${c.escCt}${c.key}${c.escVar}`:'';
+ if(c.src==='M')rows=[['M83723','Designates MIL-DTL-83723 Series III'],['/'+c.sl,describe(c)],[c.cls,CLS[c.cls]||'Class'],[c.size+pad(c.arr),`Shell size ${c.size}, insert arrangement ${c.size}-${pad(c.arr)}`],[c.key,KEY[c.key]]];
+ else if(c.src==='C')rows=[['ESC10','SAE-ITC high-temperature connector, to EN2997 / MIL-DTL-83723 Series III'],[c.escCls,ESCCLS[c.escCls]],[c.escSt,ESCST[c.escSt]],[pad(c.size)+pad(c.arr),`Shell size ${c.size}, insert arrangement ${c.size}-${pad(c.arr)}`],[c.escCt,(c.escCt==='P'?'Pin':'Socket')+' contacts'+(c.escSt==='1'||c.escSt==='2'?' (supplied with contacts)':' (supplied without contacts)')],[c.key,KEY[c.key]],[c.escVar,ESCV[c.escVar]]];
+ else if(c.src==='B')rows=[[c.ser,BSER[c.ser]],['-'+c.bst,BSTY[c.bst]],[c.mod||'(none)',c.mod?BMOD[c.mod]:'No modification letter: standard accessory teeth per MIL-DTL-83723 Series III (3 teeth) assumed'],[c.size+'-'+pad(c.arr),`Shell size ${c.size}, insert arrangement ${c.size}-${pad(c.arr)}`],[c.bct,BCT[c.bct]],[c.fin||'(none)',c.fin?BFIN[c.fin]:'Not given (D = gold contacts, E = without contacts)'],[c.bkey,c.key==='N'?'Normal':KEY[c.key]],[c.vr||'(none)',c.vr?(BVAR[c.vr]?BVAR[c.vr][0]:'Variation not in the catalog list; consult Amphenol'):'No variation suffix; 200°C assumed']];
+ else rows=[['EN2997','European (ASD) standard connector'],[c.enc,ENCLS[c.enc]],[c.enst,ENST[c.enst]],[c.size+'-'+pad(c.arr),`Shell size ${c.size}, insert arrangement ${c.size}-${pad(c.arr)}`],[c.miss?'(missing)':c.enct,c.miss?'Contact type letter not given; pins (M) assumed':ENCT[c.enct]],[c.key,KEY[c.key]]];
+ if(c.src==='B'){if(c.bcls)rows.splice(1,0,[c.bcls,BCLS[c.bcls]+(c.ser==='BY'?', bayonet':'')]);if(c.her){const i=rows.findIndex(r=>r[0]===c.bct);rows.splice(i+1,0,[c.cs||'(none)',c.cs==='4'?'Eyelet contacts':c.cs==='1'?'Solderwell contacts':'Contact style not given (1 = solderwell, 4 = eyelet); solderwell assumed']);const j=rows.findIndex(r=>r[0]===(c.fin||'(none)'));if(j>0)rows[j]=[c.fin||'(none)',c.fin?BHFIN[c.fin]||'Finish code not decoded':'Standard contact finish'];const mi=rows.findIndex(r=>r[0]===(c.mod||'(none)'));if(mi>0&&!c.mod)rows.splice(mi,1)}}
+ const here=c.src==='B'?`${c.ser}${c.bcls&&c.bcls!=='G'||/^B[TY]$/.test(c.ser)?c.bcls:''}-${c.bst}${c.mod?' '+c.mod:''} ${c.size}-${pad(c.arr)} ${c.bct}${c.cs?' '+c.cs:''}${c.fin?' '+c.fin:''} ${c.bkey}${c.vr?' '+c.vr:''}`:c.src==='M'?milPN(c):c.src==='C'?escHere:`EN2997${c.enc}${c.enst}${c.size}-${pad(c.arr)}${c.enct}${c.key}`;
+ h.push(`<section><h2>Part number breakdown</h2><div class="big">${esc(here)}</div>${tbl(['Segment','Meaning'],rows.map(r=>[`<span class="seg pn">${esc(r[0])}</span>`,esc(r[1])]))}</section>`);
+ h.push(illSec({t:c.enst==='C'?'intg':STY[c.sl],opt:{fin:c.src==='M'?({A:'blk',R:'ni',W:'od',N:'ni',H:'ni'}[c.cls]||'ss'):(c.src==='B'&&/^BN/.test(c.ser)?'ni':'ss'),her:her0(c),bay:d[1]==='Bayonet',teeth:c.src==='C'||(c.src==='B'&&'EF'.includes(c.mod||'x'))||c.cls==='N',scoop:c.src==='B'&&/8$/.test(c.ser)},arr,ak:key,g:c.g,recep:d[0]==='R',keys:(()=>{const g8=+c.size<=10?'a':'b',cl=/[1-5]/.test(c.key);return KP[g8][cl?'N':c.key]||null})(),rot:/[1-5]/.test(c.key)?c.key*10:0,cap:describe(c),D:dimsFor('83',c.size),fam:'MIL-DTL-83723 Series III'}));
+ // equivalents
+ const eq=[],notes=[];
+ if(c.src==='M'){const e=enPN(c);if(e)eq.push(['EN2997',`<span class="pn">${e.pn}</span>`,'Equivalent / nearest']),notes.push(...e.notes);else notes.push(d[1]==='Bayonet'?'Bayonet styles are not offered in EN2997 / European specs.':'No EN2997 equivalent for this style.')}
+ else if(c.src==='B'){
+  eq.push(['M83723',`<span class="pn">${milPN(c)}</span>`,'Nearest military part (same shell, insert and keying)']);
+  const e=enPN(c);if(e){let pn=e.pn;if(c.fin==='E')pn=pn.replace(/([MF])(\w)$/,(_,x,y)=>(x==='M'?'A':'B')+y);else if(c.bct==='K')pn=pn.replace(/M(\w)$/,'C$1');else if(c.bct==='L')pn=pn.replace(/F(\w)$/,'D$1');eq.push(['EN2997',`<span class="pn">${pn}</span>`,'Nearest ASD equivalent']);notes.push(...e.notes)}else notes.push('Bayonet styles have no EN2997 equivalent.');
+  if(c.ser==='BNK')notes.push('BNK is stainless steel firewall with an electro-deposited nickel finish. Nearest M83723 class is K'+(c.cls==='S'?' (S here, for the EMI grounding spring)':'')+'; if your supplier offers M83723 class N (nickel, firewall) that is the closer match.');
+  else if(/^B[TY]$/.test(c.ser))notes.push(`${c.ser} class ${c.bcls}: ${c.bcls==='K'?'stainless steel firewall, the nearest M83723 class is K and EN2997 / ESC10 are equivalents.':'stainless steel, not firewall. M83723 class G is shown; EN2997 K and ESC10 are firewall classes, so they are an upgrade, not a direct equivalent.'}${c.ser==='BY'?' BY is bayonet coupling: EN2997 and ESC10 have no bayonet styles.':''}`);
+  else if(c.her)notes.push(`${c.ser} is a Pyle commercial hermetic. The M83723 /${c.sl} hermetic is shown (class ${c.cls}: ${c.cls==='P'?'eyelet':'solderwell'}).${c.hsock?' M83723 hermetics are pin only, so the pin version is shown; confirm a socket hermetic exists with Amphenol.':''}`);
+  else notes.push(`${c.ser} is not a firewall class. M83723 class G is shown; EN2997 K and ESC10 are firewall classes, so they are an upgrade, not a direct equivalent. BNK is the firewall version.`);
+  if(/8$/.test(c.ser))notes.push(`${c.ser} has scoop-proof recessed pins. Confirm intermateability with standard (flush-pin) parts with Amphenol before mixing.`);
+  if(c.spring&&c.ser!=='BNK')notes.push('EMI grounding spring plugs (/97, /98) are not offered in M83723 class G; the plain non-decoupling plug is shown.');
+  if('KL'.includes(c.bct))notes.push('#20 contacts with #18 crimpwell have no M83723 equivalent; standard-contact version shown. EN2997 uses contact letter C (pin) / D (socket).');
+  if(c.bst==='10'&&/^B[JN]/.test(c.ser))notes.push('-10 (bayonet plug) appears in the GE how-to-order list but not in the BNK quick reference; confirm availability.');
+  if(c.bst==='11')notes.push('The straight plug (-11) has no EN2997 or ESC10 equivalent; the non-decoupling plug is the nearest.');
+  if(!c.vr)notes.push(/^B[JN]/.test(c.ser)?'No variation suffix given, so 200°C (Y188) is assumed for the equivalents. Use Y186 for 260°C (GE Class B).':'No variation suffix given, so 200°C is assumed for the equivalents. Y144 = 260°C, Y163 = 200°C (European market).');
+  else if(!BVAR[c.vr])notes.push(`Variation ${c.vr} is not in the catalog list (Y176, Y185, Y186, Y188); 200°C assumed.`);
+  if(c.t260)notes.push('260°C variation: equivalents shown are EN2997 E-class and ESC10. M83723 is rated to 200°C.');
+  if(c.mod&&c.ser==='BY')notes.push('Modification letters are listed for threaded plugs; confirm for a BY bayonet part.');
+  if(c.mod==='G')notes.push('Modification G keeps 3 accessory teeth; ESC10 always has 360° teeth per MS3155.')}
+ else{if(c.src==='C')eq.push(['EN2997',`<span class="pn">EN2997${c.enc}${c.enst}${c.size}-${pad(c.arr)}${c.enct}${c.key}</span>`,'Direct equivalent (same class, style, layout and keying)']);
+  eq.push(['M83723',`<span class="pn">${milPN(c)}</span>`,'Equivalent / nearest']);
+  if(c.t260)notes.push('260°C (E-class) EN2997 has no M83723 class: M83723 is rated to 200°C. Mil equivalent shown is the 200°C version.');
+  if(c.miss)notes.push('The contact type letter (M, C, A, F, D or B) is missing before the keying letter. Pins (M) have been assumed. If the part has sockets, use F, and the mating parts below will change.');
+  if(c.enst==='C')notes.push('EN2997 style C (plug with integrated backshell) has no M83723 equivalent. Nearest is the non-decoupling plug shown, which needs a separate backshell (M85049/52).');
+  if('CD'.includes(c.enct))notes.push('#20 contacts with #18 crimpwell have no M83723 equivalent; standard-contact version shown.');
+  if('AB'.includes(c.enct))notes.push('EN2997 "less contacts" insert: order M83723 less contacts (Aero-Electric mod 01) if needed.');
+  if(c.sl==='88'||c.sl==='89'||c.sl==='90')notes.push('Amphenol is no longer QPL supplier for EN2997Y/YE; a commercial equivalent (BTY/BFY) is available.');
+  {const b=btPN(c);if(b.pn)eq.push(['Pyle BT commercial',`<span class="pn">${b.pn}</span>`,esc(b.note)]);else notes.push(b.note)}}
+ if(c.src==='M'){const b=btPN(c);if(b.pn)eq.push(['Pyle BT commercial',`<span class="pn">${b.pn}</span>`,esc(b.note)])}
+ if(c.t260&&c.src==='M')notes.push('Add E to the EN2997 class (KE/SE/YE) for 260°C.');
+ if(c.src!=='C'){const x=escPN(c);if(x.pn){eq.push(['ESC10',`<span class="pn">${x.pn}</span>`,'High-temperature (260°C) equivalent; variation O = basic, A = lockwire holes on plug']);notes.push(...x.notes);const y=e11Alt(x.pn,c);if(y)eq.push(y)}else notes.push(...x.notes)}
+ else{const y=e11Alt(escHere,c);if(y)eq.push(y);notes.push('ESC10 is intermateable with EN2997 and M83723 Series III, but a mixed ESC10 / EN2997 / M83723 mating pair performs only to M83723.');
+  notes.push('The variation letter is often written as the digit 0 (e.g. ESC10SE61203SN0); both mean the basic connector.');
+  if(!ESCSZ.includes(c.size))notes.push(`Shell size ${c.size} is not listed in the ESC10 ordering information; check availability.`);
+  if(c.escCls[0]==='Y'&&c.escCt==='S')notes.push('M83723 hermetics are pin only; the M83723 equivalent shown is the pin version.')}
+ {const dp=deutschPN(c);if(dp)eq.push(['TE Deutsch 983',`<span class="pn">${dp.pn}</span>`,esc(dp.note)])}
+ if(c.src!=='B'||!/^B[JN]/.test(c.ser)){const b=bnkPN(c);if(b.pn)eq.push(['Pyle BNK',`<span class="pn">${b.pn}</span>`,`GE-spec commercial (M50TF3564), stainless firewall, nickel finish. E = 360° teeth (F = with EMI spring), D = gold contacts, ${c.t260?'Y186 = 260°C':'Y188 = 200°C'}. Spacing as in the catalog example; confirm with Amphenol.`]);else notes.push(b.note)}
+ h.push(`<section><h2>Cross-reference</h2>${eq.length?tbl(['Spec','Part number','Note'],eq):'<p class="err">No equivalent.</p>'}${notes.map(n=>`<div class="note">${esc(n)}</div>`).join('')}</section>`);
+ // mates
+ const ms=mates(c).map(m=>{const e=enPN(m.o),en=e&&!(S[m.o.sl][0]==='P'&&['86','87'].includes(m.o.sl))?e.pn:(e?e.pn+' (nearest)':'None');
+  if(c.src!=='M'&&!e&&!(c.src==='B'&&S[c.sl][1]==='Bayonet'))return null;const x=escPN({...m.o,src:'X',escVar:undefined});
+  return[`<span class="pn">${m.pn}</span>`,esc(describe(m.o))+(m.note?`<br><small>${esc(m.note)}</small>`:''),`<span class="pn">${en}</span>`,x.pn?`<span class="pn">${x.pn}</span>`:'<small>None</small>',(b=>b.pn?`<span class="pn">${c.src==='B'&&/^B[JN]/.test(c.ser)?b.pn.replace(/^BNK/,c.ser).replace(/Y18[68]$/,c.vr||'Y188'):b.pn}</span>`:'<small>None</small>')(bnkPN(m.o))]}).filter(Boolean);
+ h.push(`<section><h2>Mating connectors (same size, arrangement and keying)</h2>${ms.length?tbl(['M83723','Description','EN2997 equivalent','ESC10 equivalent',c.src==='B'&&/^B[JN]/.test(c.ser)?c.ser+' equivalent':'BNK equivalent'],ms):'<p class="err">No mating part found.</p>'}<div class="note">Mate the same shell size, insert arrangement and key position. Opposite contact gender is shown. Verify class compatibility (temperature / firewall rating) for your application.</div></section>`);
+ h.push(bsSec(c));
+ // insert
+ if(arr){const cr=arr.split(',').map(t=>{const p=t.match(/(\d+)x(\d+)(T?)/);return p});const rr=[];
+  for(const p of cr){const sz=p[2];const k=CT[sz];rr.push([p[1],p[3]?'#8 twinax (consult Amphenol)':'#'+sz,k?`${k[0]} / ${k[1]}`:'—',k?k[2]:'—',k?k[3]:'—'])}
+  h.push(`<section><h2>Insert ${c.size}-${pad(c.arr)} contacts</h2>${tbl(['Qty','Size','Pin / socket (M39029)','Sealing plug','I/R tool'],rr)}<div class="note">The layout in the illustration above is schematic. See the insert arrangement drawings in the Pyle catalog (pp. 27-28) or Conesys (pp. 148-149) for contact numbering and layout.</div></section>`)}
+ h.push(bandSec(c,arr));h.push(keySec(c));$('out').innerHTML=h.join('')}
+$('out').addEventListener('click',e=>{const tb=e.target.closest&&e.target.closest('button.try');if(tb&&!tb.onclick){$('q').value=tb.dataset.pn;lookup();return}const tr=e.target.closest&&e.target.closest('tr.kpr');if(tr)pickKey(tr)});$('out').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches&&e.target.matches('tr.kpr')){e.preventDefault();pickKey(e.target)}});
+$('go').onclick=()=>lookup();$('q').addEventListener('keydown',e=>{if(e.key==='Enter')lookup()});
+const EXS=['M83723/82K1624N','M83723/14R1626PN','M83723/5W1210SN','M83723/20W20-29SN','M83723/52R28-21PN','M83723/95K1624N','M83723/98S2255N','EN2997KE616-24F6','EN2997K016-24MN','EN2997SEC18-08AN','ESC10KE01814P6O','ESC10SE61203SN0','ESC10YE21624PN','ESC11SE61415PN0','ESC11KE01624S70','ESC11YE22041PN0','M83723/72W803N','D38999/26WB35SN','D38999/20WB35PN','D38999/24SC35PA','F38999/21YC04PT600','F38999/23YE35PN022','F38999/26SE82SB201','D38999/25NG41CA','MS3450L16S-1PW','MS3452W20-29SZ','MS3456LS28-21S','MS3456L36-10P','MS3459LS10SL-3S','BNK-12E16-24SD06Y186','BTG-1716-24SD06','BTK-12E18-14PD08Y144','BYG-1712-03PN','BTY-1716-24P1D06Y144','HTK-12 F 16-24 S D 06 Y144','BACC63BV12B3SN','BACC63BP10H5PNH','BACC63CM2219P6A','BACC63CB10-5PNH','BACC63CT15D97SNH','BACC63DC17-8PNH','BACC63CE20-29PWH','505265-1726PN','TXR40AB00-1416BI','TXR54AC00-1208BI','TX40AZ00-2007','TXR21AB90-2216AI','8534 6SE 14 15 S N','8534 0SE 16 24 P 7','8536 3ES 18 14 S N','ESC16KE21624PN0','ESC15KE21814SN0','983-6SE 20-39 P6','983-0SE 08-03 S6 L','983-15 KE 7-18-31 S6 L','TS6A35PTN-E','TS7A98PTA','TH7A35PN','T3-4022-36LD','BNK-17E22-55PDNY188','BNK-19 18-31 S D 07 Y186'];
+// ---- family detection, examples by family, recent lookups, did-you-mean, copy, section navigation ----
+const FAM=[[/^BACC63/,'Boeing BACC63'],[/^TXR?\d{2}[A-Z]/,'Raychem TX / TXR'],[/^T3-?4/,'Pyle T3 contact'],[/^T[WFSNH][2679]/,'Pyle T-Line'],[/^983/,'TE Deutsch 983'],[/^853[46]/,'Souriau 8534 / 8536'],[/^ESC1[56]/,'ESC15 / ESC16'],[/^ESC11/,'ESC11'],[/^ESC10/,'ESC10'],[/^H[TNS]K/,'Pyle HTK'],[/^(M83723|AE833)/,'M83723'],[/^EN2997/,'EN2997'],[/^[DMF]?38999/,'MIL-DTL-38999'],[/^MS345/,'MIL-DTL-5015'],[/^B(TY|FY|NY)/,'Pyle hermetic'],[/^B[TY]/,'Pyle BT / BY'],[/^B[JN]/,'Pyle BNK family']];
+const norm=v=>v.toUpperCase().replace(/\s/g,'');
+const famOf=v=>{const t=norm(v);for(const[r,l]of FAM)if(r.test(t))return l;return''};
+function hint(){const v=$('q').value.trim(),f=famOf(v);$('hint').innerHTML=!v?'':f?`Recognised as <b>${esc(f)}</b>. Press Enter to look up.`:/\d[PSAB][A-Z0-9]?$/i.test(norm(v))?'Prefix not recognised: the ending will be matched against insert layouts.':'Prefix not recognised yet.'}
+$('q').addEventListener('input',hint);
+(()=>{const g={};EXS.forEach(x=>{const f=famOf(x)||'Drawing numbers';(g[f]=g[f]||[]).push(x)});
+ $('exn').textContent=`(${EXS.length} across ${Object.keys(g).length} families)`;
+ for(const f in g){const row=document.createElement('div');row.className='exg';row.innerHTML=`<b>${esc(f)}</b>`;g[f].forEach(x=>{const b=document.createElement('button');b.type='button';b.textContent=x;b.onclick=()=>{$('q').value=x;lookup()};row.appendChild(b)});$('exs').appendChild(row)}})();
+const RK='cxref-recent';
+function getRecent(){try{return JSON.parse(localStorage.getItem(RK)||'[]')}catch(e){return[]}}
+function drawRecent(){const r=getRecent();$('recentRow').hidden=!r.length;$('recent').innerHTML='';r.forEach(x=>{const b=document.createElement('button');b.type='button';b.textContent=x;b.onclick=()=>{$('q').value=x;lookup()};$('recent').appendChild(b)});
+ if(r.length){const c=document.createElement('button');c.type='button';c.className='clr';c.textContent='Clear';c.onclick=()=>{try{localStorage.removeItem(RK)}catch(e){}drawRecent()};$('recent').appendChild(c)}}
+function addRecent(v){try{const r=getRecent().filter(x=>norm(x)!==norm(v));r.unshift(v);localStorage.setItem(RK,JSON.stringify(r.slice(0,8)))}catch(e){}drawRecent()}
+const isErr=()=>{const f=$('out').firstElementChild;return !!f&&(/^<p class="err">/.test(f.innerHTML)||/Part number not valid as written|Prefix not recognized/.test(f.innerHTML))};
+// one-character corrections for the parse() families (M83723 III, EN2997, ESC10, Pyle B series)
+function dym(v){const t=norm(v);if(!/^(M83723|AE833|EN2997|ESC10|BJ|BN|BT|BY|BFY)/.test(t)||!parse(t).err)return[];
+ const c=new Set(),N=t.length;for(let i=0;i<N;i++){if(/\d/.test(t[i]))for(const d of '0123456789')c.add(t.slice(0,i)+d+t.slice(i+1));c.add(t.slice(0,i)+t.slice(i+1));if(i<N-1)c.add(t.slice(0,i)+t[i+1]+t[i]+t.slice(i+2))}
+ c.delete(t);const ok=[];for(const x of c){if(ok.length>=8)break;try{if(!parse(x).err)ok.push(x)}catch(e){}}return ok}
+function lookup(){const v=$('q').value.trim();hint();run();if(!v)return;
+ if(isErr()){const f=dym(v);if(f.length)$('out').insertAdjacentHTML('beforeend',`<section class="dym"><h2>Did you mean</h2><p class="sub">Changing, removing or swapping one character gives these valid part numbers:</p><p style="margin:0">${f.map(p=>`<button type="button" class="try" data-pn="${p}">${p}</button>`).join(' ')}</p></section>`);
+  $('out').querySelectorAll('section.dym button.try').forEach(b=>b.onclick=()=>{$('q').value=b.dataset.pn;lookup()})}
+ else addRecent(v);
+ try{history.replaceState(null,'','#'+encodeURIComponent(v))}catch(e){}
+ const top=$('out').getBoundingClientRect().top;if(top<0||top>innerHeight)try{$('out').scrollIntoView({behavior:'smooth',block:'start'})}catch(e){}}
+let toastT;function toast(t){const e=$('toast');e.textContent=t;e.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>e.classList.remove('on'),1600)}
+function copy(t){const done=()=>toast('Copied '+t);try{navigator.clipboard.writeText(t).then(done,fb)}catch(e){fb()}
+ function fb(){try{const a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();done()}catch(e){toast('Copy not available here')}}}
+$('out').addEventListener('click',e=>{if(e.target.closest('button,a,tr.kpr'))return;
+ const h=e.target.closest('h2');if(h&&h.parentElement.tagName==='SECTION'&&h.parentElement.firstElementChild===h){h.parentElement.classList.toggle('shut');return}
+ const el=e.target.closest('.pn,.big');if(el){const t=el.innerText.replace(/\s*\n\s*/g,' / ').trim();if(t)copy(t)}});
+const SHUT=/^(Contact part numbers and colour bands|Entry size codes)/;
+function decorate(){const secs=[...$('out').children].filter(x=>x.tagName==='SECTION'&&x.firstElementChild&&x.firstElementChild.tagName==='H2'),nav=$('jump');
+ const PI='<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 6V2h8v4M4 12H2.5V6.5h11V12H12M4 9.5h8V14H4z"/></svg>';
+ secs.forEach((x,i)=>{const h=x.firstElementChild;if(!h.dataset.title){h.dataset.title=h.textContent.trim();h.insertAdjacentHTML('beforeend',`<button type="button" class="prt" title="Print this section" aria-label="Print section: ${esc(h.dataset.title)}">${PI}<span>Print</span></button>`)}x.id='sec-'+i;if(SHUT.test(x.firstElementChild.dataset.title)&&!x.dataset.seen)x.classList.add('shut');x.dataset.seen=1});
+ if(secs.length<3){nav.hidden=true;nav.innerHTML='';return}
+ nav.hidden=false;nav.innerHTML=secs.map((x,i)=>{let t=x.firstElementChild.dataset.title.replace(/\s*\(.*$/,'').replace(/^Equivalent (\S+): breakdown$/,'$1').trim();if(t.length>30)t=t.slice(0,28)+'…';return `<a href="#sec-${i}" data-i="${i}">${esc(t)}</a>`}).join('')+'<span class="jact"><button type="button" data-a="print">Print all</button><button type="button" data-a="open">Expand all</button><button type="button" data-a="shut">Collapse all</button></span>';jumpH()}
+function jumpH(){const n=$('jump');document.documentElement.style.setProperty('--jumpH',(n.hidden?0:n.offsetHeight)+'px')}
+addEventListener('resize',jumpH);
+new MutationObserver(decorate).observe($('out'),{childList:true});
+$('jump').addEventListener('click',e=>{const a=e.target.closest('a,button');if(!a)return;e.preventDefault();
+ if(a.dataset.a==='print'){printSec(null);return}
+ if(a.dataset.a){[...$('out').querySelectorAll(':scope>section')].forEach(x=>x.classList.toggle('shut',a.dataset.a==='shut'));return}
+ const x=$('sec-'+a.dataset.i);if(x){x.classList.remove('shut');try{x.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){x.scrollIntoView()}}});
+// ---- print one section (or all) ----
+function printSec(sec){
+ const pn=($('q').value||'').trim().toUpperCase(),title=sec?sec.firstElementChild.dataset.title:'All sections';
+ $('phpn').textContent=pn;$('phsec').textContent=title;$('phdate').textContent=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+ document.querySelectorAll('#out>section.print-me').forEach(x=>x.classList.remove('print-me'));
+ const was=sec&&sec.classList.contains('shut');if(sec){sec.classList.add('print-me');document.body.classList.add('printing')}
+ let fired=false;const done=()=>{document.body.classList.remove('printing');if(sec)sec.classList.remove('print-me')};
+ const bp=()=>{fired=true};addEventListener('beforeprint',bp,{once:true});addEventListener('afterprint',done,{once:true});
+ try{window.print()}catch(e){}
+ // some embedded views block window.print(); fall back to a printable tab
+ setTimeout(()=>{removeEventListener('beforeprint',bp);if(fired)return;done();
+  const css=[...document.querySelectorAll('style')].map(x=>x.textContent).join('\n'),body=(sec?[sec]:[...document.querySelectorAll('#out>section')]).map(x=>{const c=x.cloneNode(true);c.classList.remove('shut');c.querySelectorAll('.prt').forEach(b=>b.remove());return c.outerHTML}).join('');
+  const doc=`<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(pn||'Connector')} - ${esc(title)}</title><style>${css}#phead{display:flex}</style></head><body><main class="wrap" style="padding-block:20px"><div id="phead"><b>${esc(pn)}</b><span>${esc(title)}</span><span>${esc($('phdate').textContent)}</span></div><div id="out">${body}</div></main><script>addEventListener('load',()=>setTimeout(()=>print(),300))<\/script></body></html>`;
+  let w=null;try{w=window.open(URL.createObjectURL(new Blob([doc],{type:'text/html'})),'_blank')}catch(e){}
+  if(!w)toast('Printing is blocked here. Open the page in its own tab to print.')},700)}
+$('out').addEventListener('click',e=>{const b=e.target.closest('.prt');if(b){e.preventDefault();printSec(b.closest('section'))}});
+drawRecent();
+try{const h=decodeURIComponent(location.hash.slice(1));if(h&&!/^sec-/.test(h)){$('q').value=h;lookup()}}catch(e){}
+</script>
+</body></html>
+
+</body></html>
