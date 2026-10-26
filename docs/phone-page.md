@@ -29,7 +29,7 @@ Audio needs one Python package on the PC: `py -m pip install sounddevice`. The i
 | --- | --- |
 | (top) | Power ⏻ ON/OFF, connection, frequency, S/Po meter, spectrum scope (tap to tune) |
 | TUNE | Band, frequency entry and step, mode and filter, Main/Sub swap, SCOPE and SPAN |
-| FUNC | P.AMP, ATT, AGC, NB, NR, ANF and other functions; duplex / split; repeater tone (CTCSS); RIT |
+| FUNC | P.AMP, ATT, AGC, NB, NR, ANF and other functions; duplex / split; repeater tone (CTCSS); RIT; CW decoder (ON / OFF, sensitivity, decoded text, CLEAR) |
 | LEVELS | The level sliders |
 | MEMORY | Memory channels: tap to recall |
 | AUDIO | Receive (audio on/off, volume, squelch muting) and Transmit (mic gain, TX tone, hold or tap mode, voice processing); install as an app |

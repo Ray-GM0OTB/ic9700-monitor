@@ -25,6 +25,7 @@ Also: [Troubleshooting](docs/troubleshooting.md) · [CI-V commands used](docs/ci
 - **Display like the radio's:** large frequency readout (mouse wheel over a digit tunes that digit), MAIN and SUB bands, S-meter blue to S9 and red above, TX meter with Po, SWR, ALC, COMP and Id.
 - **Spectrum scope and waterfall:** click or drag to tune, SPAN key from ±2.5 kHz to ±500 kHz, tuned frequency always in the centre. Optional fast scope over Ethernet.
 - **All the everyday controls:** modes and filters, 15 level sliders, preamp, attenuator, AGC, NB, NR, notch, split, duplex, CTCSS, satellite mode, RIT, CW keyer with macros.
+- **CW decoder** on the radio's receive audio: finds the tone and follows the speed by itself, with a sensitivity setting; text on the PC and the phone.
 - **Power on/off** from the PC or the phone over CI-V.
 - **Memories** read from the radio, CSV import/export, scanner with a band-activity plot.
 - **QSO log** with dupe check, ADIF and CSV export.

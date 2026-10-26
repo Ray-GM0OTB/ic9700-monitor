@@ -1,0 +1,17 @@
+# personal data - never commit
+ic9700_settings.json
+ic9700_qso_log.json
+ic9700_https.crt
+ic9700_https.key
+*.keystore
+*.jks
+# build output
+build/
+dist/
+installer/
+*.spec
+*.apk
+apk_build*/
+build_apk_log.txt
+build_html_apk_log.txt
+__pycache__/

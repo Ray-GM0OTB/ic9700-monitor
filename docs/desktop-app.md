@@ -58,7 +58,7 @@ IC9700 Monitor controls the IC-9700 over the USB cable using CI-V. Everything yo
 | LEVELS | AF, RF, SQL, NR, NB, PBT inner/outer (double-click to centre), CW pitch, RF power, mic, COMP, key speed, monitor, VOX, anti-VOX |
 | BANDS | 2 m, 70 cm, 23 cm; each returns to the last frequency you used on it |
 | FUNC | COMP, VOX, MON, BK-IN, RIT with offset, voice announce |
-| CW | Keyer: free text and 6 editable macros; {MYCALL} = your callsign, {CALL} = the call in the LOG tab |
+| CW | Keyer: free text and 6 editable macros; {MYCALL} = your callsign, {CALL} = the call in the LOG tab; **CW DECODER** opens the decoder window |
 | MEMORY | Memory channels: Save current, Overwrite, Delete, **Read from radio**, CSV import/export. Double-click to recall. |
 | SCAN | Scan memories or a frequency range; stops on squelch and/or S-meter; band-activity plot (click a bar to tune there) |
 | LOG | QSO log (see below) |
@@ -97,6 +97,27 @@ The log saves itself after every change, to `ic9700_qso_log.json`.
 ## Window size
 
 Drag the edge to resize; the frequency digits grow and shrink with it. Maximise and restore return to the size you had. **View > Reset window size** goes back to the normal size. The smallest width comes from the radio panel, so long status messages are cut off rather than widening the window.
+
+## CW decoder
+
+Click **CW DECODER** on the CW tab (or **View > CW decoder…**). A separate window opens and starts decoding the radio's receive audio:
+
+| Part | What it does |
+| --- | --- |
+| **ON / OFF** | Starts and stops decoding. Closing the window also stops it. |
+| Light and bar | The light turns green while a tone is keyed; the bar shows its strength. |
+| Tone / WPM | The tone being decoded and the measured speed. |
+| **Tone** list | **Auto** finds the strongest keyed tone between 300 and 1200 Hz. **Rig pitch** listens only at the radio's CW pitch (LEVELS tab), which is best in CW mode with a busy band. |
+| **Sensitivity** list | **Auto** (recommended): as sensitive as Max, matched to the sending speed, and backs off by itself while it sees static. **Low**: strong signals only. **Normal**: clean signals. **High**: weak signals. **Max**: the weakest signals, with more mistakes from noise. |
+| **CLEAR** | Clears the text. |
+
+Tips:
+- It needs the radio's USB audio, the same as the phone: `py -m pip install sounddevice` (the installed program already has it), and on the radio **SET > Connectors > USB AF/IF Output = AF**.
+- For a weak signal try **Max**; if noise turns into stray letters, step down to High or Normal.
+- A narrow filter (NAR) and a steady signal give the best copy. Very weak, fading or badly sent signals will show some `*` or wrong letters.
+- If the rig's squelch is closed, the decoder hears nothing: turn SQL down.
+- Speed and tone settle within the first few characters, so the first letter of an over may be wrong.
+
 
 ## Where files are kept
 
