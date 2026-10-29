@@ -912,6 +912,12 @@ def init_fonts(root):
         lcd_s=tkfont.Font(family=ui, size=7, weight="bold"),
         model=tkfont.Font(family=ui, size=13, weight="bold"),
     )
+    if IS_MAC:
+        # Tk on the Mac draws point sizes at 72 per inch; size the text in pixels as Windows does (96 per
+        # inch) so it fits the layout the same way. The frequency readout sizes itself to the window.
+        for k, f in F.items():
+            if k not in ("freq", "freq_s"):
+                f.configure(size=-round(abs(int(f.cget("size"))) * 96 / 72))
 
 
 def rrect(c, x1, y1, x2, y2, r, **kw):
@@ -7862,6 +7868,7 @@ if __name__ == "__main__":
     root = tk.Tk()
     app = IC9700Controller(root)
     if os.environ.get("IC9700_SELFTEST"):            # used by the automatic Mac build to check the app starts
+        root.after(1500, lambda: (root.lift(), root.focus_force()))
         def _selftest_done():
             print(f"SELFTEST OK {APP_VERSION} {sys.platform} Tk {root.tk.call('info', 'patchlevel')} "
                   f"window {root.winfo_width()}x{root.winfo_height()} settings {BASE_DIR}", flush=True)
