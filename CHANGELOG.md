@@ -1,6 +1,13 @@
 # Changelog
 
-## Version 3.30
+## Version 3.31
+
+### Mac
+- Runs on the Mac (Mac mini, MacBook, iMac; Apple silicon or Intel, macOS 11 or later). Download the `.dmg` from the Releases page; see [docs/mac.md](docs/mac.md).
+- The Mac app is built by `build_mac.sh`, and automatically on GitHub whenever the program changes.
+- Auto-detect finds the IC-9700's CI-V port among the Mac's USB serial ports (Bluetooth and other ports are skipped).
+- Settings in `~/Library/Application Support/IC9700 Monitor`; About, Settings (Cmd-,) and Quit (Cmd-Q) in the app menu; Control-click works as right-click; Tailscale for Mac is found for the phone's HTTPS page.
+
 
 ### Look
 - Level sliders have red LED-style knobs that glow brighter the higher the value (PBT sliders: the further from centre). They replace the silver knobs; a knob stays grey until the radio has reported its level.

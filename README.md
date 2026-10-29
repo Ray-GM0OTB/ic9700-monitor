@@ -15,6 +15,7 @@ IC9700 Monitor talks to the radio over its USB cable (CI-V), shows a display mod
 | **Phone page** | Full remote control in the phone's browser: display, scope, all controls, audio both ways | [Phone page](docs/phone-page.md) |
 | **Lite phone page** | A minimal page built for clear audio and quick PTT | [Lite page](docs/lite-page.md) |
 | **Android apps** | *IC-9700* (full page) and *IC-9700 Lite* as installable apps | [Android apps](docs/android-apps.md) |
+| **Mac app** | IC9700 Monitor for the Mac (Apple silicon or Intel): `.dmg` on the Releases page, or `build_mac.sh` | [Mac app](docs/mac.md) |
 | **Windows installer** | Builds a normal setup `.exe` so the program runs without Python | [Windows installer](docs/windows-installer.md) |
 | **Connector X-Ref** | A separate offline Android app: circular connector part-number decoder and cross-reference | [Connector X-Ref](docs/connector-xref.md) |
 

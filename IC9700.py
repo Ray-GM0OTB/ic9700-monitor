@@ -2,7 +2,13 @@
 IC-9700 Monitor & Control  -  by GM0OTB
 =======================================
 
-Version 3.30 - CI-V control panel for the Icom IC-9700.
+Version 3.31 - CI-V control panel for the Icom IC-9700.
+
+New in 3.31
+  * Runs on the Mac (Mac mini etc., Apple silicon or Intel): Mac app and .dmg built by build_mac.sh
+    or automatically on GitHub. Auto-detect finds the IC-9700's CI-V port among the Mac's USB serial
+    ports; settings in ~/Library/Application Support/IC9700 Monitor; About / Settings / Quit in the
+    app menu; Control-click works as right-click; finds Tailscale for Mac.
 
 New in 3.30
   * Level sliders: red LED-style knobs that glow brighter the higher the value (PBT sliders: the
@@ -272,7 +278,13 @@ def _can_write(d):
         return False
 
 
-if getattr(sys, "frozen", False):
+IS_MAC = sys.platform == "darwin"
+
+if getattr(sys, "frozen", False) and IS_MAC:
+    # Mac app: never write inside the .app bundle; keep settings in Application Support
+    BASE_DIR = os.path.join(os.path.expanduser("~"), "Library", "Application Support", "IC9700 Monitor")
+    os.makedirs(BASE_DIR, exist_ok=True)
+elif getattr(sys, "frozen", False):
     BASE_DIR = os.path.dirname(sys.executable)  # next to the .exe (portable copy)
     if not _can_write(BASE_DIR):                # installed in Program Files: keep settings in AppData instead
         BASE_DIR = os.path.join(os.environ.get("LOCALAPPDATA") or os.path.expanduser("~"), "IC9700 Monitor")
@@ -285,7 +297,7 @@ KEY_PATH = os.path.join(BASE_DIR, "ic9700_https.key")
 QSO_PATH = os.path.join(BASE_DIR, "ic9700_qso_log.json")
 BAUD_RATES = [4800, 9600, 19200, 38400, 57600, 115200]
 AUTO_PORT = "Auto-detect"
-APP_VERSION = "3.30"
+APP_VERSION = "3.31"
 APP_AUTHOR = "GM0OTB"
 
 # ---- Colour palette: radio body (case, keys) ----
@@ -812,6 +824,44 @@ def _wf_palette():
 WF_PALETTE = _wf_palette()
 
 
+def usb_serial_ports():
+    """USB serial ports on a Mac / Linux: /dev/cu.* (Mac) or /dev/ttyUSB* / ttyACM* (Linux), with the
+    radio's Silicon Labs CP210x ports first. Bluetooth and debug ports are left out."""
+    out = []
+    for p in serial.tools.list_ports.comports():
+        dev = p.device
+        low = (dev + " " + (p.description or "") + " " + (p.manufacturer or "")).lower()
+        if any(k in low for k in ("bluetooth", "debug-console", "wlan", "airpods")):
+            continue
+        if sys.platform == "darwin" and not dev.startswith("/dev/cu."):
+            continue                               # /dev/tty.* is the same port, but blocks on open
+        silabs = p.vid == 0x10C4 or any(k in low for k in ("cp210", "slab", "silicon labs", "ic-9700", "icom"))
+        out.append((0 if silabs else 1, dev))
+    return [d for _, d in sorted(out)]
+
+
+def find_civ_port(baud, addr=DEFAULT_RADIO_ADDR):
+    """The first USB serial port that answers a CI-V 'read frequency' (the IC-9700 has two USB serial
+    ports; only one carries CI-V). Falls back to the first likely port."""
+    ports = usb_serial_ports()
+    ask = bytes([0xFE, 0xFE, addr, 0xE0, 0x03, 0xFD])
+    want = bytes([0xFE, 0xFE, 0xE0, addr, 0x03])
+    for dev in ports:
+        try:
+            with serial.Serial(dev, baud, timeout=0.25, write_timeout=0.5) as s:
+                s.reset_input_buffer()
+                s.write(ask)
+                t_end = time.time() + 0.6
+                buf = b""
+                while time.time() < t_end:
+                    buf += s.read(64)
+                    if want in buf:
+                        return dev
+        except Exception:
+            continue
+    return ports[0] if ports else None
+
+
 # -----------------------------------------------------------------
 # 4. CUSTOM WIDGETS
 # -----------------------------------------------------------------
@@ -825,14 +875,21 @@ def pick_family(candidates):
 
 def init_fonts(root):
     global SCALE
+    if IS_MAC:
+        try:
+            root.tk.call("tk", "scaling", 96 / 72)     # same text size against the layout as on Windows
+        except tk.TclError:
+            pass
+        SCALE = 1.0                                     # Retina is handled by macOS itself
     try:
-        SCALE = max(1.0, min(3.0, root.winfo_fpixels("1i") / 96.0))
+        if not IS_MAC:
+            SCALE = max(1.0, min(3.0, root.winfo_fpixels("1i") / 96.0))
     except Exception:
         SCALE = 1.0
-    ui = pick_family(["Segoe UI", "Inter", "Helvetica Neue", "DejaVu Sans", "Helvetica"])
-    mono = pick_family(["Cascadia Mono", "Consolas", "DejaVu Sans Mono", "Menlo", "Courier New", "Courier"])
+    ui = pick_family(["Segoe UI", "SF Pro Text", "Inter", "Helvetica Neue", "DejaVu Sans", "Helvetica"])
+    mono = pick_family(["Cascadia Mono", "Consolas", "SF Mono", "Menlo", "DejaVu Sans Mono", "Courier New", "Courier"])
     # The radio's display uses a clean sans-serif with tabular figures for the frequency
-    lcd = pick_family(["Segoe UI Semibold", "Segoe UI", "Bahnschrift", "Inter", "Helvetica Neue",
+    lcd = pick_family(["Segoe UI Semibold", "Segoe UI", "Bahnschrift", "SF Pro Display", "Inter", "Helvetica Neue",
                        "DejaVu Sans", "Helvetica"])
     lcd_w = "normal" if "semibold" in lcd.lower() else "bold"
     F.update(
@@ -1895,7 +1952,9 @@ def tailscale_exe():
     p = shutil.which("tailscale")
     if p:
         return p
-    for c in (r"C:\Program Files\Tailscale\tailscale.exe", r"C:\Program Files (x86)\Tailscale\tailscale.exe"):
+    for c in (r"C:\Program Files\Tailscale\tailscale.exe", r"C:\Program Files (x86)\Tailscale\tailscale.exe",
+              "/Applications/Tailscale.app/Contents/MacOS/Tailscale",     # Mac app (App Store or standalone)
+              "/usr/local/bin/tailscale", "/opt/homebrew/bin/tailscale"):
         if os.path.exists(c):
             return c
     return None
@@ -4188,7 +4247,17 @@ class IC9700Controller:
         phone_menu.add_command(label="Open the LITE phone page on this PC (clear audio, quick PTT)",
                                command=lambda: self.open_phone_page("lite"))
         menubar.add_cascade(label="Phone", menu=phone_menu)
-        menubar.add_command(label="About", command=self.show_about)
+        if IS_MAC:
+            app_menu = tk.Menu(menubar, name="apple", tearoff=0)      # the "IC9700 Monitor" menu
+            app_menu.add_command(label="About IC9700 Monitor", command=self.show_about)
+            menubar.add_cascade(menu=app_menu)
+            try:
+                self.root.createcommand("tk::mac::ShowPreferences", self.open_settings)
+                self.root.createcommand("tk::mac::Quit", self.on_close)          # Cmd-Q saves settings too
+            except tk.TclError:
+                pass
+        else:
+            menubar.add_command(label="About", command=self.show_about)
         self.root.config(menu=menubar)
 
     def show_about(self):
@@ -4498,7 +4567,8 @@ class IC9700Controller:
         qf.columnconfigure(len(keys) + 1, weight=1, uniform="q")
         self.btn_span = RoundButton(qf, "SPAN", lambda: self.step_span(+1, wrap=True), width=40, height=30)
         self.btn_span.grid(row=0, column=len(keys) + 1, padx=px(2), sticky="ew")
-        self.btn_span.bind("<Button-3>", lambda e: self.step_span(-1, wrap=True))
+        for ev in (("<Button-2>", "<Control-Button-1>") if IS_MAC else ("<Button-3>",)):
+            self.btn_span.bind(ev, lambda e: self.step_span(-1, wrap=True))
         self.btn_span.bind("<MouseWheel>", lambda e: self.step_span(1 if e.delta > 0 else -1))
         self.btn_span.bind("<Button-4>", lambda e: self.step_span(1))
         self.btn_span.bind("<Button-5>", lambda e: self.step_span(-1))
@@ -4795,7 +4865,7 @@ class IC9700Controller:
         txt.pack(side="left", fill="both", expand=True)
         txt.insert("end", self.cwdec.text)
         txt.see("end")
-        txt.bind("<Key>", lambda e: None if (e.state & 4 and e.keysym.lower() in ("c", "a")) else "break")
+        txt.bind("<Key>", lambda e: None if (e.state & (4 | 8 | 16) and e.keysym.lower() in ("c", "a")) else "break")
         self.cwd_text = txt
         self.cwd_status = self.lbl(win, "", fg=MUTED, font=F["small"], anchor="w")
         self.cwd_status.pack(fill="x", padx=px(10), pady=(px(3), px(6)))
@@ -5566,6 +5636,8 @@ class IC9700Controller:
                 else:
                     self.set_status(f"WAITING FOR {saved} ...", ORANGE)
                     return False
+            elif sys.platform != "win32":
+                sport = find_civ_port(self.config.get("baud", 19200))
             elif "COM4" in ports:
                 sport = "COM4"
             elif "COM3" in ports:
@@ -7789,4 +7861,10 @@ if __name__ == "__main__":
     set_dpi_awareness()
     root = tk.Tk()
     app = IC9700Controller(root)
+    if os.environ.get("IC9700_SELFTEST"):            # used by the automatic Mac build to check the app starts
+        def _selftest_done():
+            print(f"SELFTEST OK {APP_VERSION} {sys.platform} Tk {root.tk.call('info', 'patchlevel')} "
+                  f"window {root.winfo_width()}x{root.winfo_height()} settings {BASE_DIR}", flush=True)
+            app.on_close()
+        root.after(int(os.environ.get("IC9700_SELFTEST_MS", "6000")), _selftest_done)
     root.mainloop()
