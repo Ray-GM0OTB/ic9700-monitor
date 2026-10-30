@@ -27,6 +27,7 @@ IC9700 Monitor also runs on a Mac (Mac mini, MacBook, iMac…), Apple silicon or
 | --- | --- |
 | Settings, QSO log, HTTPS certificate | `~/Library/Application Support/IC9700 Monitor` |
 | Right-click (SPAN key: step back) | Control-click, two-finger click on a trackpad, or the right mouse button |
+| Text size | **View > Text size**: Normal, Large (default) or Extra large; applies after reopening |
 | Copy decoded CW | Cmd-C |
 | About / Settings | **IC9700 Monitor** menu at the top of the screen (Settings: Cmd-,) |
 | Quit | Cmd-Q (settings are saved) |

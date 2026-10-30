@@ -2,7 +2,11 @@
 IC-9700 Monitor & Control  -  by GM0OTB
 =======================================
 
-Version 3.31 - CI-V control panel for the Icom IC-9700.
+Version 3.32 - CI-V control panel for the Icom IC-9700.
+
+New in 3.32
+  * Mac: larger, clearer text in the Mac's own font (San Francisco); the whole window grows with it.
+    View > Text size: Normal, Large (default) or Extra large.
 
 New in 3.31
   * Runs on the Mac (Mac mini etc., Apple silicon or Intel): Mac app and .dmg built by build_mac.sh
@@ -297,7 +301,7 @@ KEY_PATH = os.path.join(BASE_DIR, "ic9700_https.key")
 QSO_PATH = os.path.join(BASE_DIR, "ic9700_qso_log.json")
 BAUD_RATES = [4800, 9600, 19200, 38400, 57600, 115200]
 AUTO_PORT = "Auto-detect"
-APP_VERSION = "3.31"
+APP_VERSION = "3.32"
 APP_AUTHOR = "GM0OTB"
 
 # ---- Colour palette: radio body (case, keys) ----
@@ -496,6 +500,14 @@ def load_config():
             if data.get(k):
                 cfg[k] = str(data[k])
         cfg["audio_sql"] = bool(data.get("audio_sql", True))
+        if data.get("mac_text") in ("Normal", "Large", "Extra large"):
+            cfg["mac_text"] = data["mac_text"]
+        if data.get("cwd_tone") in ("Auto", "Rig pitch"):
+            cfg["cwd_tone"] = data["cwd_tone"]
+        if data.get("cwd_sens") in ("Auto", "Low", "Normal", "High", "Max"):
+            cfg["cwd_sens"] = data["cwd_sens"]
+        if isinstance(data.get("cwd_geom"), str):
+            cfg["cwd_geom"] = data["cwd_geom"]
         cfg["web_https_port"] = max(1024, min(65535, int(data.get("web_https_port", 8074))))
         cfg["web_https_name"] = str(data.get("web_https_name", ""))
         cfg["web_secret"] = str(data.get("web_secret", ""))
@@ -873,6 +885,18 @@ def pick_family(candidates):
     return candidates[-1]
 
 
+MAC_TEXT_SIZES = {"Normal": 1.0, "Large": 1.2, "Extra large": 1.4}     # View > Text size (Mac)
+MAC_TEXT_DEFAULT = "Large"
+
+
+def mac_system_family(root):
+    """The Mac's own interface font (San Francisco), as Tk names it."""
+    try:
+        return tkfont.nametofont("TkDefaultFont", root=root).actual("family")
+    except Exception:
+        return "Helvetica Neue"
+
+
 def init_fonts(root):
     global SCALE
     if IS_MAC:
@@ -880,7 +904,11 @@ def init_fonts(root):
             root.tk.call("tk", "scaling", 96 / 72)     # same text size against the layout as on Windows
         except tk.TclError:
             pass
-        SCALE = 1.0                                     # Retina is handled by macOS itself
+        try:
+            choice = load_config().get("mac_text", MAC_TEXT_DEFAULT)
+        except Exception:
+            choice = MAC_TEXT_DEFAULT
+        SCALE = MAC_TEXT_SIZES.get(choice, MAC_TEXT_SIZES[MAC_TEXT_DEFAULT])   # text and layout grow together
     try:
         if not IS_MAC:
             SCALE = max(1.0, min(3.0, root.winfo_fpixels("1i") / 96.0))
@@ -892,6 +920,10 @@ def init_fonts(root):
     lcd = pick_family(["Segoe UI Semibold", "Segoe UI", "Bahnschrift", "SF Pro Display", "Inter", "Helvetica Neue",
                        "DejaVu Sans", "Helvetica"])
     lcd_w = "normal" if "semibold" in lcd.lower() else "bold"
+    if IS_MAC:                                          # San Francisco: crisp on Mac screens
+        ui = lcd = mac_system_family(root)
+        lcd_w = "bold"
+        mono = pick_family(["SF Mono", "Menlo", "Monaco", "Courier"])
     F.update(
         ui=tkfont.Font(family=ui, size=9),
         ui_b=tkfont.Font(family=ui, size=9, weight="bold"),
@@ -914,10 +946,13 @@ def init_fonts(root):
     )
     if IS_MAC:
         # Tk on the Mac draws point sizes at 72 per inch; size the text in pixels as Windows does (96 per
-        # inch) so it fits the layout the same way. The frequency readout sizes itself to the window.
+        # inch), times the chosen text size, so it fits the layout the same way. The frequency readout
+        # sizes itself to the window. Small labels get a touch more weight for clarity.
         for k, f in F.items():
             if k not in ("freq", "freq_s"):
-                f.configure(size=-round(abs(int(f.cget("size"))) * 96 / 72))
+                f.configure(size=-round(abs(int(f.cget("size"))) * 96 / 72 * SCALE))
+            if k in ("small", "ui") :
+                f.configure(weight="normal")
 
 
 def rrect(c, x1, y1, x2, y2, r, **kw):
@@ -4243,6 +4278,13 @@ class IC9700Controller:
         view_menu.add_separator()
         view_menu.add_command(label="Reset window size", command=self.reset_window_size)
         view_menu.add_command(label="CW decoder...", command=self.open_cw_decoder)
+        if IS_MAC:
+            size_menu = tk.Menu(view_menu, tearoff=0)
+            self.mac_text_var = tk.StringVar(value=self.config.get("mac_text", MAC_TEXT_DEFAULT))
+            for name in MAC_TEXT_SIZES:
+                size_menu.add_radiobutton(label=name, value=name, variable=self.mac_text_var,
+                                          command=self.change_mac_text)
+            view_menu.add_cascade(label="Text size", menu=size_menu)
         menubar.add_cascade(label="View", menu=view_menu)
         phone_menu = tk.Menu(menubar, tearoff=0)
         phone_menu.add_command(label="Phone access, audio (RX / TX) && HTTPS...", command=self.open_web_settings)
@@ -4265,6 +4307,13 @@ class IC9700Controller:
         else:
             menubar.add_command(label="About", command=self.show_about)
         self.root.config(menu=menubar)
+
+    def change_mac_text(self):
+        """Mac: the text size applies from the next start (the whole window is laid out for it)."""
+        self.config["mac_text"] = self.mac_text_var.get()
+        save_config(self.config)
+        messagebox.showinfo("Text size", f"Text size: {self.mac_text_var.get()}.\n\n"
+                            "Quit IC9700 Monitor (Cmd-Q) and open it again to use the new size.")
 
     def show_about(self):
         win = tk.Toplevel(self.root)

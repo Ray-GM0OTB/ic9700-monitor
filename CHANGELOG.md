@@ -1,8 +1,9 @@
 # Changelog
 
-## Version 3.31
+## Version 3.32
 
 ### Mac
+- Larger, clearer text in the Mac's own font (San Francisco); the whole window grows with it. **View > Text size**: Normal, Large (default) or Extra large.
 - Runs on the Mac (Mac mini, MacBook, iMac; Apple silicon or Intel, macOS 11 or later). Download the `.dmg` from the Releases page; see [docs/mac.md](docs/mac.md).
 - The Mac app is built by `build_mac.sh`, and automatically on GitHub whenever the program changes.
 - Auto-detect finds the IC-9700's CI-V port among the Mac's USB serial ports (Bluetooth and other ports are skipped).
