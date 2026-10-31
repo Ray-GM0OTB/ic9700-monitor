@@ -2,7 +2,12 @@
 IC-9700 Monitor & Control  -  by GM0OTB
 =======================================
 
-Version 3.32 - CI-V control panel for the Icom IC-9700.
+Version 3.33 - CI-V control panel for the Icom IC-9700.
+
+New in 3.33
+  * Mac: "Turn on HTTPS" works with the Tailscale Mac app. The program now runs the app as
+    Tailscale's command-line tool (TAILSCALE_BE_CLI=true); before, the app tried to open its own
+    window and said "The Tailscale GUI failed to start", so the certificate couldn't be fetched.
 
 New in 3.32
   * Mac: larger, clearer text in the Mac's own font (San Francisco); the whole window grows with it.
@@ -301,7 +306,7 @@ KEY_PATH = os.path.join(BASE_DIR, "ic9700_https.key")
 QSO_PATH = os.path.join(BASE_DIR, "ic9700_qso_log.json")
 BAUD_RATES = [4800, 9600, 19200, 38400, 57600, 115200]
 AUTO_PORT = "Auto-detect"
-APP_VERSION = "3.32"
+APP_VERSION = "3.33"
 APP_AUTHOR = "GM0OTB"
 
 # ---- Colour palette: radio body (case, keys) ----
@@ -1967,7 +1972,8 @@ def fetch_ts_cert(name=None):
     if code is None:
         return False, out
     try:
-        st = json.loads(out)
+        # a warning line may come before the JSON; read from the first "{"
+        st = json.loads(out[out.index("{"):] if "{" in out else out)
     except ValueError:
         return False, "Tailscale status could not be read:\n" + out
     if st.get("BackendState") not in (None, "Running"):
@@ -2007,9 +2013,14 @@ def run_tailscale(args, timeout=15):
     if not exe:
         return None, "The Tailscale command-line tool was not found. Is Tailscale installed on this PC?"
     flags = 0x08000000 if sys.platform == "win32" else 0          # CREATE_NO_WINDOW
+    env = dict(os.environ)
+    # The Mac's Tailscale app is also its command-line tool. Started from another app (not from
+    # Terminal) it thinks it should open its window, fails ("The Tailscale GUI failed to start",
+    # CLIError 3) and prints no status. TAILSCALE_BE_CLI=true makes it act as the CLI.
+    env["TAILSCALE_BE_CLI"] = "true"
     try:
         p = subprocess.Popen([exe] + list(args), stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,
-                             stderr=subprocess.STDOUT, creationflags=flags)
+                             stderr=subprocess.STDOUT, creationflags=flags, env=env)
     except OSError as e:
         return None, str(e)
     try:

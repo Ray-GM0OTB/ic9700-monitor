@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 3.33
+
+### Mac
+- **Turn on HTTPS** works with the Tailscale Mac app. Before, the Tailscale app tried to open its own window when the program asked it for the certificate, and the program said "Tailscale status could not be read: The Tailscale GUI failed to start". The program now tells it to act as the command-line tool.
+
 ## Version 3.32
 
 ### Mac

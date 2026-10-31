@@ -1,6 +1,6 @@
 ; Inno Setup script for IC9700 Monitor (built by build_installer.bat)
 #define AppName "IC9700 Monitor"
-#define AppVersion "3.32"
+#define AppVersion "3.33"
 #define AppPublisher "GM0OTB"
 #define AppExe "IC9700 Monitor.exe"
 

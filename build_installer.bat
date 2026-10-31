@@ -4,7 +4,7 @@ rem  IC9700 Monitor - builds the Windows installer
 rem  Put this file, IC9700.py and IC9700_installer.iss in one
 rem  folder (plus ic9700.ico / ic9700.png if you have them),
 rem  then double-click this file.
-rem  Result: installer\IC9700_Monitor_Setup_3.32.exe
+rem  Result: installer\IC9700_Monitor_Setup_3.33.exe
 rem ============================================================
 setlocal
 cd /d "%~dp0"
@@ -44,7 +44,7 @@ if not defined ISCC (
 %ISCC% IC9700_installer.iss || goto :fail
 
 echo.
-echo Done. Installer: %CD%\installer\IC9700_Monitor_Setup_3.32.exe
+echo Done. Installer: %CD%\installer\IC9700_Monitor_Setup_3.33.exe
 explorer installer
 pause
 exit /b 0
