@@ -2,7 +2,11 @@
 IC-9700 Monitor & Control  -  by GM0OTB
 =======================================
 
-Version 3.33 - CI-V control panel for the Icom IC-9700.
+Version 3.34 - CI-V control panel for the Icom IC-9700.
+
+New in 3.34
+  * HTTPS starts even when the phone page's own port is set to the https port (e.g. both 8074):
+    the https page then uses the next port up, instead of failing with "Address already in use".
 
 New in 3.33
   * Mac: "Turn on HTTPS" works with the Tailscale Mac app. The program now runs the app as
@@ -306,7 +310,7 @@ KEY_PATH = os.path.join(BASE_DIR, "ic9700_https.key")
 QSO_PATH = os.path.join(BASE_DIR, "ic9700_qso_log.json")
 BAUD_RATES = [4800, 9600, 19200, 38400, 57600, 115200]
 AUTO_PORT = "Auto-detect"
-APP_VERSION = "3.33"
+APP_VERSION = "3.34"
 APP_AUTHOR = "GM0OTB"
 
 # ---- Colour palette: radio body (case, keys) ----
@@ -6518,6 +6522,8 @@ class IC9700Controller:
         if not (self.web.running and name and os.path.exists(CERT_PATH) and os.path.exists(KEY_PATH)):
             return
         port = int(self.config.get("web_https_port", 8074))
+        if port == self.web.port:      # the http page already has this port: put https on the next one
+            port = self.web.port + 1
         if not self.web.start_https(port, CERT_PATH, KEY_PATH, name) and not quiet:
             messagebox.showerror("HTTPS", f"Could not start the https page on port {port}:\n{self.web.https_error}")
         try:

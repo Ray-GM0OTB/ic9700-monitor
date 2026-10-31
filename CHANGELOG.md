@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 3.34
+
+### Phone access
+- **Turn on HTTPS** works when the phone page's port (Phone access > Port) is the same as the https port (8074 unless changed): the https page then uses the next port up and shows its address, instead of failing with "Address already in use".
+
 ## Version 3.33
 
 ### Mac
